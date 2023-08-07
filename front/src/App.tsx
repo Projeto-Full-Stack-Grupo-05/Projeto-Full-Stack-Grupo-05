@@ -1,4 +1,4 @@
-import AppRouter from "./routers";
+import AppRouter from "./Routes/routes";
 import { GlobalStyle } from "./styles/GlobalStyle";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
       <GlobalStyle />
       <AppRouter />
     </>
-  )
+  );
 }
 
 export default App;
