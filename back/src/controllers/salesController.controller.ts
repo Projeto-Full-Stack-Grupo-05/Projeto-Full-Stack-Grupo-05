@@ -2,8 +2,17 @@ import { Response, Request } from "express";
 import deleteSaleService from "../services/sales/deleteSaleService.service";
 import updateSaleService from "../services/sales/updateSaleService.service";
 
+import { createSalesService } from "../services/sales/createSalesService.service";
 
 const createSalesController = async (req: Request, res: Response) => {
+
+  const newSale = await createSalesService(req.body);
+
+  return res.status(201).json(newSale);
+};
+
+export { createSalesController };
+
     // const newSales= await createSalesService(req.body);
   
     return res.status(201).json('newSales');
@@ -33,3 +42,4 @@ export const deleteSaleController = async (
 
   return res.status(204).send()
 }
+
