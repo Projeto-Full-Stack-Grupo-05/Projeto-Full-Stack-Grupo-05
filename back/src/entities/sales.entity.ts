@@ -16,11 +16,11 @@ class Sale {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  // @Column()
-  // user_id: string;
+  @Column()
+  user_id: string;
 
-  // @Column()
-  // car_id: string;
+  @Column()
+  car_id: string;
 
   @Column()
   title: string;

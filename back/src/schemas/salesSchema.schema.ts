@@ -2,8 +2,8 @@ import { z } from "zod";
 import { SaleStatus } from "../entities/sales.entity";
 
 const salesSchemaRequest = z.object({
-  //   user_id: z.string().max(45),
-  //   car_id: z.string().max(45),
+  user_id: z.string().max(45),
+  car_id: z.string().max(45),
   title: z.string().max(70),
   img_url: z.string().max(250),
   color: z.string().max(20),
