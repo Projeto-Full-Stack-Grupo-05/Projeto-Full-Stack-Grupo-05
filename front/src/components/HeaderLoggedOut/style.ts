@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledHeaderLoggedOut = styled.header`
   display: flex;
-  position: fixed;
+
   height: 80px;
   width: 100%;
   border-bottom: 2.3px solid var(--color-grey-6);

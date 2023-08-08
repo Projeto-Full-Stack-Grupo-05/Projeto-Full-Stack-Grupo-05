@@ -5,9 +5,6 @@ export const StyledFooter = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  position: absolute;
-  bottom: 0;
-
   padding-right: 59px;
   padding-left: 59px;
   padding-top: 45px;
