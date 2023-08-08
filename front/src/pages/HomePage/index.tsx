@@ -9,7 +9,7 @@ import { isAxiosError } from "axios";
 import ErrorPage from "../ErrorPage";
 
 export const Homepage = () => {
-      const getKenzieCars = async () => {
+  const getKenzieCars = async () => {
     try {
       const cars = await kenzieApi.get<IKenzieCar[]>("/cars?brand=chevrolet");
 
@@ -27,30 +27,33 @@ export const Homepage = () => {
     queryKey: "cars",
     queryFn: getKenzieCars,
   });
-    
+
+  if (error) return <ErrorPage />;
+
   return (
     <StyledContainer>
-    <HeaderLoggedOut />
-    <img src={carBanner} alt="Car Banner" className="carBanner" />
-    <h1></h1>
-    <div className="mainDiv">
-      <aside>
-        <h1>Marca</h1>
-        <h4>General</h4>
-        <h4>General</h4>
-        <h4>General</h4>
-        <h4>General</h4>
-      </aside>
-      <div>
+      <HeaderLoggedOut />
+      <img src={carBanner} alt="Car Banner" className="carBanner" />
+      <h1></h1>
+      <div className="mainDiv">
+        <aside>
+          <h1>Marca</h1>
+          <h4>General</h4>
+          <h4>General</h4>
+          <h4>General</h4>
+          <h4>General</h4>
+        </aside>
         <div>
-          <h1>Cards</h1>
+          <div>
+            <h1>Cards</h1>
+          </div>
         </div>
       </div>
-    </div>
-    <div className="nextDiv">
-      <h2>1 de 2</h2>
-      <button>Seguinte</button>
-    </div>
-    <Footer />
-  </StyledContainer>)
+      <div className="nextDiv">
+        <h2>1 de 2</h2>
+        <button>Seguinte</button>
+      </div>
+      <Footer />
+    </StyledContainer>
+  );
 };
