@@ -15,6 +15,7 @@ import {
 } from "../schemas/salesSchema.schema";
 
 const salesRoutes = Router();
+salesRoutes.post("",ensureBodyValidMiddleware(salesSchemaRequest),ensureAlreadyExistsSalesMiddleware, createSalesController);
 
 salesRoutes.post(
   "",
@@ -33,6 +34,7 @@ salesRoutes.patch(
   ensureIdMiddleware,
   updateSaleController
 );
+
 salesRoutes.delete("/:id", ensureIdMiddleware, deleteSaleController);
 
 export default salesRoutes;

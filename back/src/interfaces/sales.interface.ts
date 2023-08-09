@@ -9,7 +9,10 @@ type TSalesResponse = z.infer<typeof salesSchemaResponse>;
 type TSalesRequestUpdate = DeepPartial<TSalesRequest>;
 
 export {
-    TSale, TSaleResponse, TSalesRequest, TSalesResponse,
+    TSale,
+    TSaleResponse,
+    TSalesRequest,
+    TSalesResponse,
     TSalesRequestUpdate
 };
 

@@ -8,7 +8,7 @@ import { AppError } from "../../error";
 const updateSaleService = async (
   saleData: TSalesRequestUpdate,
   saleId: string
-): Promise<TSale> => {
+): Promise<TSales> => {
   const saleRepository: Repository<Sale> = AppDataSource.getRepository(Sale);
 
   const existingSale: Sale | null = await saleRepository.findOneBy({ id: saleId});

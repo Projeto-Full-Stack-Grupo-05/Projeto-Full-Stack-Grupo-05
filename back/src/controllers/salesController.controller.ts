@@ -7,6 +7,7 @@ import retrieveSaleService from "../services/sales/retrieveSaleService.service";
 import updateSaleService from "../services/sales/updateSaleService.service";
 
 export const createSalesController = async (req: Request, res: Response) => {
+
   const newSale = await createSalesService(req.body);
 
   return res.status(201).json(newSale);
@@ -28,6 +29,7 @@ export const updateSaleController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
+
   const saleData: TSalesRequestUpdate = req.body;
 
   const saleId: string = req.params.id;
