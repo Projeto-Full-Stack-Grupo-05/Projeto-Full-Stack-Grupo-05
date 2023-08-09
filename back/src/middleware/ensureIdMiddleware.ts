@@ -15,7 +15,7 @@ const ensureIdMiddleware = async (req: Request, res: Response, next: NextFunctio
     })
 
     if (!sale) {
-        throw new AppError('Sale not a found', 404)
+        throw new AppError('Sale not found', 404)
     }
     return next()
 }

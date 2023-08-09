@@ -1,28 +1,38 @@
-import { Response, Request } from "express";
+import { Request, Response } from "express";
+import { TSale, TSalesUpdateRequest } from "../interfaces/sales.interface";
+import { createSalesService } from "../services/sales/createSalesService.service";
 import deleteSaleService from "../services/sales/deleteSaleService.service";
 import updateSaleService from "../services/sales/updateSaleService.service";
+import retrieveSaleService from "../services/sales/retrieveSaleService.service";
+import readSalesService from "../services/sales/readSalesService.service";
 
-import { createSalesService } from "../services/sales/createSalesService.service";
 
-const createSalesController = async (req: Request, res: Response) => {
+export const createSalesController = async (req: Request, res: Response) => {
 
   const newSale = await createSalesService(req.body);
 
   return res.status(201).json(newSale);
 };
 
-export { createSalesController };
+export const retrieveSaleController = async (req: Request, res: Response) => {
 
-    // const newSales= await createSalesService(req.body);
-  
-    return res.status(201).json('newSales');
-  };
+  const requiredSale = await retrieveSaleService(req.params.id);
+
+  return res.status(200).json(requiredSale);
+};
+
+export const readSalesController = async (req: Request, res: Response) => {
+
+  const allSales = await readSalesService();
+
+  return res.status(200).json(allSales);
+};
 
 export const updateSaleController = async (
     req: Request,
     res: Response
 ): Promise<Response> => {
-    const saleData: TSaleRequestUpdate = req.body
+    const saleData: TSalesUpdateRequest = req.body
     const saleId: string = req.params.id
  
     const newSaleData:TSale = await updateSaleService(

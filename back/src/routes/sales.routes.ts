@@ -1,19 +1,29 @@
 import { Router } from "express";
-
-import { createSalesController } from "../controllers/salesController.controller";
+import {
+  createSalesController,
+  deleteSaleController,
+  readSalesController,
+  retrieveSaleController,
+  updateSaleController,
+} from "../controllers/salesController.controller";
+import ensureBodyValidMiddleware from "../middleware/ensureBodyValidMiddleware";
+import ensureIdMiddleware from "../middleware/ensureIdMiddleware";
+import { salesSchemaUpdateRequest } from "../schemas/salesSchema.schema";
 
 const salesRoutes = Router();
+
 salesRoutes.post("", createSalesController);
 
-import ensureBodyValidMiddleware from "../middleware/ensureBodyValidMiddleware";
-import { deleteSaleController, updateSaleController } from "../controllers/salesController.controller";
-import ensureIdMiddleware from "../middleware/ensureIdMiddleware";
+salesRoutes.get("/:id", ensureIdMiddleware, retrieveSaleController);
 
-const salesRoutes = Router();
+salesRoutes.get("", readSalesController);
 
-salesRoutes.patch('/:id', ensureBodyValidMiddleware(requestSaleSchemaUpadate), ensureIdMiddleware, updateSaleController)
-salesRoutes.delete('/:id', ensureIdMiddleware, deleteSaleController)
-
-
+salesRoutes.patch(
+  "/:id",
+  ensureBodyValidMiddleware(salesSchemaUpdateRequest),
+  ensureIdMiddleware,
+  updateSaleController
+);
+salesRoutes.delete("/:id", ensureIdMiddleware, deleteSaleController);
 
 export default salesRoutes;
