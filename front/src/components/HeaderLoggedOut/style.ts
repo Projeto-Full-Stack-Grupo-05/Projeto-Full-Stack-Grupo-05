@@ -2,17 +2,17 @@ import styled from "styled-components";
 
 export const StyledHeaderLoggedOut = styled.header`
   display: flex;
-
-  height: 80px;
   width: 100%;
+  /* position: fixed; */
+  z-index: 10;
   border-bottom: 2.3px solid var(--color-grey-6);
 
   nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 60px;
     width: 100%;
+    z-index: 10;
 
     padding-left: 59px;
     padding-right: 59px;
@@ -23,9 +23,10 @@ export const StyledHeaderLoggedOut = styled.header`
       justify-content: flex-end;
 
       width: 100%;
-      max-width: 317px;
+      max-width: 320px;
       height: 80px;
       gap: 45px;
+      margin-left: 10px;
 
       border-left: 2.3px solid var(--color-grey-6);
 
@@ -74,6 +75,11 @@ export const StyledHeaderLoggedOut = styled.header`
           border: none;
         }
       }
+    }
+
+    @media (max-width: 592px) {
+      padding-left: 20px;
+      padding-right: 20px;
     }
   }
 `;

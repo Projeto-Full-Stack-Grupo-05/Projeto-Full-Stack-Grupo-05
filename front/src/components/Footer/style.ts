@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledFooter = styled.div`
+export const StyledFooter = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,7 +30,7 @@ export const StyledFooter = styled.div`
     padding: 1.3rem;
   }
 
-  @media (max-width: 590px) {
+  @media (max-width: 592px) {
     flex-direction: column;
     height: 280px;
 

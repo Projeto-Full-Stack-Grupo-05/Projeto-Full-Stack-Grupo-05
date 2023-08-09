@@ -9,7 +9,7 @@ import { isAxiosError } from "axios";
 import ErrorPage from "../ErrorPage";
 
 export const Homepage = () => {
-      const getKenzieCars = async () => {
+  const getKenzieCars = async () => {
     try {
       const cars = await kenzieApi.get<IKenzieCar[]>("/cars?brand=chevrolet");
 
@@ -27,30 +27,40 @@ export const Homepage = () => {
     queryKey: "cars",
     queryFn: getKenzieCars,
   });
-    
+
   return (
-    <StyledContainer>
-    <HeaderLoggedOut />
-    <img src={carBanner} alt="Car Banner" className="carBanner" />
-    <h1></h1>
-    <div className="mainDiv">
-      <aside>
-        <h1>Marca</h1>
-        <h4>General</h4>
-        <h4>General</h4>
-        <h4>General</h4>
-        <h4>General</h4>
-      </aside>
-      <div>
-        <div>
-          <h1>Cards</h1>
+    <body>
+      <HeaderLoggedOut />
+      <StyledContainer>
+        <div className="bannerDiv">
+          <div className="title">
+            <h1>Motors Shop</h1>
+            <h3 className="slogan">
+              A melhor plataforma de anúncios de carros do país
+            </h3>
+            <div className="overlay"></div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div className="nextDiv">
-      <h2>1 de 2</h2>
-      <button>Seguinte</button>
-    </div>
-    <Footer />
-  </StyledContainer>)
+        <div className="mainDiv">
+          <aside>
+            <h1>Marca</h1>
+            <h4>General</h4>
+            <h4>General</h4>
+            <h4>General</h4>
+            <h4>General</h4>
+          </aside>
+          <div>
+            <div>
+              <h1>Cards</h1>
+            </div>
+          </div>
+        </div>
+        <div className="nextDiv">
+          <h2>1 de 2</h2>
+          <button>Seguinte</button>
+        </div>
+      </StyledContainer>
+      <Footer />
+    </body>
+  );
 };
