@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import {
   createSalesController,
   deleteSaleController,
@@ -6,6 +7,7 @@ import {
   retrieveSaleController,
   updateSaleController,
 } from "../controllers/salesController.controller";
+
 import ensureAlreadyExistsSalesMiddleware from "../middleware/ensureAlreadyExistsSalesMiddleware.middleware";
 import ensureBodyValidMiddleware from "../middleware/ensureBodyValidMiddleware";
 import ensureIdMiddleware from "../middleware/ensureIdMiddleware";
@@ -15,7 +17,13 @@ import {
 } from "../schemas/salesSchema.schema";
 
 const salesRoutes = Router();
-salesRoutes.post("",ensureBodyValidMiddleware(salesSchemaRequest),ensureAlreadyExistsSalesMiddleware, createSalesController);
+
+salesRoutes.post(
+  "",
+  ensureBodyValidMiddleware(salesSchemaRequest),
+  ensureAlreadyExistsSalesMiddleware,
+  createSalesController
+);
 
 salesRoutes.post(
   "",
