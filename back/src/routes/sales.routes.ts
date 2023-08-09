@@ -6,13 +6,22 @@ import {
   retrieveSaleController,
   updateSaleController,
 } from "../controllers/salesController.controller";
+import ensureAlreadyExistsSalesMiddleware from "../middleware/ensureAlreadyExistsSalesMiddleware.middleware";
 import ensureBodyValidMiddleware from "../middleware/ensureBodyValidMiddleware";
 import ensureIdMiddleware from "../middleware/ensureIdMiddleware";
-import { salesSchemaUpdateRequest } from "../schemas/salesSchema.schema";
+import {
+  salesSchemaRequest,
+  salesSchemaUpdateRequest,
+} from "../schemas/salesSchema.schema";
 
 const salesRoutes = Router();
 
-salesRoutes.post("", createSalesController);
+salesRoutes.post(
+  "",
+  ensureBodyValidMiddleware(salesSchemaRequest),
+  ensureAlreadyExistsSalesMiddleware,
+  createSalesController
+);
 
 salesRoutes.get("/:id", ensureIdMiddleware, retrieveSaleController);
 
