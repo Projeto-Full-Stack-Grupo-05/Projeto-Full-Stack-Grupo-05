@@ -6,6 +6,11 @@ import {
   ManyToOne,
 } from "typeorm";
 
+export enum SaleStatus {
+  Active = "active",
+  Sold = "sold",
+}
+
 @Entity("sales")
 class Sale {
   @PrimaryGeneratedColumn("uuid")
@@ -16,6 +21,9 @@ class Sale {
 
   @Column()
   car_id: string;
+
+  @Column()
+  title: string;
 
   @Column()
   img_url: string;
@@ -29,14 +37,17 @@ class Sale {
   @Column()
   fuel: string;
 
-  @Column({ type: "date" })
-  year: string;
+  @Column()
+  year: number;
 
   @Column()
   description: string;
 
   @Column()
   kilometers: number;
+
+  @Column({ enum: SaleStatus, default: SaleStatus.Active })
+  status: SaleStatus;
 
   //   @Column()
   //   model: string;
