@@ -1,17 +1,16 @@
-import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import Sale from "../../entities/sales.entity";
+import { AppError } from "../../error";
 
-const deleteSaleService = async (saleId: string): Promise<void> => {
-  const saleRepository: Repository<Sale> = AppDataSource.getRepository(Sale);
+const deleteSaleService =  async (salesId: string): Promise<void> => {
+  const salesRepository = AppDataSource.getRepository(Sale);
+  const sales = await salesRepository.findOneBy({ id: salesId });
 
-  const existingSale: Sale | null = await saleRepository.findOneBy({id: saleId});
-
-  if (!existingSale) {
-    throw new Error("Sale not found"); 
+  if (!sales) {
+    throw new AppError("Sale not found", 404);
   }
 
-  await saleRepository.softRemove(existingSale);
+  await salesRepository.remove(sales);
 };
 
 export default deleteSaleService;
