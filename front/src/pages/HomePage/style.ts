@@ -11,26 +11,16 @@ export const StyledContainer = styled.div`
     height: 544px;
     width: 100%;
     justify-content: center;
-    position: relative;
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
+    margin-top: 81px;
 
-    background-image: url("src/assets/car banner.svg");
+    background-image: url("src/assets/car banner.svg"),
+      linear-gradient(#a2a2a2, black);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: black;
-      width: 100%;
-      height: 100%;
-      opacity: 0.5;
-      z-index: -1;
-    }
 
     .title {
       display: flex;
