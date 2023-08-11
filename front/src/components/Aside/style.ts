@@ -10,11 +10,16 @@ export const ButtonOpenModal = styled.button`
   align-self: center;
   margin: 50px 0px 20px 0;
 `;
+
 export const AsideContainer = styled.aside`
   display: flex;
   flex-direction: column;
   width: 30%;
   gap: 5px;
+
+  h4 {
+    padding-bottom: 13px;
+  }
   button {
     margin-left: 10px;
     width: 45%;
@@ -25,8 +30,9 @@ export const AsideContainer = styled.aside`
     font-size: 1.6rem;
     font-weight: bold;
   }
-  .buttonDesktop{
-    width: 200px;
+  .buttonDesktop {
+    width: 100%;
+    max-width: 315px;
     background: var(--color-brand-2);
     color: var(--color-white-fixed);
     height: 40px;
@@ -39,24 +45,23 @@ export const AsideContainer = styled.aside`
     gap: 15px;
 
     .buttonMobile {
-    width: 200px;
-    background: var(--color-brand-2);
-    color: var(--color-white-fixed);
-    height: 40px;
-    text-align: center;
-    align-self: center;
-    margin: 50px 0px 20px 0;
-}
+      width: 200px;
+      background: var(--color-brand-2);
+      color: var(--color-white-fixed);
+      height: 40px;
+      text-align: center;
+      align-self: center;
+      margin: 50px 0px 20px 0;
     }
   }
 `;
+
 export const DivFiltro = styled.div`
   display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
+  flex-direction: column;
+  gap: 5px;
 `;
+
 export const AsideDivKm = styled.div`
   display: flex;
   flex-direction: column;

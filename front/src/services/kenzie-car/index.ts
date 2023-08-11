@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const kenzieApi = axios.create({
+export const kenzieApi = axios.create({
   baseURL: "https://kenzie-kars.herokuapp.com",
   timeout: 3000,
 });
-
-export default kenzieApi;
