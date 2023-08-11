@@ -1,12 +1,11 @@
 import { HeaderLoggedOut } from "../../components/HeaderLoggedOut";
 import { Footer } from "../../components/Footer";
 import { StyledContainer } from "./style";
-import carBanner from "../../assets/car banner.svg";
+import { AsideHome } from "../../components/Aside";
 import { useQuery } from "react-query";
 import kenzieApi from "../../services/kenzie-car";
 import { IKenzieCar } from "../../services/kenzie-car/interfaces";
 import { isAxiosError } from "axios";
-import ErrorPage from "../ErrorPage";
 
 export const Homepage = () => {
   const getKenzieCars = async () => {
@@ -42,13 +41,7 @@ export const Homepage = () => {
           </div>
         </div>
         <div className="mainDiv">
-          <aside>
-            <h1>Marca</h1>
-            <h4>General</h4>
-            <h4>General</h4>
-            <h4>General</h4>
-            <h4>General</h4>
-          </aside>
+          <AsideHome />
           <div>
             <div>
               <h1>Cards</h1>
@@ -60,6 +53,7 @@ export const Homepage = () => {
           <button>Seguinte</button>
         </div>
       </StyledContainer>
+
       <Footer />
     </body>
   );
