@@ -6,6 +6,8 @@ import { useQuery } from "react-query";
 import kenzieApi from "../../services/kenzie-car";
 import { IKenzieCar } from "../../services/kenzie-car/interfaces";
 import { isAxiosError } from "axios";
+import ErrorPage from "../ErrorPage";
+import { StyledFixedHeader } from "../../components/HeaderLoggedOut/style";
 
 export const Homepage = () => {
   const getKenzieCars = async () => {
@@ -37,7 +39,6 @@ export const Homepage = () => {
             <h3 className="slogan">
               A melhor plataforma de anúncios de carros do país
             </h3>
-            <div className="overlay"></div>
           </div>
         </div>
         <div className="mainDiv">

@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const StyledFixedHeader = styled.div`
+  width: 100%;
+  position: fixed;
+  background-color: var(--color-white-fixed);
+`;
+
 export const StyledHeaderLoggedIn = styled.header`
   display: flex;
   position: fixed;
