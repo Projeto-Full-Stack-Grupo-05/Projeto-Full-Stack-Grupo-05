@@ -54,6 +54,8 @@ export const StyledContainer = styled.div`
     margin-top: 40px;
     margin-bottom: 25px;
     width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   .nextDiv {

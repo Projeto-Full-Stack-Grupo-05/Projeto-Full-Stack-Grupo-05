@@ -31,7 +31,9 @@ export const Homepage = () => {
 
   return (
     <body>
-      <HeaderLoggedOut />
+      <StyledFixedHeader>
+        <HeaderLoggedOut />
+      </StyledFixedHeader>
       <StyledContainer>
         <div className="bannerDiv">
           <div className="title">
