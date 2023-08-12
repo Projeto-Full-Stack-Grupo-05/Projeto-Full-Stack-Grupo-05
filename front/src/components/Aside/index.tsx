@@ -20,9 +20,11 @@ export const AsideHome = () => {
       margin: 0 auto;
     }
   `;
-  const handleKmChange = (startValue: number, endValue: number) => {};
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleKmChange = (_startValue: number, _endValue: number) => {};
 
-  const handleValueChange = (startValue: number, endValue: number) => {};
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleValueChange = (_startValue: number, _endValue: number) => {};
 
   const handleDialogToggle = () => {
     setDialogOpen(!dialogOpen);
@@ -66,48 +68,62 @@ export const AsideHome = () => {
               <AsideContainer className="asideMobile">
                 <h4>Marca</h4>
                 <DivFiltro>
-                  <button>General Motors</button>
-                  <button>Fiat</button>
-                  <button>Ford</button>
-                  <button>Honda</button>
-                  <button>Porsche</button>
-                  <button>Volswagen</button>
+                  <button onClick={() => console.log("clickou")}>
+                    General Motors
+                  </button>
+                  <button onClick={() => console.log("clickou")}>Fiat</button>
+                  <button onClick={() => console.log("clickou")}>Ford</button>
+                  <button onClick={() => console.log("clickou")}>Honda</button>
+                  <button onClick={() => console.log("clickou")}>
+                    Porsche
+                  </button>
+                  <button onClick={() => console.log("clickou")}>
+                    Volswagen
+                  </button>
                 </DivFiltro>
                 <h4>Modelo</h4>
                 <DivFiltro>
-                  <button>Civic</button>
-                  <button>Corolla</button>
-                  <button>Cruze</button>
-                  <button>Fit</button>
-                  <button>Gol</button>
-                  <button>Ka</button>
-                  <button>Onix</button>
-                  <button>Porsche 718</button>
+                  <button onClick={() => console.log("clickou")}>Civic</button>
+                  <button onClick={() => console.log("clickou")}>
+                    Corolla
+                  </button>
+                  <button onClick={() => console.log("clickou")}>Cruze</button>
+                  <button onClick={() => console.log("clickou")}>Fit</button>
+                  <button onClick={() => console.log("clickou")}>Gol</button>
+                  <button onClick={() => console.log("clickou")}>Ka</button>
+                  <button onClick={() => console.log("clickou")}>Onix</button>
+                  <button onClick={() => console.log("clickou")}>
+                    Porsche 718
+                  </button>
                 </DivFiltro>
                 <h4>Cor</h4>
                 <DivFiltro>
-                  <button>Azul</button>
-                  <button>Branca</button>
-                  <button>Cinza</button>
-                  <button>Prata</button>
-                  <button>Preta</button>
-                  <button>Verde</button>
+                  <button onClick={() => console.log("clickou")}>Azul</button>
+                  <button onClick={() => console.log("clickou")}>Branca</button>
+                  <button onClick={() => console.log("clickou")}>Cinza</button>
+                  <button onClick={() => console.log("clickou")}>Prata</button>
+                  <button onClick={() => console.log("clickou")}>Preta</button>
+                  <button onClick={() => console.log("clickou")}>Verde</button>
                 </DivFiltro>
                 <h4>Ano</h4>
                 <DivFiltro>
-                  <button>2022</button>
-                  <button>2021</button>
-                  <button>2018</button>
-                  <button>2015</button>
-                  <button>2013</button>
-                  <button>2012</button>
-                  <button>2010</button>
+                  <button onClick={() => console.log("clickou")}>2022</button>
+                  <button onClick={() => console.log("clickou")}>2021</button>
+                  <button onClick={() => console.log("clickou")}>2018</button>
+                  <button onClick={() => console.log("clickou")}>2015</button>
+                  <button onClick={() => console.log("clickou")}>2013</button>
+                  <button onClick={() => console.log("clickou")}>2012</button>
+                  <button onClick={() => console.log("clickou")}>2010</button>
                 </DivFiltro>
                 <h4>Combustível</h4>
                 <DivFiltro>
-                  <button>Elétrico</button>
-                  <button>Flex</button>
-                  <button>Híbrido</button>
+                  <button onClick={() => console.log("clickou")}>
+                    Elétrico
+                  </button>
+                  <button onClick={() => console.log("clickou")}>Flex</button>
+                  <button onClick={() => console.log("clickou")}>
+                    Híbrido
+                  </button>
                 </DivFiltro>
                 <AsideDivKm>
                   <h4>Km</h4>
@@ -140,50 +156,52 @@ export const AsideHome = () => {
         <AsideContainer>
           <h4>Marca</h4>
           <DivFiltro>
-            <button>General Motors</button>
-            <button>Fiat</button>
-            <button>Ford</button>
-            <button>Honda</button>
-            <button>Porsche</button>
-            <button>Volswagen</button>
+            <button onClick={() => console.log("clickou")}>
+              General Motors
+            </button>
+            <button onClick={() => console.log("clickou")}>Fiat</button>
+            <button onClick={() => console.log("clickou")}>Ford</button>
+            <button onClick={() => console.log("clickou")}>Honda</button>
+            <button onClick={() => console.log("clickou")}>Porsche</button>
+            <button onClick={() => console.log("clickou")}>Volswagen</button>
           </DivFiltro>
           <h4>Modelo</h4>
           <DivFiltro>
-            <button>Civic</button>
-            <button>Corolla</button>
-            <button>Cruze</button>
-            <button>Fit</button>
-            <button>Gol</button>
-            <button>Ka</button>
-            <button>Onix</button>
-            <button>Porsche 718</button>
+            <button onClick={() => console.log("clickou")}>Civic</button>
+            <button onClick={() => console.log("clickou")}>Corolla</button>
+            <button onClick={() => console.log("clickou")}>Cruze</button>
+            <button onClick={() => console.log("clickou")}>Fit</button>
+            <button onClick={() => console.log("clickou")}>Gol</button>
+            <button onClick={() => console.log("clickou")}>Ka</button>
+            <button onClick={() => console.log("clickou")}>Onix</button>
+            <button onClick={() => console.log("clickou")}>Porsche 718</button>
           </DivFiltro>
           <h4>Cor</h4>
           <DivFiltro>
-            <button>Azul</button>
-            <button>Branca</button>
-            <button>Cinza</button>
-            <button>Prata</button>
-            <button>Preta</button>
-            <button>Verde</button>
+            <button onClick={() => console.log("clickou")}>Azul</button>
+            <button onClick={() => console.log("clickou")}>Branca</button>
+            <button onClick={() => console.log("clickou")}>Cinza</button>
+            <button onClick={() => console.log("clickou")}>Prata</button>
+            <button onClick={() => console.log("clickou")}>Preta</button>
+            <button onClick={() => console.log("clickou")}>Verde</button>
           </DivFiltro>
 
           <h4>Ano</h4>
           <DivFiltro>
-            <button>2022</button>
-            <button>2021</button>
-            <button>2018</button>
-            <button>2015</button>
-            <button>2013</button>
-            <button>2012</button>
-            <button>2010</button>
+            <button onClick={() => console.log("clickou")}>2022</button>
+            <button onClick={() => console.log("clickou")}>2021</button>
+            <button onClick={() => console.log("clickou")}>2018</button>
+            <button onClick={() => console.log("clickou")}>2015</button>
+            <button onClick={() => console.log("clickou")}>2013</button>
+            <button onClick={() => console.log("clickou")}>2012</button>
+            <button onClick={() => console.log("clickou")}>2010</button>
           </DivFiltro>
 
           <h4>Combustível</h4>
           <DivFiltro>
-            <button>Elétrico</button>
-            <button>Flex</button>
-            <button>Híbrido</button>
+            <button onClick={() => console.log("clickou")}>Elétrico</button>
+            <button onClick={() => console.log("clickou")}>Flex</button>
+            <button onClick={() => console.log("clickou")}>Híbrido</button>
           </DivFiltro>
 
           <AsideDivKm>

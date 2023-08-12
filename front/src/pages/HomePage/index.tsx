@@ -3,7 +3,7 @@ import { Footer } from "../../components/Footer";
 import { StyledContainer } from "./style";
 import { AsideHome } from "../../components/Aside";
 import { useQuery } from "react-query";
-import kenzieApi from "../../services/kenzie-car";
+import { kenzieApi } from "../../services/kenzie-car";
 import { IKenzieCar } from "../../services/kenzie-car/interfaces";
 import { isAxiosError } from "axios";
 import ErrorPage from "../ErrorPage";
