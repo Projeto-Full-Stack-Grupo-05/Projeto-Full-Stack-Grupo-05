@@ -25,11 +25,11 @@ export const CarCard = ({ car }: any) => {
   return (
     <CardStyled>
       <figure>
-        <img src={car.img} alt={car.name} />
+        <img src={car.img} alt={car.model} />
       </figure>
       <InfoStyled>
         <h6>
-          {car.brand} - {car.name}
+          {car.brand} - {car.model}
         </h6>
         <p>{car.description}</p>
       </InfoStyled>
