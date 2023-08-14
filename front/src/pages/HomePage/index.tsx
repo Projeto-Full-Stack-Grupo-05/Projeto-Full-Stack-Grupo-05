@@ -8,8 +8,14 @@ import { IKenzieCar } from "../../services/kenzie-car/interfaces";
 import { isAxiosError } from "axios";
 import ErrorPage from "../ErrorPage";
 import { StyledFixedHeader } from "../../components/HeaderLoggedOut/style";
+import { useContext } from "react";
+import { CarContext } from "../../context/carContext";
+import { CarCard } from "../../components/carCard";
 
 export const Homepage = () => {
+
+  const { filteredCars } = useContext(CarContext)
+  
   const getKenzieCars = async () => {
     try {
       const cars = await kenzieApi.get<IKenzieCar[]>("/cars?brand=chevrolet");
@@ -47,7 +53,11 @@ export const Homepage = () => {
           <AsideHome />
           <div>
             <div>
-              <h1>Cards</h1>
+              {
+                filteredCars.map((car) => {
+                  return <CarCard car={car} key={car.id}/>
+                })
+              }
             </div>
           </div>
         </div>

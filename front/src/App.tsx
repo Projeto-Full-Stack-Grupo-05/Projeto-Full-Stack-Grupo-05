@@ -1,4 +1,5 @@
 import AppRouter from "./Routes/routes";
+import { CarProvider } from "./context/carContext";
 import { GlobalStyle } from "./styles/GlobalStyle";
 
 function App() {
@@ -6,7 +7,9 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <AppRouter />
+      <CarProvider>
+        <AppRouter />
+      </CarProvider>
       
     </>
   );
