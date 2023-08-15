@@ -35,16 +35,16 @@ class User {
   cellphone: string;
 
   @Column()
-  birthdate: Date;
+  birthdate: string;
 
   @Column()
   description: string;
 
-  @CreateDateColumn({ type: "date" })
-  createdAt: string;
-
   @Column({ enum: Profile, default: Profile.Buyer })
   profile: Profile;
+
+  @CreateDateColumn({ type: "date" })
+  createdAt: string;
 
   @DeleteDateColumn({ type: "date", nullable: true })
   deletedAt: string;
