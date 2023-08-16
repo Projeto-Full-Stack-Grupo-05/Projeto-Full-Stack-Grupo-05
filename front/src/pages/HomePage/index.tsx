@@ -13,9 +13,8 @@ import { CarContext } from "../../context/carContext";
 import { CarCard } from "../../components/carCard";
 
 export const Homepage = () => {
+  const { filteredCars } = useContext(CarContext);
 
-  const { filteredCars } = useContext(CarContext)
-  
   const getKenzieCars = async () => {
     try {
       const cars = await kenzieApi.get<IKenzieCar[]>("/cars?brand=chevrolet");
@@ -53,11 +52,9 @@ export const Homepage = () => {
           <AsideHome />
           <div>
             <div>
-              {
-                filteredCars.map((car) => {
-                  return <CarCard car={car} key={car.id}/>
-                })
-              }
+              {filteredCars.map((car: number) => {
+                return <CarCard car={car} key={car.id} />;
+              })}
             </div>
           </div>
         </div>
