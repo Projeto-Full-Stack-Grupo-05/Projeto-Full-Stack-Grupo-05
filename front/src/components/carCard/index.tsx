@@ -1,6 +1,18 @@
 import { CardStyled, DetailsBox, InfoStyled, NameBoxStyled } from "./style";
 
-export const CarCard = ({ car }: any) => {
+interface ICarMock {
+  id: number;
+  img: string;
+  model: string;
+  brand: string;
+  description: string;
+  owner: string;
+  km: number;
+  year: number;
+  price: number;
+}
+
+export const CarCard = ({ car }: { car: ICarMock }) => {
   const getInitials = (name: string) => {
     const words = name.split(" ");
     const initials = words.map((word) => word.charAt(0).toUpperCase());
@@ -42,7 +54,12 @@ export const CarCard = ({ car }: any) => {
           <p>{car.km} KM</p>
           <p>{car.year}</p>
         </div>
-        <span>R$ {car.price}</span>
+        <span>
+          {car.price.toLocaleString("pt-br", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </span>
       </DetailsBox>
     </CardStyled>
   );
