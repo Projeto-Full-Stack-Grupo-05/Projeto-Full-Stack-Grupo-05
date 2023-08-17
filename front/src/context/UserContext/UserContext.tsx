@@ -29,7 +29,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
             },
           });
           setUser(response.data);
-          navigate("/shop");
+          navigate("/dashboard");
         } catch (error) {
           console.log(error);
         } finally {
@@ -47,7 +47,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       setUser(response.data.user);
       localStorage.setItem("@TOKEN", response.data.accessToken);
 
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.log(error);
     } finally {
