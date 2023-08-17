@@ -23,6 +23,7 @@ const ensureAuthMiddleware = (
       if (error) {
         throw new AppError(error.message, 401);
       }
+      res.locals.userId = decoded.sub;
       return next();
     }
   );

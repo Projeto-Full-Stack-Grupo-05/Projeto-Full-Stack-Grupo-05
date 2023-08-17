@@ -11,6 +11,9 @@ import {
   updateUserController,
 } from "../controllers/userController.controller";
 import ensureBodyValidMiddleware from "../middleware/ensureBodyValidMiddleware";
+import ensureAuthMiddleware from "../middleware/ensureAuthMiddleware";
+import ensureUserIdExistsMiddleware from "../middleware/ensureUserIdExistsMiddleware.middleware";
+import ensureOwnerUserMiddleware from "../middleware/ensureOwnerUserMiddleware.middleware";
 
 const userRoutes = Router();
 userRoutes.post(
@@ -19,15 +22,29 @@ userRoutes.post(
   createUsersController
 );
 
-userRoutes.get("", readUsersController);
+userRoutes.get("", ensureAuthMiddleware, readUsersController);
 
-userRoutes.get("/:id", retrieveUsersController);
+userRoutes.get(
+  "/:id",
+  ensureAuthMiddleware,
+  ensureUserIdExistsMiddleware,
+  retrieveUsersController
+);
 
 userRoutes.patch(
   "/:id",
+  ensureUserIdExistsMiddleware,
+  ensureAuthMiddleware,
   ensureBodyValidMiddleware(userSchemaUpdateRequest),
+  ensureOwnerUserMiddleware,
   updateUserController
 );
-userRoutes.delete("/:id", deleteUsersController);
+userRoutes.delete(
+  "/:id",
+  ensureUserIdExistsMiddleware,
+  ensureAuthMiddleware,
+  ensureOwnerUserMiddleware,
+  deleteUsersController
+);
 
 export default userRoutes;
