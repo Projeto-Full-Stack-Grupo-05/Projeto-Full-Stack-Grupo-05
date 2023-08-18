@@ -19,3 +19,7 @@ export const Input = ({ label, register, error, ...rest }: IInputProps) => (
     {error && <p>{error.message}</p>}
   </StyledFieldset>
 );
+
+
+
+
