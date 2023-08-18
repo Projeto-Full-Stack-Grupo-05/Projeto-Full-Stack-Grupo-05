@@ -43,6 +43,9 @@ class User {
   @Column({ enum: Profile, default: Profile.Buyer })
   profile: Profile;
 
+  @Column()
+  userImg: string;
+
   @CreateDateColumn({ type: "date" })
   createdAt: string;
 
