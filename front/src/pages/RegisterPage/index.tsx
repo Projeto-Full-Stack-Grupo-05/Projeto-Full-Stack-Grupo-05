@@ -19,6 +19,15 @@ export const RegisterPage = () => {
     userRegister(formData);
   };
 
+  const phoneMask = (value: string) => {
+    if (!value) return "";
+    value = value.replace(/\D/g, "");
+    value = value.replace(/(\d{2})(\d)/, "($1) $2");
+    value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+
+    return value;
+  };
+
   return (
     <>
       <HeaderLoggedOut />
@@ -49,14 +58,16 @@ export const RegisterPage = () => {
           />
           <Input
             label="Celular"
-            type="text"
+            type="tel"
             register={register("email")}
-            placeholder="(DDD) 90000-0000"
+            placeholder="(DD) 90000-0000"
+            onChange={(e) => (e.target.value = phoneMask(e.target.value))}
+            maxLength={15}
             error={errors.email}
           />
           <Input
             label="Data de nascimento"
-            type="text"
+            type="date"
             register={register("email")}
             placeholder="00/00/00"
             error={errors.email}
@@ -64,10 +75,10 @@ export const RegisterPage = () => {
 
           <Input
             label="Descrição"
-            type="text"
+            type="textArea"
             register={register("email")}
             placeholder="Digitar descrição"
-            classname="Textarea"
+            className="Textarea"
             error={errors.email}
           />
 
@@ -118,14 +129,11 @@ export const RegisterPage = () => {
               error={errors.email}
             />
           </StyledDivOne>
+
           <h5>Tipo de conta</h5>
-          <div className="Type">
-            <button type="button" className="Buyer">
-              Comprador
-            </button>
-            <button type="button" className="Advertiser">
-              Anunciante
-            </button>
+          <div>
+            <button type="button">Comprador</button>
+            <button type="button">Anunciante</button>
           </div>
           <Input
             label="Senha"
@@ -141,9 +149,7 @@ export const RegisterPage = () => {
             placeholder="Digitar senha"
             error={errors.password}
           />
-          <button type="submit" className="Finish">
-            Finalizar cadastro
-          </button>
+          <button type="submit">Finalizar cadastro</button>
         </StyledRegisterForm>
       </StyledLRegisterPage>
       <Footer />

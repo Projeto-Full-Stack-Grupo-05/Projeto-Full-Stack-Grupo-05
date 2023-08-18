@@ -1,6 +1,6 @@
 import { HeaderLoggedOut } from "../../components/HeaderLoggedOut";
 import { Footer } from "../../components/Footer";
-import { StyledDiv, StyledLoginForm, StyledLoginPage } from "./styles";
+import { StyledLoginForm, StyledLoginPage } from "./styles";
 import { Input } from "../../components/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
@@ -39,21 +39,19 @@ export const LoginPage = () => {
             register={register("email")}
             error={errors.email}
           />
-          <div className="forgetPasswordDiv">
-            <Input
-              label={"Senha"}
-              type={"password"}
-              placeholder={"Digitar senha"}
-              register={register("password")}
-              error={errors.password}
-            />
-            <button type="button">Esqueci minha senha</button>
-          </div>
-          <StyledDiv>
-            <button type="submit">Entrar</button>
-            <h4>Ainda não possui conta?</h4>
-            <Link to="/register">Cadastrar</Link>
-          </StyledDiv>
+
+          <Input
+            label={"Senha"}
+            type={"password"}
+            placeholder={"Digitar senha"}
+            register={register("password")}
+            error={errors.password}
+          />
+          <button type="button">Esqueci minha senha</button>
+
+          <button type="submit">Entrar</button>
+          <h4>Ainda não possui conta?</h4>
+          <Link to="/register">Cadastrar</Link>
         </StyledLoginForm>
       </StyledLoginPage>
       <Footer />
