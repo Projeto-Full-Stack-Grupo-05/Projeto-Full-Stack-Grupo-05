@@ -5,7 +5,7 @@ export enum Profile {
   Advertiser = "advertiser",
 }
 
-const registerSchema = z
+export const registerSchema = z
   .object({
     name: z.string(),
     email: z.string().email(),
