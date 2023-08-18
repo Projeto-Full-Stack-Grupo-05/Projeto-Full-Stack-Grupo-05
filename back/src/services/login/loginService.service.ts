@@ -52,6 +52,7 @@ const loginService = async (
     profile: user.profile,
     description: user.description,
     createdAt: user.createdAt,
+    userImg: user.userImg,
   }
 
   return {token, user: userData};
