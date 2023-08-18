@@ -94,15 +94,17 @@ export default function ProfilePage() {
     queryFn: getKenzieCars,
   });
 
-  if (error) <ErrorPage />;
+  if (error) {
+    return <ErrorPage />;
+  }
 
   return (
     <>
       <HeaderLoggedIn />
 
       <Divposition />
-      <SectionPerfil>
-        {
+      
+        <SectionPerfil>
           <ContainerSection>
             <img src="" alt="foto perfil" />
 
@@ -113,8 +115,8 @@ export default function ProfilePage() {
             <p>{user?.description}</p>
             <button>Criar anuncio</button>
           </ContainerSection>
-        }
-      </SectionPerfil>
+        </SectionPerfil>
+      
       <DivSectionBGDGray />
       <Main>
         <Container>
