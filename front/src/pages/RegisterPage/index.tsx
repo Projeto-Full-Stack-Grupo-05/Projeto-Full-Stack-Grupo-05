@@ -39,35 +39,35 @@ export const RegisterPage = () => {
           <Input
             label="CPF"
             type="text"
-            register={register("name")}
+            register={register("cpf")}
             placeholder="000.000.000-00"
-            error={errors.email}
+            error={errors.cpf}
           />
           <Input
             label="Celular"
             type="text"
             register={register("cellphone")}
             placeholder="(DDD) 90000-0000"
-            error={errors.email}
+            error={errors.cellphone}
           />
           <Input
             label="Data de nascimento"
             type="text"
-            register={register("email")}
+            register={register("birthdate")}
             placeholder="00/00/00"
-            error={errors.email}
+            error={errors.birthdate}
           />
 
           <Input
             label="Descrição"
             type="text"
-            register={register("email")}
+            register={register("description")}
             placeholder="Digitar descrição"
             classname="Textarea"
-            error={errors.email}
+            error={errors.description}
           />
 
-          <h5>Infomações de endereço</h5>
+          {/*<h5>Infomações de endereço</h5>
           <Input
             label="CEP"
             type="text"
@@ -113,7 +113,7 @@ export const RegisterPage = () => {
               placeholder="Ex: apart 307"
               error={errors.email}
             />
-          </StyledDivOne>
+          </StyledDivOne>*/}
           <h5>Tipo de conta</h5>
           <div className="Type">
             <button type="button" className="Buyer">
@@ -133,9 +133,9 @@ export const RegisterPage = () => {
           <Input
             label="Confirmar Senha"
             type="password"
-            register={register("password")}
+            register={register("confirmPassword")}
             placeholder="Digitar senha"
-            error={errors.password}
+            error={errors.confirmPassword}
           />
           <button type="submit" className="Finish">
             Finalizar cadastro
