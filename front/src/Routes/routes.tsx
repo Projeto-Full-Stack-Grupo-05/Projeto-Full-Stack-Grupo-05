@@ -3,6 +3,7 @@ import { Homepage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 import { RegisterPage } from "../pages/RegisterPage";
 import { DashBoard } from "../pages/Dashboard";
+import { AdminPage } from "../pages/AdminPage";
 
 export default function AppRouter() {
   return (
@@ -13,6 +14,7 @@ export default function AppRouter() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/car/:name" />
+        <Route path="/adminPage" element={<AdminPage />} />
       </Routes>
     </Router>
   );
