@@ -1,7 +1,6 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import Sale from "../../entities/sales.entity";
-import { AppError } from "../../error";
 import { TSale, TSalesResponse } from "../../interfaces/sales.interface";
 import { salesSchemaResponse } from "../../schemas/salesSchema.schema";
 
@@ -10,6 +9,8 @@ interface PaginationMetadata {
   pageSize: number;
   total: number;
   totalPages: number;
+  nextPage: number | null;
+  prevPage: number | null;
 }
 
 interface PaginatedSalesResponse {
@@ -38,6 +39,8 @@ const readSalesService = async (
     pageSize,
     total,
     totalPages,
+    nextPage: page < totalPages ? page + 1 : null,
+    prevPage: page > 1 ? page - 1 : null,
   };
 
   const returnSale: PaginatedSalesResponse = {
