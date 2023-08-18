@@ -23,7 +23,7 @@ export const StyledFieldset = styled.fieldset`
     border: 2px solid #e9ecef;
     border-radius: 4px;
 
-    padding-left: 15px;
+    padding: 0 15px;
     height: 48px;
 
     font-weight: 400;

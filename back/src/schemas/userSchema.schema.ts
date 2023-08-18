@@ -13,6 +13,7 @@ const userSchemaRequest = z.object({
   birthdate: z.string(),
   description: z.string(),
   userImg: z.string(),
+  cpf: z.string(),
   profile: z.enum([Profile.Buyer, Profile.Advertiser]).default(Profile.Buyer),
 });
 

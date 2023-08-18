@@ -24,7 +24,7 @@ export const StyledRegisterForm = styled.form`
   background: #fff;
   border-radius: 4px;
   padding: 0 45px;
-  margin-top: 200px;
+  margin-top: 52px;
   margin-bottom: 100px;
   gap: 30px;
 

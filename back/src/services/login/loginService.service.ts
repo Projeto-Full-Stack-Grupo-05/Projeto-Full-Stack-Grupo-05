@@ -53,9 +53,10 @@ const loginService = async (
     description: user.description,
     createdAt: user.createdAt,
     userImg: user.userImg,
-  }
+    cpf: user.cpf,
+  };
 
-  return {token, user: userData};
+  return { token, user: userData };
 };
 
 export default loginService;

@@ -6,7 +6,7 @@ import { DashBoard } from "../pages/Dashboard";
 import ProfilePage from "../pages/ProfilePage";
 
 export default function AppRouter() {
-  const isAtthenticated = true;
+  const isAtthenticated = false;
 
   return (
     <Router>

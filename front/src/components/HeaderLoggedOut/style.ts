@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const StyledFixedHeader = styled.div`
+  position: sticky;
+  top: 0;
   width: 100%;
-  position: fixed;
   background-color: var(--color-white-fixed);
 
   menu {

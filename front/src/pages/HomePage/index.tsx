@@ -6,8 +6,6 @@ import { useQuery } from "react-query";
 import { kenzieApi } from "../../services/kenzie-car";
 import { IKenzieCar } from "../../services/kenzie-car/interfaces";
 import { isAxiosError } from "axios";
-import ErrorPage from "../ErrorPage";
-import { StyledFixedHeader } from "../../components/HeaderLoggedOut/style";
 import { useContext } from "react";
 import { CarContext } from "../../context/CarContext/carContext";
 import { CarCard } from "../../components/carCard";
@@ -35,10 +33,9 @@ export const Homepage = () => {
   });
 
   return (
-    <body>
-      <StyledFixedHeader>
-        <HeaderLoggedOut />
-      </StyledFixedHeader>
+    <>
+      <HeaderLoggedOut />
+
       <StyledContainer>
         <div className="bannerDiv">
           <div className="title">
@@ -60,11 +57,11 @@ export const Homepage = () => {
         </div>
         <div className="nextDiv">
           <h2>1 de 2</h2>
-          <button>Seguinte</button>
+          <button>Seguinte {">"}</button>
         </div>
       </StyledContainer>
 
       <Footer />
-    </body>
+    </>
   );
 };
