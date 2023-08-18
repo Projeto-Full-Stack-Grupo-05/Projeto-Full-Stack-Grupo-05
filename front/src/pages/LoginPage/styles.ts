@@ -26,7 +26,6 @@ export const StyledLoginForm = styled.form`
   padding: 0 45px;
   margin-top: 52px;
   margin-bottom: 100px;
-  gap: 30px;
 
   h2 {
     width: 100%;
@@ -36,35 +35,44 @@ export const StyledLoginForm = styled.form`
     padding-top: 45px;
   }
 
-  .forgetPasswordDiv {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    button {
-      align-self: flex-end;
-      border: none;
-      width: 150px;
-      background-color: transparent;
-      margin-top: 10px;
-
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 24px;
-
-      color: #495057;
-    }
+  fieldset {
+    margin-top: 32px;
   }
-`;
 
-export const StyledDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-top: 25px;
-  width: 100%;
-  padding-bottom: 45px;
+  fieldset + button {
+    align-self: flex-end;
+    border: none;
+    margin-top: 12px;
+    width: 150px;
+    height: max-content;
+    background-color: transparent;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+
+    color: #495057;
+  }
+
+  button {
+    border: none;
+    border-radius: 4px;
+    margin-top: 24px;
+    height: 48px;
+    width: 100%;
+    background-color: var(--color-brand-1);
+
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+  }
+
+  h4 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    margin: 20px 0;
+  }
 
   a {
     display: flex;
@@ -72,6 +80,7 @@ export const StyledDiv = styled.div`
     align-items: center;
 
     width: 100%;
+    margin-bottom: 44px;
     padding: 12px 28px;
     cursor: pointer;
     height: 48px;
@@ -91,23 +100,5 @@ export const StyledDiv = styled.div`
       transition: 0.7s;
       border: 2.3px solid black;
     }
-  }
-
-  h4 {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-  }
-
-  button {
-    border: none;
-    border-radius: 4px;
-    height: 48px;
-    width: 100%;
-    background-color: var(--color-brand-1);
-
-    font-weight: 600;
-    font-size: 16px;
-    color: #fff;
   }
 `;

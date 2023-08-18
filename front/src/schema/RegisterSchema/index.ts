@@ -14,7 +14,6 @@ export const registerSchema = z
     cellphone: z.string(),
     birthdate: z.string(),
     description: z.string(),
-    userImg: z.string(),
     cpf: z.string(),
     profile: z.enum([Profile.Buyer, Profile.Advertiser]).default(Profile.Buyer),
   })

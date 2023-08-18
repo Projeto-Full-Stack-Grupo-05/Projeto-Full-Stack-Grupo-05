@@ -44,54 +44,46 @@ export const StyledRegisterForm = styled.form`
     line-height: 24px;
   }
 
-  .Textarea {
+  textarea {
+    resize: none;
     height: 80px;
-    padding-bottom: 20px;
-  }
-
-  .Buyer {
-    border: none;
+    padding: 8px 12px;
+    border: 2px solid var(--color-grey-6);
     border-radius: 4px;
-    height: 48px;
-    width: 100%;
-    background-color: var(--color-brand-1);
-
-    font-weight: 600;
-    font-size: 16px;
-    color: #fff;
-    margin-bottom: 45px;
   }
 
-  .Type {
+  h5 + div {
     display: flex;
     width: 100%;
     height: 48px;
     gap: 10px;
-  }
 
-  .Advertiser {
-    width: 100%;
-    cursor: pointer;
-    height: 48px;
+    button:first-child {
+      border: none;
+      border-radius: 4px;
+      height: 48px;
+      width: 100%;
+      background-color: var(--color-brand-1);
 
-    background: none;
-    border: 2.3px solid var(--color-grey-4);
-    border-radius: 4px;
-    text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 45px;
+    }
 
-    font-weight: 600;
-    font-size: 16px;
-    color: var(--color-grey-0);
+    button:last-child {
+      border: 2px solid var(--color-brand-1);
 
-    &:hover {
-      color: white;
-      background-color: black;
-      transition: 0.7s;
-      border: 2.3px solid black;
+      &:hover {
+        color: white;
+        background-color: black;
+        transition: 0.7s;
+        border: 2px solid black;
+      }
     }
   }
 
-  .Finish {
+  button:last-child {
     border: none;
     border-radius: 4px;
     height: 48px;

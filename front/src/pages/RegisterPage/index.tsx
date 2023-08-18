@@ -194,6 +194,15 @@ export const RegisterPage = () => {
     console.log(formData);
   };
 
+  const phoneMask = (value: string) => {
+    if (!value) return "";
+    value = value.replace(/\D/g, "");
+    value = value.replace(/(\d{2})(\d)/, "($1) $2");
+    value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+
+    return value;
+  };
+
   return (
     <>
       <HeaderLoggedOut />
@@ -224,26 +233,28 @@ export const RegisterPage = () => {
           />
           <Input
             label="Celular"
-            type="text"
-            register={register("cellphone")}
-            placeholder="(DDD) 90000-0000"
-            error={errors.cellphone}
+            type="tel"
+            register={register("email")}
+            placeholder="(DD) 90000-0000"
+            onChange={(e) => (e.target.value = phoneMask(e.target.value))}
+            maxLength={15}
+            error={errors.email}
           />
           <Input
             label="Data de nascimento"
-            type="text"
-            register={register("birthdate")}
+            type="date"
+            register={register("email")}
             placeholder="00/00/00"
             error={errors.birthdate}
           />
 
           <Input
             label="Descrição"
-            type="text"
-            register={register("description")}
+            type="textArea"
+            register={register("email")}
             placeholder="Digitar descrição"
-            classname="Textarea"
-            error={errors.description}
+            className="Textarea"
+            error={errors.email}
           />
 
           {/* <h5>Infomações de endereço</h5>
@@ -291,28 +302,13 @@ export const RegisterPage = () => {
               register={register("email")}
               placeholder="Ex: apart 307"
               error={errors.email}
-            /> */}
+            />
+          </StyledDivOne>
 
           <h5>Tipo de conta</h5>
-          <div className="Type">
-            <button
-              type="button"
-              className={`Buyer ${
-                accountType === Profile.Buyer ? "active" : ""
-              }`}
-              onClick={() => setAccountType(Profile.Buyer)}
-            >
-              Comprador
-            </button>
-            <button
-              type="button"
-              className={`Advertiser ${
-                accountType === Profile.Advertiser ? "active" : ""
-              }`}
-              onClick={() => setAccountType(Profile.Advertiser)}
-            >
-              Anunciante
-            </button>
+          <div>
+            <button type="button">Comprador</button>
+            <button type="button">Anunciante</button>
           </div>
 
           <Input
@@ -329,9 +325,7 @@ export const RegisterPage = () => {
             placeholder="Digitar senha"
             error={errors.confirmPassword}
           />
-          <button type="submit" className="Finish">
-            Finalizar cadastro
-          </button>
+          <button type="submit">Finalizar cadastro</button>
         </StyledRegisterForm>
       </StyledLRegisterPage>
       <Footer />

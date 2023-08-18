@@ -52,7 +52,6 @@ const loginService = async (
     profile: user.profile,
     description: user.description,
     createdAt: user.createdAt,
-    userImg: user.userImg,
     cpf: user.cpf,
   };
 
