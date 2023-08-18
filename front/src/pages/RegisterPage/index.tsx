@@ -3,27 +3,23 @@ import { Footer } from "../../components/Footer";
 import { StyledDivOne, StyledLRegisterPage, StyledRegisterForm } from "./style";
 import { Input } from "../../components/Input";
 import { useContext } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { IRegisterFormValues } from "../../context/UserContext/@types";
+import { useForm } from "react-hook-form";
 import { UserContext } from "../../context/UserContext/UserContext";
+import { RegisterData } from "../../schema/RegisterSchema";
 
 export const RegisterPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IRegisterFormValues>();
+  } = useForm<RegisterData>();
   const { userRegister } = useContext(UserContext);
-
-  const submit: SubmitHandler<IRegisterFormValues> = (formData) => {
-    userRegister(formData);
-  };
 
   return (
     <>
       <HeaderLoggedOut />
       <StyledLRegisterPage>
-        <StyledRegisterForm onSubmit={handleSubmit(submit)}>
+        <StyledRegisterForm onSubmit={handleSubmit(userRegister)}>
           <h2>Cadastro</h2>
           <h5>Informações pessoais</h5>
           <Input
@@ -50,7 +46,7 @@ export const RegisterPage = () => {
           <Input
             label="Celular"
             type="text"
-            register={register("email")}
+            register={register("cellphone")}
             placeholder="(DDD) 90000-0000"
             error={errors.email}
           />

@@ -2,35 +2,29 @@ import { HeaderLoggedOut } from "../../components/HeaderLoggedOut";
 import { Footer } from "../../components/Footer";
 import { StyledDiv, StyledLoginForm, StyledLoginPage } from "./styles";
 import { Input } from "../../components/Input";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { LoginSchema } from "./loginSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { UserContext } from "../../context/UserContext/UserContext";
-import { ILoginFormValues } from "../../context/UserContext/@types";
 import { Link } from "react-router-dom";
+import { LoginData, loginSchema } from "../../schema/LoginSchema";
 
 export const LoginPage = () => {
   const { userLogin } = useContext(UserContext);
 
   const {
-    handleSubmit,
     register,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    handleSubmit,
     formState: { errors },
-    reset,
-  } = useForm<ILoginFormValues>({ resolver: yupResolver(LoginSchema) });
-
-  const submit: SubmitHandler<ILoginFormValues> = (formData) => {
-    userLogin(formData);
-    reset();
-  };
+  } = useForm<LoginData>({
+    resolver: zodResolver(loginSchema),
+  });
 
   return (
     <>
       <HeaderLoggedOut />
       <StyledLoginPage>
-        <StyledLoginForm onSubmit={handleSubmit(submit)}>
+        <StyledLoginForm onSubmit={handleSubmit(userLogin)}>
           <h2>Login</h2>
           <Input
             label={"Email"}

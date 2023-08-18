@@ -9,7 +9,7 @@ import { isAxiosError } from "axios";
 import ErrorPage from "../ErrorPage";
 import { StyledFixedHeader } from "../../components/HeaderLoggedOut/style";
 import { useContext } from "react";
-import { CarContext } from "../../context/carContext";
+import { CarContext } from "../../context/CarContext/carContext";
 import { CarCard } from "../../components/carCard";
 
 export const Homepage = () => {
