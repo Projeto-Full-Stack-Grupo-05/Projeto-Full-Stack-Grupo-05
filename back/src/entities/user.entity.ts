@@ -40,6 +40,9 @@ class User {
   @Column()
   description: string;
 
+  @Column()
+  cpf: string;
+
   @Column({ enum: Profile, default: Profile.Buyer })
   profile: Profile;
 
