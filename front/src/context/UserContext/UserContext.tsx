@@ -29,7 +29,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
             },
           });
           setUser(response.data);
-          navigate("/dashboard");
+          navigate("/");
         } catch (error) {
           console.log(error);
         } finally {
