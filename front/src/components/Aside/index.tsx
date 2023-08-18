@@ -10,11 +10,10 @@ import {
   DivFiltro,
   DivModal,
 } from "./style";
-import { CarContext } from "../../context/carContext";
+import { CarContext } from "../../context/CarContext/carContext";
 
 export const AsideHome = () => {
-
-  const { handleFilterChange } = useContext(CarContext)
+  const { handleFilterChange } = useContext(CarContext);
 
   const [dialogOpen, setDialogOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -160,52 +159,110 @@ export const AsideHome = () => {
         <AsideContainer>
           <h4>Marca</h4>
           <DivFiltro>
-            <button onClick={() => handleFilterChange("brand", "General Motors")}>
+            <button
+              onClick={() => handleFilterChange("brand", "General Motors")}
+            >
               General Motors
             </button>
-            <button onClick={() => handleFilterChange("brand", "Fiat")}>Fiat</button>
-            <button onClick={() => handleFilterChange("brand", "Ford")}>Ford</button>
-            <button onClick={() => handleFilterChange("brand", "Honda")}>Honda</button>
-            <button onClick={() => handleFilterChange("brand", "Porsche")}>Porsche</button>
-            <button onClick={() => handleFilterChange("brand", "Volswagen")}>Volswagen</button>
+            <button onClick={() => handleFilterChange("brand", "Fiat")}>
+              Fiat
+            </button>
+            <button onClick={() => handleFilterChange("brand", "Ford")}>
+              Ford
+            </button>
+            <button onClick={() => handleFilterChange("brand", "Honda")}>
+              Honda
+            </button>
+            <button onClick={() => handleFilterChange("brand", "Porsche")}>
+              Porsche
+            </button>
+            <button onClick={() => handleFilterChange("brand", "Volswagen")}>
+              Volswagen
+            </button>
           </DivFiltro>
           <h4>Modelo</h4>
           <DivFiltro>
-            <button onClick={() => handleFilterChange("model", "Civic")}>Civic</button>
-            <button onClick={() => handleFilterChange("model", "Corolla")}>Corolla</button>
-            <button onClick={() => handleFilterChange("model", "Cruze")}>Cruze</button>
-            <button onClick={() => handleFilterChange("model", "Fit")}>Fit</button>
-            <button onClick={() => handleFilterChange("model", "Gol")}>Gol</button>
-            <button onClick={() => handleFilterChange("model", "Ka")}>Ka</button>
-            <button onClick={() => handleFilterChange("model", "Onix")}>Onix</button>
-            <button onClick={() => handleFilterChange("model", "Porsche 718")}>Porsche 718</button>
+            <button onClick={() => handleFilterChange("model", "Civic")}>
+              Civic
+            </button>
+            <button onClick={() => handleFilterChange("model", "Corolla")}>
+              Corolla
+            </button>
+            <button onClick={() => handleFilterChange("model", "Cruze")}>
+              Cruze
+            </button>
+            <button onClick={() => handleFilterChange("model", "Fit")}>
+              Fit
+            </button>
+            <button onClick={() => handleFilterChange("model", "Gol")}>
+              Gol
+            </button>
+            <button onClick={() => handleFilterChange("model", "Ka")}>
+              Ka
+            </button>
+            <button onClick={() => handleFilterChange("model", "Onix")}>
+              Onix
+            </button>
+            <button onClick={() => handleFilterChange("model", "Porsche 718")}>
+              Porsche 718
+            </button>
           </DivFiltro>
           <h4>Cor</h4>
           <DivFiltro>
-            <button onClick={() => handleFilterChange("color", "Azul")}>Azul</button>
-            <button onClick={() => handleFilterChange("color", "Branca")}>Branca</button>
-            <button onClick={() => handleFilterChange("color", "Cinza")}>Cinza</button>
-            <button onClick={() => handleFilterChange("color", "Prata")}>Prata</button>
-            <button onClick={() => handleFilterChange("color", "Preta")}>Preta</button>
-            <button onClick={() => handleFilterChange("color", "Verde")}>Verde</button>
+            <button onClick={() => handleFilterChange("color", "Azul")}>
+              Azul
+            </button>
+            <button onClick={() => handleFilterChange("color", "Branca")}>
+              Branca
+            </button>
+            <button onClick={() => handleFilterChange("color", "Cinza")}>
+              Cinza
+            </button>
+            <button onClick={() => handleFilterChange("color", "Prata")}>
+              Prata
+            </button>
+            <button onClick={() => handleFilterChange("color", "Preta")}>
+              Preta
+            </button>
+            <button onClick={() => handleFilterChange("color", "Verde")}>
+              Verde
+            </button>
           </DivFiltro>
 
           <h4>Ano</h4>
           <DivFiltro>
-            <button onClick={() => handleFilterChange("year", 2022)}>2022</button>
-            <button onClick={() => handleFilterChange("year", 2021)}>2021</button>
-            <button onClick={() => handleFilterChange("year", 2018)}>2018</button>
-            <button onClick={() => handleFilterChange("year", 2015)}>2015</button>
-            <button onClick={() => handleFilterChange("year", 2013)}>2013</button>
-            <button onClick={() => handleFilterChange("year", 2012)}>2012</button>
-            <button onClick={() => handleFilterChange("year", 2010)}>2010</button>
+            <button onClick={() => handleFilterChange("year", 2022)}>
+              2022
+            </button>
+            <button onClick={() => handleFilterChange("year", 2021)}>
+              2021
+            </button>
+            <button onClick={() => handleFilterChange("year", 2018)}>
+              2018
+            </button>
+            <button onClick={() => handleFilterChange("year", 2015)}>
+              2015
+            </button>
+            <button onClick={() => handleFilterChange("year", 2013)}>
+              2013
+            </button>
+            <button onClick={() => handleFilterChange("year", 2012)}>
+              2012
+            </button>
+            <button onClick={() => handleFilterChange("year", 2010)}>
+              2010
+            </button>
           </DivFiltro>
 
           <h4>Combustível</h4>
           <DivFiltro>
-            <button onClick={() => handleFilterChange("fuel", 3)}>Elétrico</button>
+            <button onClick={() => handleFilterChange("fuel", 3)}>
+              Elétrico
+            </button>
             <button onClick={() => handleFilterChange("fuel", 1)}>Flex</button>
-            <button onClick={() => handleFilterChange("fuel", 2)}>Híbrido</button>
+            <button onClick={() => handleFilterChange("fuel", 2)}>
+              Híbrido
+            </button>
           </DivFiltro>
 
           <AsideDivKm>

@@ -23,7 +23,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     if (token) {
       const userAutoLogin = async () => {
         try {
-          const response = await api.get(`/users/${id}`, {
+          const response = await api.get(`/user/${id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -43,9 +43,9 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const userRegister = async (formData: IRegisterFormValues) => {
     try {
       setLoading(true);
-      const response = await api.post("/users", formData);
+      const response = await api.post("/user", formData);
       setUser(response.data.user);
-      localStorage.setItem("@TOKEN", response.data.accessToken);
+      localStorage.setItem("@TOKEN", response.data.token);
 
       navigate("/login");
     } catch (error) {
@@ -59,10 +59,14 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     try {
       setLoading(true);
       const response = await api.post("/login", formData);
-      setUser(response.data.user);
-      localStorage.setItem("@TOKEN", response.data.accessToken);
+      localStorage.setItem("@TOKEN", response.data.token);
       localStorage.setItem("@USERID", response.data.user.id);
-      navigate("/shop");
+      localStorage.setItem("@USERNAME", response.data.user.name);
+      localStorage.setItem("@USERDESC", response.data.user.description);
+      localStorage.setItem("@USERANUNCIANTE", response.data.user.profile);
+
+      setUser(response.data.user);
+      navigate("/");
     } catch (error) {
       console.log(error);
     } finally {

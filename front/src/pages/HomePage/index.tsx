@@ -7,7 +7,7 @@ import { kenzieApi } from "../../services/kenzie-car";
 import { IKenzieCar } from "../../services/kenzie-car/interfaces";
 import { isAxiosError } from "axios";
 import { useContext } from "react";
-import { CarContext } from "../../context/carContext";
+import { CarContext } from "../../context/CarContext/carContext";
 import { CarCard } from "../../components/carCard";
 
 export const Homepage = () => {
