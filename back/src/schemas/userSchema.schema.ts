@@ -5,7 +5,6 @@ export enum Profile {
   Advertiser = "advertiser",
 }
 
-
 const userSchemaRequest = z.object({
   name: z.string(),
   email: z.string().email(),
@@ -13,6 +12,7 @@ const userSchemaRequest = z.object({
   cellphone: z.string(),
   birthdate: z.string(),
   description: z.string(),
+  userImg: z.string(),
   profile: z.enum([Profile.Buyer, Profile.Advertiser]).default(Profile.Buyer),
 });
 
