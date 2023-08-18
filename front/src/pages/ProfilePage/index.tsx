@@ -1,7 +1,8 @@
 import { useQuery } from "react-query";
 import { Footer } from "../../components/Footer";
 import { HeaderLoggedIn } from "../../components/HeaderLoggedIn";
-import { Container,
+import {
+  Container,
   ContainerSection,
   DivSectionBGDGray,
   Divposition,
@@ -13,8 +14,11 @@ import { CarCard } from "../../components/carCard";
 import ErrorPage from "../ErrorPage";
 import { api } from "../../services/api";
 import { IMotorsSales } from "../../services/api/interfaces";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext/UserContext";
 
 export default function ProfilePage() {
+  const { user } = useContext(UserContext);
   const getKenzieCars = async () => {
     try {
       // const cars = await api.get<IMotorsSales[]>("/sales");
@@ -95,27 +99,21 @@ export default function ProfilePage() {
   return (
     <>
       <HeaderLoggedIn />
+
       <Divposition />
       <SectionPerfil>
-        <ContainerSection>
-          <img src="" alt="foto perfil" />
+        {
+          <ContainerSection>
+            <img src="" alt="foto perfil" />
 
-          <div>
-            <h6>Samuel Leão</h6>
-            <span>Anunciante</span>
-          </div>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s Lorem Ipsum is simply dummy text of the
-            printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500sLorem Ipsum is
-            simply dummy text of the printing and typesetting industry. Lorem
-            Ipsum has been the industry's standard dummy text ever since the
-            1500s
-          </p>
-          <button>Criar anuncio</button>
-        </ContainerSection>
+            <div>
+              <h6>{user?.name}</h6>
+              <span>{user?.profile}</span>
+            </div>
+            <p>{user?.description}</p>
+            <button>Criar anuncio</button>
+          </ContainerSection>
+        }
       </SectionPerfil>
       <DivSectionBGDGray />
       <Main>

@@ -6,7 +6,7 @@ export const StyledFixedHeader = styled.div`
   width: 100%;
   position: sticky;
   top: 0;
-
+  z-index: 6000;
   > menu {
     display: ${(props) => (props.theme.active ? "flex" : "none")};
     justify-content: center;

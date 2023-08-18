@@ -6,6 +6,8 @@ export interface IUser {
   id: string;
   name: string;
   email: string;
+  description: string;
+  profile: string;
 }
 
 export interface IRegisterFormValues {

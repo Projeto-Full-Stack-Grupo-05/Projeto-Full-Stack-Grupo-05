@@ -45,7 +45,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       setLoading(true);
       const response = await api.post("/users", formData);
       setUser(response.data.user);
-      localStorage.setItem("@TOKEN", response.data.accessToken);
+      localStorage.setItem("@TOKEN", response.data.token);
 
       navigate("/login");
     } catch (error) {
@@ -59,9 +59,13 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     try {
       setLoading(true);
       const response = await api.post("/login", formData);
-      setUser(response.data.user);
-      localStorage.setItem("@TOKEN", response.data.accessToken);
+      localStorage.setItem("@TOKEN", response.data.token);
       localStorage.setItem("@USERID", response.data.user.id);
+      localStorage.setItem("@USERNAME", response.data.user.name);
+      localStorage.setItem("@USERDESC", response.data.user.description);
+      localStorage.setItem("@USERANUNCIANTE", response.data.user.profile);
+
+      setUser(response.data.user);
       navigate("/shop");
     } catch (error) {
       console.log(error);

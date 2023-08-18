@@ -77,7 +77,7 @@ export const Divposition = styled.div`
     position: absolute;
     background: var(--color-brand-1);
     @media(max-width:768px){
-        height: 270px;
+    height: 200px;
     }
 }
 `;
@@ -142,7 +142,6 @@ export const DivSectionBGDGray = styled.div`
   width: 100%;
   height: 195px;
   position: absolute;
-  background: var(--color-grey-8);
   bottom: 460px;
 
   @media (width: 2560px) {
