@@ -12,9 +12,7 @@ export const StyledContainer = styled.div`
     width: 100%;
     justify-content: center;
     align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 81px;
+    padding: 0 20px;
 
     background-image: url("src/assets/car banner.svg"),
       linear-gradient(#a2a2a2, black);
@@ -26,7 +24,6 @@ export const StyledContainer = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
-      z-index: 1;
       color: var(--color-grey-10);
       gap: 20px;
       padding-bottom: 40px;
@@ -44,6 +41,7 @@ export const StyledContainer = styled.div`
       align-items: center;
       font-weight: 600;
       font-size: 36px;
+      text-align: center;
       line-height: 45px;
     }
   }

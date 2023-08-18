@@ -24,7 +24,7 @@ export const StyledLoginForm = styled.form`
   background: #fff;
   border-radius: 4px;
   padding: 0 45px;
-  margin-top: 200px;
+  margin-top: 52px;
   margin-bottom: 100px;
   gap: 30px;
 
@@ -40,13 +40,9 @@ export const StyledLoginForm = styled.form`
     width: 100%;
     display: flex;
     flex-direction: column;
-    position: relative;
 
     button {
-      position: absolute;
-      top: 70px;
-      right: 0;
-
+      align-self: flex-end;
       border: none;
       width: 150px;
       background-color: transparent;

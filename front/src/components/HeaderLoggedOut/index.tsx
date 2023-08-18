@@ -8,8 +8,8 @@ export const HeaderLoggedOut = () => {
   const [active, setActive] = useState(false);
 
   return (
-    <StyledFixedHeader>
-      <StyledHeaderLoggedOut theme={{ active }}>
+    <StyledFixedHeader theme={{ active }}>
+      <StyledHeaderLoggedOut>
         <nav>
           <img src={LogoNavBar} alt="Motors shop logo Header" />
           <button onClick={() => setActive(!active)}>
