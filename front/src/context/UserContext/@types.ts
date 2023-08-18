@@ -12,6 +12,7 @@ export interface IUser {
   cellphone: string;
   birthdate: string;
   userImg: string;
+  cpf: string;
 }
 
 export interface IRegisterFormValues {
@@ -23,6 +24,8 @@ export interface IRegisterFormValues {
   cellphone: string;
   birthdate: string;
   userImg: string;
+  cpf: string;
+  confirmPassword: string;
 }
 
 export interface ILoginFormValues {
