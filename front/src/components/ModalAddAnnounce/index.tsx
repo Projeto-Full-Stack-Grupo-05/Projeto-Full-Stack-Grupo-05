@@ -165,8 +165,6 @@ const handleGalleryImageChange = (index: number, value: string) => {
             
             <label>Descrição</label>
             <input type="text"value={formData.descricao}/>
-            {galleryImages.map((image, index) => (
-              <div key={index}>
 
                 <label>Imagem da capa</label>
                 <input type="url" placeholder='Link img ' value={formData.imagemCapa}/>
@@ -176,6 +174,8 @@ const handleGalleryImageChange = (index: number, value: string) => {
 
                 <label>2- Imagem da capa</label>
                 <input type="url" placeholder='Link img' value={formData.imagem2 } />
+            {galleryImages.map((image, index) => (
+              <div key={index}>
 
                   <label>{`${index + 3}- Imagem da galeria`}</label>
                   <input
