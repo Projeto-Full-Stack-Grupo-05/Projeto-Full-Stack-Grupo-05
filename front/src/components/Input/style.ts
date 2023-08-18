@@ -18,6 +18,7 @@ export const StyledFieldset = styled.fieldset`
 
   input {
     display: flex;
+    width: 100%;
 
     border: 2px solid #e9ecef;
     border-radius: 4px;

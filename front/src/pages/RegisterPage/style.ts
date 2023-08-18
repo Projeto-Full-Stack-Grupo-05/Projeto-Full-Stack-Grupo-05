@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledLoginPage = styled.main`
+export const StyledLRegisterPage = styled.main`
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -11,7 +11,7 @@ export const StyledLoginPage = styled.main`
   padding: 10px;
 `;
 
-export const StyledLoginForm = styled.form`
+export const StyledRegisterForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,53 +30,47 @@ export const StyledLoginForm = styled.form`
 
   h2 {
     width: 100%;
+
     font-weight: 500;
     font-size: 24px;
     line-height: 30px;
     padding-top: 45px;
   }
 
-  .forgetPasswordDiv {
+  h5 {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-
-    button {
-      position: absolute;
-      top: 70px;
-      right: 0;
-
-      border: none;
-      width: 150px;
-      background-color: transparent;
-      margin-top: 10px;
-
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 24px;
-
-      color: #495057;
-    }
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
   }
-`;
 
-export const StyledDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-top: 25px;
-  width: 100%;
-  padding-bottom: 45px;
+  .Textarea {
+    height: 80px;
+    padding-bottom: 20px;
+  }
 
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  .Buyer {
+    border: none;
+    border-radius: 4px;
+    height: 48px;
     width: 100%;
-    padding: 12px 28px;
+    background-color: var(--color-brand-1);
+
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 45px;
+  }
+
+  .Type {
+    display: flex;
+    width: 100%;
+    height: 48px;
+    gap: 10px;
+  }
+
+  .Advertiser {
+    width: 100%;
     cursor: pointer;
     height: 48px;
 
@@ -97,13 +91,7 @@ export const StyledDiv = styled.div`
     }
   }
 
-  h4 {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-  }
-
-  button {
+  .Finish {
     border: none;
     border-radius: 4px;
     height: 48px;
@@ -113,5 +101,11 @@ export const StyledDiv = styled.div`
     font-weight: 600;
     font-size: 16px;
     color: #fff;
+    margin-bottom: 45px;
   }
+`;
+
+export const StyledDivOne = styled.div`
+  display: flex;
+  gap: 10px;
 `;
