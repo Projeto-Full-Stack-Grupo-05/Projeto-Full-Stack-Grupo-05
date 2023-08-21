@@ -9,14 +9,15 @@ import {
   OneToMany,
 } from "typeorm";
 import Car from "./car.entity";
+import Brand from "./brand.entity";
 
 @Entity("models")
 class Model {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  //     @ManyToOne(() => Brand)
-  //   brands: Brand
+  @ManyToOne(() => Brand)
+  brand: Brand;
 
   @Column()
   model_name: string;
