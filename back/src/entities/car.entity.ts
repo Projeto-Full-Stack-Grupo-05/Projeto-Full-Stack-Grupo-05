@@ -6,6 +6,7 @@ import {
   ManyToOne,
   OneToOne,
 } from "typeorm";
+import Model from "./models.entity";
 
 export enum Fuel {
   Eletric = "eletric",
@@ -13,16 +14,16 @@ export enum Fuel {
   Hybrid = "hybrid",
 }
 
-@Entity("car")
+@Entity("cars")
 class Car {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
   //     @ManyToOne(() => Brand)
-  //   brand_id: Brand.id
+  //   brands: Brand
 
-  //     @ManyToOne(() => Model)
-  //   model_id: Model.id
+  @ManyToOne(() => Model)
+  model: Model;
 
   @Column()
   year: string;

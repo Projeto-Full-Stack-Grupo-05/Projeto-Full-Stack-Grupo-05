@@ -60,7 +60,7 @@ class Sale {
 
   // @Column()
   // buyer: user_id;
-  
+
   @CreateDateColumn({ type: "date" })
   createdAt: string;
 
@@ -73,7 +73,5 @@ class Sale {
   @ManyToOne(() => Car)
   car: Car;
 }
-
-
 
 export default Sale;
