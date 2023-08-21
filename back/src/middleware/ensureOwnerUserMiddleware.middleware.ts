@@ -6,10 +6,12 @@ const ensureOwnerUserMiddleware = async (
   res: Response,
   next: NextFunction
 ): Promise<Response | void> => {
-  const id = parseInt(res.locals.userId);
-  const UserId = parseInt(req.params.id);
+  const id = res.locals.userId;
+  const userId = req.params.id;
 
-  if (id !== UserId) {
+  if (id !== userId) {
+    console.log(id);
+    console.log(userId);
     throw new AppError("Insufficient permission", 403);
   }
 

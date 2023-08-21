@@ -4,7 +4,6 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   ManyToOne,
-  OneToOne,
 } from "typeorm";
 import Model from "./models.entity";
 import Brand from "./brand.entity";

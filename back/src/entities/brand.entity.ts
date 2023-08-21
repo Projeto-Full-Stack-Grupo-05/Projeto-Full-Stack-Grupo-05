@@ -3,9 +3,6 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  ManyToOne,
-  OneToOne,
-  UpdateDateColumn,
   OneToMany,
 } from "typeorm";
 import Car from "./car.entity";

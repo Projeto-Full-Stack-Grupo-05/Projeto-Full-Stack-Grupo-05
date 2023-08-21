@@ -12,7 +12,7 @@ const deleteUsersService = async (userId: string): Promise<void> => {
     throw new Error("User not found");
   }
 
-  await userRepository.softRemove(user!);
+  await userRepository.remove(user!);
 };
 
 export default deleteUsersService;
