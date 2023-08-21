@@ -2,14 +2,10 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  CreateDateColumn,
   ManyToOne,
-  OneToOne,
   UpdateDateColumn,
-  OneToMany,
 } from "typeorm";
-import Car from "./car.entity";
-import Model from "./models.entity";
+
 import User from "./user.entity";
 
 @Entity("address")
@@ -29,7 +25,7 @@ class Address {
   @Column()
   street: string;
 
-  @Column({ length: 5 })
+  @Column({ type: "varchar", length: 6 })
   number: number;
 
   @Column()
