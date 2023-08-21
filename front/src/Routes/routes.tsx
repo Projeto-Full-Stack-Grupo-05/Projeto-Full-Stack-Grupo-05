@@ -1,15 +1,15 @@
-import {Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Homepage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 import { RegisterPage } from "../pages/RegisterPage";
 import { DashBoard } from "../pages/Dashboard";
 import ProfilePage from "../pages/ProfilePage";
+import { ProductsPage } from "../pages/ProductsPage";
 
 export default function AppRouter() {
   const isAtthenticated = true;
 
   return (
-
     <Routes>
       <Route
         path="/"
@@ -18,7 +18,7 @@ export default function AppRouter() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/dashboard" element={<DashBoard />} />
-      <Route path="/car/:name" />
+      <Route path="/products" element={<ProductsPage />} />
     </Routes>
   );
 }
