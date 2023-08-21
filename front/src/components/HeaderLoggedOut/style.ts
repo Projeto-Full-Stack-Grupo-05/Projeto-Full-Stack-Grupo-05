@@ -1,9 +1,38 @@
 import styled from "styled-components";
 
+export const StyledFixedHeader = styled.div`
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: var(--color-white-fixed);
+
+  menu {
+    display: ${(props) => (props.theme.active ? "flex" : "none")};
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 0;
+
+    @media (min-width: 620px) {
+      display: none;
+    }
+
+    a {
+      padding: 12px 16px;
+      font-weight: 600;
+      font-size: 1.6rem;
+      line-height: 1.75rem;
+      text-decoration: none;
+      border: 2px solid var(--color-grey-4);
+      border-radius: 4px;
+      color: var(--color-brand-1);
+    }
+  }
+`;
+
 export const StyledHeaderLoggedOut = styled.header`
   display: flex;
+  height: 80px;
   width: 100%;
-  /* position: fixed; */
   z-index: 10;
   border-bottom: 2.3px solid var(--color-grey-6);
 
@@ -17,8 +46,26 @@ export const StyledHeaderLoggedOut = styled.header`
     padding-left: 59px;
     padding-right: 59px;
 
+    > button {
+      height: 46px;
+      width: 46px;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: none;
+
+      @media (min-width: 620px) {
+        display: none;
+      }
+
+      > svg {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
     .loginRegisterDiv {
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: flex-end;
 
@@ -30,23 +77,21 @@ export const StyledHeaderLoggedOut = styled.header`
 
       border-left: 2.3px solid var(--color-grey-6);
 
-      h3 {
+      @media (min-width: 620px) {
+        display: flex;
+      }
+
+      a {
         font-weight: 600;
         font-size: 1.6rem;
         line-height: 1.75rem;
         padding-left: 40px;
-
-        a {
-          text-decoration: none;
-          color: var(--color-brand-1);
-        }
+        text-decoration: none;
+        color: var(--color-brand-1);
       }
 
-      .RegisterButton {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
+      a:last-child {
+        padding: 12px 28px;
         cursor: pointer;
 
         min-width: 133px;
@@ -56,23 +101,11 @@ export const StyledHeaderLoggedOut = styled.header`
         border: 2.3px solid var(--color-grey-4);
         border-radius: 4px;
 
-        font-weight: 600;
-        font-size: 1.6rem;
-        line-height: 1.75rem;
-
-        a {
-          text-decoration: none;
-          color: var(--color-grey-0);
-        }
-
         &:hover {
-          a {
-            color: white;
-          }
-          background-color: black;
           color: white;
+          background-color: black;
           transition: 0.7s;
-          border: none;
+          border: 2.3px solid black;
         }
       }
     }

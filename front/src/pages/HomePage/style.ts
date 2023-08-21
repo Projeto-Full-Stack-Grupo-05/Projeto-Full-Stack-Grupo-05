@@ -11,32 +11,19 @@ export const StyledContainer = styled.div`
     height: 544px;
     width: 100%;
     justify-content: center;
-    position: relative;
     align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 20px;
 
-    background-image: url("src/assets/car banner.svg");
+    background-image: url("src/assets/car banner.svg"),
+      linear-gradient(#a2a2a2, black);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: black;
-      width: 100%;
-      height: 100%;
-      opacity: 0.5;
-      z-index: -1;
-    }
 
     .title {
       display: flex;
       flex-direction: column;
       align-items: center;
-      z-index: 1;
       color: var(--color-grey-10);
       gap: 20px;
       padding-bottom: 40px;
@@ -54,6 +41,7 @@ export const StyledContainer = styled.div`
       align-items: center;
       font-weight: 600;
       font-size: 36px;
+      text-align: center;
       line-height: 45px;
     }
   }
@@ -64,6 +52,8 @@ export const StyledContainer = styled.div`
     margin-top: 40px;
     margin-bottom: 25px;
     width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   .nextDiv {

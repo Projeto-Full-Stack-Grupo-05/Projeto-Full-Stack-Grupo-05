@@ -1,14 +1,18 @@
 import { HeaderLoggedOut } from "../../components/HeaderLoggedOut";
 import { Footer } from "../../components/Footer";
 import { StyledContainer } from "./style";
-import carBanner from "../../assets/car banner.svg";
+import { AsideHome } from "../../components/Aside";
 import { useQuery } from "react-query";
-import kenzieApi from "../../services/kenzie-car";
+import { kenzieApi } from "../../services/kenzie-car";
 import { IKenzieCar } from "../../services/kenzie-car/interfaces";
 import { isAxiosError } from "axios";
-import ErrorPage from "../ErrorPage";
+import { useContext } from "react";
+import { CarContext } from "../../context/CarContext/carContext";
+import { CarCard } from "../../components/carCard";
 
 export const Homepage = () => {
+  const { filteredCars } = useContext(CarContext);
+
   const getKenzieCars = async () => {
     try {
       const cars = await kenzieApi.get<IKenzieCar[]>("/cars?brand=chevrolet");
@@ -29,8 +33,9 @@ export const Homepage = () => {
   });
 
   return (
-    <body>
+    <>
       <HeaderLoggedOut />
+
       <StyledContainer>
         <div className="bannerDiv">
           <div className="title">
@@ -38,29 +43,25 @@ export const Homepage = () => {
             <h3 className="slogan">
               A melhor plataforma de anúncios de carros do país
             </h3>
-            <div className="overlay"></div>
           </div>
         </div>
         <div className="mainDiv">
-          <aside>
-            <h1>Marca</h1>
-            <h4>General</h4>
-            <h4>General</h4>
-            <h4>General</h4>
-            <h4>General</h4>
-          </aside>
+          <AsideHome />
           <div>
             <div>
-              <h1>Cards</h1>
+              {filteredCars.map((car: number) => {
+                return <CarCard car={car} key={car.id} />;
+              })}
             </div>
           </div>
         </div>
         <div className="nextDiv">
           <h2>1 de 2</h2>
-          <button>Seguinte</button>
+          <button>Seguinte {">"}</button>
         </div>
       </StyledContainer>
+
       <Footer />
-    </body>
+    </>
   );
 };

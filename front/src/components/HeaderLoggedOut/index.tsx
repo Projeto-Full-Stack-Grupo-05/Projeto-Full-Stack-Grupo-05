@@ -1,19 +1,30 @@
-import { StyledHeaderLoggedOut } from "./style";
+import { StyledHeaderLoggedOut, StyledFixedHeader } from "./style";
 import LogoNavBar from "../../assets/Motors shop NavBar.svg";
+import { IoMdMenu } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-export const HeaderLoggedOut = () => (
-  <StyledHeaderLoggedOut>
-    <nav>
-      <img src={LogoNavBar} alt="Motors shop logo Header" />
-      <div className="loginRegisterDiv">
-        <h3>
-          <Link to="/login">Fazer Login</Link>
-        </h3>
-        <div className="RegisterButton">
-          <Link to="/register">Cadastrar</Link>
-        </div>
-      </div>
-    </nav>
-  </StyledHeaderLoggedOut>
-);
+export const HeaderLoggedOut = () => {
+  const [active, setActive] = useState(false);
+
+  return (
+    <StyledFixedHeader theme={{ active }}>
+      <StyledHeaderLoggedOut>
+        <nav>
+          <img src={LogoNavBar} alt="Motors shop logo Header" />
+          <button onClick={() => setActive(!active)}>
+            <IoMdMenu />
+          </button>
+          <div className="loginRegisterDiv">
+            <Link to="/login">Fazer Login</Link>
+            <Link to="/register">Cadastrar</Link>
+          </div>
+        </nav>
+      </StyledHeaderLoggedOut>
+      <menu>
+        <Link to="/login">Fazer Login</Link>
+        <Link to="/register">Cadastrar</Link>
+      </menu>
+    </StyledFixedHeader>
+  );
+};

@@ -19,10 +19,16 @@ export const retrieveSaleController = async (req: Request, res: Response) => {
   return res.status(200).json(requiredSale);
 };
 
-export const readSalesController = async (req: Request, res: Response) => {
-  const allSales = await readSalesService();
+export const readSalesController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const { page, pageSize } = req.query;
+  const parsedPage = parseInt(page as string, 10) || 1;
+  const parsedPageSize = parseInt(pageSize as string, 10) || 10;
 
-  return res.status(200).json(allSales);
+  const sales = await readSalesService(parsedPage, parsedPageSize);
+  return res.json(sales);
 };
 
 export const updateSaleController = async (

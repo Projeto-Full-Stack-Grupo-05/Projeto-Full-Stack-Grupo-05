@@ -4,7 +4,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   ManyToOne,
+  OneToOne,
 } from "typeorm";
+import User from "./user.entity";
 
 export enum SaleStatus {
   Active = "active",
@@ -55,19 +57,21 @@ class Sale {
   //   @Column()
   //   value: number;
 
-  //   @Column()
-  //   buyer: user_id;
-
+  // @Column()
+  // buyer: user_id;
+  
   @CreateDateColumn({ type: "date" })
   createdAt: string;
 
-  //   @ManyToOne(() => User)
-  //   user: User;
-  // }
+  @OneToOne(() => User)
+  buyer: User;
 
-  //   @ManyToOne(() => Car)
-  //   car: Car;
-  // }
+  @ManyToOne(() => User)
+  seller: User;
 }
+
+//   @ManyToOne(() => Car)
+//   car: Car;
+// }
 
 export default Sale;
