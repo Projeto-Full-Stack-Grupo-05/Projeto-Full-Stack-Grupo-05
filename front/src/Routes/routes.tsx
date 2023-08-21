@@ -9,6 +9,7 @@ export default function AppRouter() {
   const isAtthenticated = true;
 
   return (
+
     <Routes>
       <Route
         path="/"
