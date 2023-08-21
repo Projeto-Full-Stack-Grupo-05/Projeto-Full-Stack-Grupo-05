@@ -7,6 +7,7 @@ import {
   OneToOne,
 } from "typeorm";
 import User from "./user.entity";
+import Car from "./car.entity";
 
 export enum SaleStatus {
   Active = "active",
@@ -68,10 +69,11 @@ class Sale {
 
   @ManyToOne(() => User)
   seller: User;
+
+  @ManyToOne(() => Car)
+  car: Car;
 }
 
-//   @ManyToOne(() => Car)
-//   car: Car;
-// }
+
 
 export default Sale;
