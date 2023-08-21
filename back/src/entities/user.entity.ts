@@ -11,6 +11,7 @@ import {
 } from "typeorm";
 import { getRounds, hashSync } from "bcryptjs";
 import Sale from "./sales.entity";
+import Address from "./address.entity";
 
 export enum Profile {
   Buyer = "buyer",
@@ -57,6 +58,9 @@ class User {
 
   @OneToOne(() => Sale, (sale) => sale.buyer)
   buyer: Sale;
+
+  @OneToOne(() => Address, (address) => address.user)
+  address: Address[];
 
   @BeforeInsert()
   @BeforeUpdate()
