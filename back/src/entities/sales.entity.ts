@@ -52,15 +52,6 @@ class Sale {
   @Column({ enum: SaleStatus, default: SaleStatus.Active })
   status: SaleStatus;
 
-  //   @Column()
-  //   model: string;
-
-  //   @Column()
-  //   value: number;
-
-  // @Column()
-  // buyer: user_id;
-
   @CreateDateColumn({ type: "date" })
   createdAt: string;
 
