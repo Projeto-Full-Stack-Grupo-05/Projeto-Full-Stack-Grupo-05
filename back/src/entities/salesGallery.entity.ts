@@ -6,6 +6,7 @@ import {
 } from "typeorm";
 
 import Sale from "./sales.entity";
+import Gallery from "./gallery.entity";
 
 @Entity("sales_galleries")
 class SalesGallery {
@@ -15,8 +16,8 @@ class SalesGallery {
   @ManyToOne(() => Sale)
   sale: Sale;
 
-  //   @ManyToOne(() => Gallery)
-  //   gallery: Gallery;
+    @ManyToOne(() => Gallery)
+    gallery: Gallery;
 
   @CreateDateColumn({ type: "date" })
   createdAt: string;
