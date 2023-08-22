@@ -47,6 +47,9 @@ class User {
   @Column({ enum: Profile, default: Profile.Buyer })
   profile: Profile;
 
+  @Column({ type: "varchar", nullable: true })
+  resetToken: string | null;
+
   @CreateDateColumn({ type: "date" })
   createdAt: string;
 
