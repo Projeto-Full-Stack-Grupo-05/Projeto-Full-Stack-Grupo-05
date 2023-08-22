@@ -1,12 +1,5 @@
 import { HeaderLoggedIn } from "../../components/HeaderLoggedIn";
 import { Footer } from "../../components/Footer";
-import ModalAddAnnounce from "../../components/ModalAddAnnounce";
-import {
-  Divposition,
-  SectionPerfil,
-  ContainerSection,
-  DivSectionBGDGray,
-} from "../ProfilePage/style";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext/UserContext";
 import { Main } from "./style";
@@ -14,6 +7,7 @@ import { isAxiosError } from "axios";
 import { useQuery } from "react-query";
 import ErrorPage from "../ErrorPage";
 import CarCardAdmin from "../../components/carCard/admin";
+import CardUserResume from "../../components/UserResume";
 
 export const AdminPage = () => {
   const { user } = useContext(UserContext);
@@ -76,7 +70,7 @@ export const AdminPage = () => {
           owner: "Ash Ketchup",
           km: 312000,
           year: 2021,
-          price: 400000,
+          price: 40000000,
         },
       ];
     } catch (error) {
@@ -101,27 +95,24 @@ export const AdminPage = () => {
     <>
       <HeaderLoggedIn />
       <Main>
-        <Divposition />
-        <SectionPerfil>
-          <ContainerSection>
-            <img src="" alt="foto perfil" />
+        <CardUserResume />
 
+        <section>
+          <ul>
+            {data?.map((car) => (
+              <CarCardAdmin car={car} key={car.id} />
+            ))}
+          </ul>
+
+          <nav>
             <div>
-              <h6>{user?.name}</h6>
-              <span>{user?.profile}</span>
+              <span>1 </span>
+              <span>de 2</span>
             </div>
-            <p>{user?.description}</p>
-            <button>Criar anuncio</button>
-          </ContainerSection>
-        </SectionPerfil>
 
-        <DivSectionBGDGray />
-
-        <ul>
-          {data?.map((car) => (
-            <CarCardAdmin car={car} key={car.id} />
-          ))}
-        </ul>
+            <a href="/">Seguinte {">"}</a>
+          </nav>
+        </section>
       </Main>
       <Footer />
     </>

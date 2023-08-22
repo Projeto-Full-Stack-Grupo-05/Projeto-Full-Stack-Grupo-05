@@ -1,11 +1,19 @@
 import { styled } from "styled-components";
 
 export const Card = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 356px;
+  min-width: 312px;
   width: 312px;
 
   figure {
     position: relative;
+    display: flex;
+    align-items: center;
+    height: 152px;
+    overflow: hidden;
 
     > img {
       width: 100%;
@@ -29,9 +37,11 @@ export const Card = styled.li`
   p {
     margin-top: 16px;
     font-size: 0.875rem;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   > div {
@@ -42,9 +52,8 @@ export const Card = styled.li`
     margin-top: 16px;
 
     span {
-      width: max-content;
-      max-width: 80px;
       padding: 8px;
+      max-width: 80px;
       color: var(--color-brand-1);
       font-size: 0.875rem;
       white-space: nowrap;
@@ -56,7 +65,7 @@ export const Card = styled.li`
 
     span:last-child {
       justify-self: flex-end;
-      max-width: 120px;
+      max-width: 150px;
       color: var(--color-grey-1);
       font-weight: 500;
       background-color: transparent;
