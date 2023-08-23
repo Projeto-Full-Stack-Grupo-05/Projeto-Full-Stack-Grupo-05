@@ -1,22 +1,20 @@
+import { UserContext } from "../../context/UserContext/UserContext";
+import { useContext } from "react";
 import { Card } from "./style";
 
 export default function CardUserResume() {
+  const { user } = useContext(UserContext);
   return (
     <Card>
       <div>
         <div>
-          <h3>SL</h3>
+          <h3>{user?.userImg}</h3>
         </div>
 
-        <h6>Samuel Leão</h6>
-        <span>anuciante</span>
+        <h6>{user?.name}</h6>
+        <span>{user?.profile}</span>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-          perferendis nostrum vel eaque rem similique repudiandae officia
-          dolorum velit. Excepturi vel unde illum dolores quasi blanditiis
-          molestiae aspernatur cum cupiditate?
-        </p>
+        <p>{user?.description}</p>
 
         <button>Criar anuncio</button>
       </div>
