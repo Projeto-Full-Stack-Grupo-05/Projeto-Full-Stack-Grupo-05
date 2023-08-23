@@ -82,7 +82,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     sendEmailResetPasswordData: SendEmailResetPasswordData
   ) => {
     api
-      .post("/user/resetPassword", sendEmailResetPasswordData)
+      .post("/resetPassword", sendEmailResetPasswordData)
       .then(() => {
         navigate("/");
       })
@@ -96,7 +96,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     token: string
   ) => {
     api
-      .patch(`/user/resetPassword/${token}`, {
+      .patch(`/resetPassword/${token}`, {
         password: resetPasswordData.password,
       })
 
