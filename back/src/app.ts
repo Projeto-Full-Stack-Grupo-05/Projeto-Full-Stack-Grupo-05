@@ -14,7 +14,7 @@ app.use(cors({ origin: "http://localhost:5173" }));
 app.use("/user", userRoutes);
 app.use("/login", loginRoutes);
 app.use("/sales", salesRoutes);
-app.use("/recoverPassword", recoverPassword)
+app.use("/resetPassword", recoverPassword);
 
 app.use(handleErros);
 
