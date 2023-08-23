@@ -84,7 +84,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     api
       .post("/user/resetPassword", sendEmailResetPasswordData)
       .then(() => {
-        navigate("/");
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
