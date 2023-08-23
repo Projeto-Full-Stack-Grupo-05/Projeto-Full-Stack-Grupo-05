@@ -5,10 +5,13 @@ import { RegisterPage } from "../pages/RegisterPage";
 import { DashBoard } from "../pages/Dashboard";
 import ProfilePage from "../pages/ProfilePage";
 import { ProductsPage } from "../pages/ProductsPage";
+import { SendEmailResetPassword } from "../pages/resetPassword";
+import { ResetPassword } from "../pages/resetPassword/[token]";
 import { AdminPage } from "../pages/AdminPage";
 
+
 export default function AppRouter() {
-  const isAtthenticated = true;
+  const isAtthenticated = false;
 
   return (
     <Routes>
@@ -21,6 +24,8 @@ export default function AppRouter() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/dashboard" element={<DashBoard />} />
       <Route path="/products" element={<ProductsPage />} />
+      <Route path="/resetPassword" element={<SendEmailResetPassword />} />
+      <Route path="/resetPassword/:token" element={<ResetPassword />} />
     </Routes>
   );
 }
