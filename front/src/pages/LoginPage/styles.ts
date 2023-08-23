@@ -39,13 +39,14 @@ export const StyledLoginForm = styled.form`
     margin-top: 32px;
   }
 
-  fieldset + button {
+  fieldset + .btnResetPassword {
     align-self: flex-end;
     border: none;
     margin-top: 12px;
     width: 150px;
     height: max-content;
     background-color: transparent;
+    text-decoration: none;
 
     font-weight: 600;
     font-size: 14px;
@@ -74,7 +75,7 @@ export const StyledLoginForm = styled.form`
     margin: 20px 0;
   }
 
-  a {
+  .register {
     display: flex;
     justify-content: center;
     align-items: center;
