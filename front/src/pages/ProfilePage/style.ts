@@ -69,6 +69,7 @@ export const Container = styled.div`
   justify-content: center;
   margin: 0 auto;
   padding: 0 16px;
+  background-color: var(--color-grey-8);
 
   @media (min-width: 720px) {
     padding: 0 62px;
