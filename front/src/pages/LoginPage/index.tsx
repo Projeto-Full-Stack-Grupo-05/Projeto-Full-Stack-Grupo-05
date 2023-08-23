@@ -41,11 +41,11 @@ export const LoginPage = () => {
             register={register("password")}
             error={errors.password}
           />
-          <button type="button">Esqueci minha senha</button>
+          <Link to="/resetPassword" className="btnResetPassword">Esqueci minha senha</Link>
 
           <button type="submit">Entrar</button>
           <h4>Ainda não possui conta?</h4>
-          <Link to="/register">Cadastrar</Link>
+          <Link to="/register" className="register">Cadastrar</Link>
         </StyledLoginForm>
       </StyledLoginPage>
       <Footer />
