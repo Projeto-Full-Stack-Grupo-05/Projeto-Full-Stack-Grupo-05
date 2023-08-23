@@ -7,6 +7,7 @@ import ProfilePage from "../pages/ProfilePage";
 import { ProductsPage } from "../pages/ProductsPage";
 import { SendEmailResetPassword } from "../pages/resetPassword";
 import { ResetPassword } from "../pages/resetPassword/[token]";
+import { AdminPage } from "../pages/AdminPage";
 
 export default function AppRouter() {
   const isAtthenticated = false;
@@ -17,6 +18,7 @@ export default function AppRouter() {
         path="/"
         element={isAtthenticated ? <ProfilePage /> : <Homepage />}
       />
+      <Route path="/admin" element={<AdminPage />}></Route>
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/dashboard" element={<DashBoard />} />

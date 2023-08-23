@@ -1,24 +1,15 @@
 import { useQuery } from "react-query";
 import { Footer } from "../../components/Footer";
 import { HeaderLoggedIn } from "../../components/HeaderLoggedIn";
-import {
-  Container,
-  ContainerSection,
-  DivSectionBGDGray,
-  Divposition,
-  Main,
-  SectionPerfil,
-} from "./style";
+import { Container, Main } from "./style";
 import { isAxiosError } from "axios";
 import { CarCard } from "../../components/carCard";
 import ErrorPage from "../ErrorPage";
 import { api } from "../../services/api";
 import { IMotorsSales } from "../../services/api/interfaces";
-import { useContext } from "react";
-import { UserContext } from "../../context/UserContext/UserContext";
+import CardUserResume from "../../components/UserResume";
 
 export default function ProfilePage() {
-  const { user } = useContext(UserContext);
   const getKenzieCars = async () => {
     try {
       // const cars = await api.get<IMotorsSales[]>("/sales");
@@ -102,26 +93,12 @@ export default function ProfilePage() {
     <>
       <HeaderLoggedIn />
 
-      <Divposition />
-      
-        <SectionPerfil>
-          <ContainerSection>
-            <img src="" alt="foto perfil" />
-
-            <div>
-              <h6>{user?.name}</h6>
-              <span>{user?.profile}</span>
-            </div>
-            <p>{user?.description}</p>
-            <button>Criar anuncio</button>
-          </ContainerSection>
-        </SectionPerfil>
-      
-      <DivSectionBGDGray />
       <Main>
+        <CardUserResume />
+
         <Container>
           <section>
-            <h2>Anúncios</h2>
+            <h5>Anúncios</h5>
 
             <ul>
               {data?.map((car) => (

@@ -31,6 +31,7 @@ export const StyledFixedHeader = styled.div`
 
 export const StyledHeaderLoggedOut = styled.header`
   display: flex;
+  justify-content: center;
   height: 80px;
   width: 100%;
   z-index: 10;
@@ -40,6 +41,7 @@ export const StyledHeaderLoggedOut = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 1600px;
     width: 100%;
     z-index: 10;
 

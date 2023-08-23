@@ -31,6 +31,7 @@ export const StyledFixedHeader = styled.div`
 
 export const StyledHeaderLoggedIn = styled.header`
   display: flex;
+  justify-content: center;
   height: 80px;
   width: 100%;
   border-bottom: 2.3px solid var(--color-grey-6);
@@ -42,6 +43,7 @@ export const StyledHeaderLoggedIn = styled.header`
     justify-content: space-between;
     gap: 60px;
     padding: 0 16px;
+    max-width: 1600px;
     width: 100%;
 
     @media (min-width: 620px) {
