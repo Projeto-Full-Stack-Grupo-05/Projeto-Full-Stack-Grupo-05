@@ -1,3 +1,4 @@
+import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import Sale from "../../entities/sales.entity";
 import { AppError } from "../../error";
@@ -7,11 +8,17 @@ import {
   TSalesResponse,
 } from "../../interfaces/sales.interface";
 import { salesSchema } from "../../schemas/salesSchema.schema";
+import Gallery from "../../entities/gallery.entity";
 
 const createSalesService = async (
   data: TSalesRequest
 ): Promise<TSaleResponse> => {
-  const salesRepository = AppDataSource.getRepository(Sale);
+  const salesRepository: Repository<Sale> = AppDataSource.getRepository(Sale);
+  const galleryRepository: Repository<Gallery> = AppDataSource.getRepository(Gallery)
+
+  const gallery = data.gallery
+  const newGallery: Gallery[] = galleryRepository.create([gallery]) 
+  await galleryRepository.save(newGallery)
 
   const newSale = salesRepository.create(data);
 
