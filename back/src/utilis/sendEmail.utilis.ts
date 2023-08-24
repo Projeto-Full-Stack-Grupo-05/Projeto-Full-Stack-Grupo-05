@@ -41,7 +41,7 @@ class EmailService {
       theme: "default",
       product: {
         name: "Recovery Password",
-        link: "http://localhost:3000/user",
+        link: "http://localhost:5173/resetPassword",
       },
     });
 
@@ -55,7 +55,7 @@ class EmailService {
           button: {
             color: "#DC4D2F",
             text: "Reset your password",
-            link: `http://localhost:5173/resetPassword?${resetToken}`,
+            link: `http://localhost:5173/resetPassword/${resetToken}`,
           },
         },
         outro:

@@ -8,6 +8,10 @@ import {
   IUserContext,
 } from "./@types";
 import { api } from "../../services/api";
+import {
+  ResetPasswordData,
+  SendEmailResetPasswordData,
+} from "../../schema/LoginSchema";
 
 export const UserContext = createContext({} as IUserContext);
 
@@ -74,6 +78,36 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     }
   };
 
+  const sendEmail = (
+    sendEmailResetPasswordData: SendEmailResetPasswordData
+  ) => {
+    api
+      .post("/resetPassword", sendEmailResetPasswordData)
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const resetPassword = (
+    resetPasswordData: ResetPasswordData,
+    token: string
+  ) => {
+    api
+      .patch(`/resetPassword/${token}`, {
+        password: resetPasswordData.password,
+      })
+
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const userLogOut = () => {
     setUser(null);
     localStorage.removeItem("@TOKEN");
@@ -89,6 +123,8 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         user,
         userRegister,
         userLogin,
+        sendEmail,
+        resetPassword,
         userLogOut,
       }}
     >

@@ -1,3 +1,8 @@
+import {
+  ResetPasswordData,
+  SendEmailResetPasswordData,
+} from "../../schema/LoginSchema";
+
 export interface IDefaultProviderProps {
   children: React.ReactNode;
 }
@@ -39,5 +44,7 @@ export interface IUserContext {
   user: IUser | null;
   userRegister: (formData: IRegisterFormValues) => Promise<void>;
   userLogin: (formData: ILoginFormValues) => Promise<void>;
+  sendEmail: (sendEmailResetPasswordData: SendEmailResetPasswordData) => void;
+  resetPassword: (resetPasswordData: ResetPasswordData, token: string) => void;
   userLogOut: () => void;
 }
