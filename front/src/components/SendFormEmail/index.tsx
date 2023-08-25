@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "react-router-dom";
 import {
   SendEmailResetPasswordData,
   sendEmailResetPasswordSchema,
 } from "../../schema/LoginSchema";
 import { UserContext } from "../../context/UserContext/UserContext";
 import { useContext } from "react";
+import { DivContainer, FormContainer } from "./style";
 
 export const SendEmailForm = () => {
   const { sendEmail } = useContext(UserContext);
@@ -19,27 +21,20 @@ export const SendEmailForm = () => {
   };
 
   return (
-    <div className="user-form-container">
-      <form className="space-y-6 w-4/5" onSubmit={handleSubmit(onFormSubmit)}>
-        <div>
-          <label htmlFor="email" className="user-form-label">
-            Informe um e-mail para a recuperação de senha
-          </label>
-          <div className="mt-4">
-            <input
-              type="email"
-              placeholder="example@.com"
-              className="user-form-input"
-              {...register("email")}
-            />
-          </div>
-        </div>
-        <div>
-          <button type="submit" className="user-form-button">
-            Enviar
-          </button>
-        </div>
-      </form>
-    </div>
+    <DivContainer>
+      <h2>Esqueceu sua senha?</h2>
+      <FormContainer onSubmit={handleSubmit(onFormSubmit)}>
+        <label htmlFor="email">
+          Informe seu e-mail para a recuperação de senha
+        </label>
+        <input type="email" placeholder="example@.com" {...register("email")} />
+
+        <button type="submit">Enviar</button>
+      </FormContainer>
+
+      <span>
+        Voltar para <Link to="/login">login</Link>
+      </span>
+    </DivContainer>
   );
 };
