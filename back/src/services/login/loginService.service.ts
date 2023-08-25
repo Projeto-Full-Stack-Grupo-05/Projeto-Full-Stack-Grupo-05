@@ -5,11 +5,11 @@ import { AppDataSource } from "../../data-source";
 import User from "../../entities/user.entity";
 import { AppError } from "../../error";
 import { IToken, TUserLoginRequest } from "../../interfaces/login.interface";
-import { TUserResponse } from "../../interfaces/user.interface";
+import { TUserResponseLoginToken } from "../../interfaces/user.interface";
 
 const loginService = async (
   loginData: TUserLoginRequest
-): Promise<{ token: string; user: TUserResponse }> => {
+): Promise<{ token: string; user: TUserResponseLoginToken }> => {
   const userRepo: Repository<User> = AppDataSource.getRepository(User);
 
   const user: User | null = await userRepo.findOne({
@@ -43,7 +43,7 @@ const loginService = async (
     }
   );
 
-  const userData: TUserResponse = {
+  const userData: TUserResponseLoginToken = {
     name: user.name,
     email: user.email,
     id: user.id,
