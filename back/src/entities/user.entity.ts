@@ -8,6 +8,7 @@ import {
   BeforeUpdate,
   DeleteDateColumn,
   OneToOne,
+  JoinColumn,
 } from "typeorm";
 import { getRounds, hashSync } from "bcryptjs";
 import Sale from "./sales.entity";
@@ -62,8 +63,9 @@ class User {
   @OneToOne(() => Sale, (sale) => sale.buyer)
   buyer: Sale;
 
-  @OneToOne(() => Address, (address) => address.user)
-  address: Address[];
+  @OneToOne(() => Address)
+  @JoinColumn()
+  address: Address;
 
   @BeforeInsert()
   @BeforeUpdate()

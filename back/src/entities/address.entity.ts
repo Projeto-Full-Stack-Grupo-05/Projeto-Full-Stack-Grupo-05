@@ -26,7 +26,7 @@ class Address {
   street: string;
 
   @Column({ type: "varchar", length: 6 })
-  number: number;
+  number: string;
 
   @Column()
   complement: string;
