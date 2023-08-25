@@ -30,13 +30,13 @@ const createUsersService = async (
   userData.password = await hash(userData.password, 10);
 
   
-  const address = userData.address;
-  const newAddress: Address[] = addressRepository.create([address]);
-  await addressRepository.save(newAddress);
+  // const address = userData.address;
+  // const newAddress: Address[] = addressRepository.create([address]);
+  // await addressRepository.save(newAddress);
   
   const user = userRepository.create({
-    ...userData,
-    address:newAddress
+    ...userData
+    // address:newAddress
   });
 
   await userRepository.save(user);
