@@ -1,12 +1,10 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
-  ManyToOne,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
 } from "typeorm";
-import Model from "./models.entity";
-import Brand from "./brand.entity";
 
 export enum Fuel {
   Eletric = "eletric",
@@ -19,11 +17,14 @@ class Car {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @ManyToOne(() => Brand)
-  brand: Brand;
+  @Column()
+  brand_name: string;
 
-  @ManyToOne(() => Model)
-  model: Model;
+  @Column()
+  model_name: string;
+
+  @Column("float")
+  market_price: number;
 
   @Column()
   year: string;
@@ -33,6 +34,9 @@ class Car {
 
   @CreateDateColumn({ type: "date" })
   createdAt: string;
+
+  @UpdateDateColumn({ type: "date" })
+  updateAt: string;
 }
 
 export default Car;
