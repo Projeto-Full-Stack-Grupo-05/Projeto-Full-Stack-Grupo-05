@@ -12,8 +12,7 @@ import {
 type TUserRequest = z.infer<typeof userSchemaRequest>;
 type TUser = z.infer<typeof userSchema>;
 type TUserResponse = z.infer<typeof userSchemaResponse>;
-type TUserRequestUp = z.infer<typeof userSchemaUpdateRequest>;
-type TUserUpdateRequest = DeepPartial<TUserRequestUp>;
+type TUserUpdateRequest = DeepPartial<TUserRequest>;
 type TlistAllUsers = z.infer<typeof listUserSchema>;
 
 export {
