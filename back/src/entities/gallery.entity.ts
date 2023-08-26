@@ -22,7 +22,7 @@ class Gallery {
   createdAt: string;
 
   @ManyToOne(() => Sale)
-  sale: Sale;
+  sale: Sale;  
 
   // @OneToMany(() => SalesGallery, (salesGallery) => salesGallery.gallery)
   // gallery: SalesGallery[];

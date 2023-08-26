@@ -6,13 +6,6 @@ const gallerySchemaRequest = z.object({
   img_url: z.string(),
 });
 
-const gallerySchema = gallerySchemaRequest.extend({
-  id: z.string(),
-  createdAt: z.string(),
-});
-
-
-
 const salesSchemaRequest = z.object({
   user_id: z.string().max(45),
   car_id: z.string().max(45),
@@ -24,35 +17,16 @@ const salesSchemaRequest = z.object({
   year: z.number().int(),
   fuel: z.string(),
   kilometers: z.number().int(),
-  gallery: gallerySchemaRequest,
+  gallery: z.array(gallerySchemaRequest),
   status: z
     .enum([SaleStatus.Active, SaleStatus.Sold])
     .default(SaleStatus.Active),
-  //   buyer_id: z.string().max(45).optional(),
-  // user: userSchema
-  
 });
-
 
 const salesSchema = salesSchemaRequest.extend({
   id: z.string(),
   createdAt: z.string(),
-  user: userSchema,
-  gallery: gallerySchema.pick({
-    id: true,
-    createdAt: true,
-    img_url: true,
-  }),
-});
-
-const salesSchemaRequestCreate = salesSchemaRequest.extend({
-  id: z.string(),
-  createdAt: z.string(),
-  gallery: gallerySchema.pick({
-    id: true,
-    createdAt: true,
-    img_url: true,
-  }),
+  
 });
 
 const salesSchemaResponse = z.array(salesSchema);
@@ -66,5 +40,4 @@ export {
   salesSchemaRequest,
   salesSchemaResponse,
   salesSchemaUpdateRequest,
-  salesSchemaRequestCreate
 };

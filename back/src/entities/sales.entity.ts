@@ -6,9 +6,9 @@ import {
   ManyToOne,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
 import User from "./user.entity";
-import Car from "./car.entity";
 import Gallery from "./gallery.entity";
 
 export enum SaleStatus {
@@ -64,15 +64,12 @@ class Sale {
   seller: User;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: "user_id" }) 
+  @JoinColumn({ name: "user_id" })
   user: User;
 
-  @ManyToOne(() => Gallery)
+  @OneToMany(() => Gallery, (gallery) => gallery.sale)
   @JoinColumn({ name: "gallery_id" })
-  gallery: Gallery;
-
-  // @ManyToOne(() => Car)
-  // car: Car;
+  gallery: Gallery[];
 }
 
 export default Sale;

@@ -21,7 +21,7 @@ const salesRoutes = Router();
 salesRoutes.post(
   "",
   ensureBodyValidMiddleware(salesSchemaRequest),
-  ensureAlreadyExistsSalesMiddleware,
+  // ensureAlreadyExistsSalesMiddleware,
   createSalesController
 );
 
