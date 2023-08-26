@@ -1,9 +1,7 @@
 import { Repository } from "typeorm";
 import User from "../../entities/user.entity";
 import { AppDataSource } from "../../data-source";
-import {
-  TUserResponse,
-} from "../../interfaces/user.interface";
+import { TUserResponse } from "../../interfaces/user.interface";
 import { AppError } from "../../error";
 import { randomUUID } from "node:crypto";
 import { emailservice } from "../../utilis/sendEmail.utilis";
@@ -39,7 +37,6 @@ export const sendEmailPasswordService = async (
 
   return user;
 };
-
 
 export const resetPassword = async (
   password: string,

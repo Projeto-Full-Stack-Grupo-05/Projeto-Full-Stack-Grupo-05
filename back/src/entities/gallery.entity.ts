@@ -4,9 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   OneToMany,
+  ManyToOne,
 } from "typeorm";
+import Sale from "./sales.entity";
 
-import SalesGallery from "./salesGallery.entity";
+// import SalesGallery from "./salesGallery.entity";
 
 @Entity("galleries")
 class Gallery {
@@ -19,8 +21,11 @@ class Gallery {
   @CreateDateColumn({ type: "date" })
   createdAt: string;
 
-  @OneToMany(() => SalesGallery, (salesGallery) => salesGallery.gallery)
-  gallery: SalesGallery[];
+  @ManyToOne(() => Sale)
+  sale: Sale;
+
+  // @OneToMany(() => SalesGallery, (salesGallery) => salesGallery.gallery)
+  // gallery: SalesGallery[];
 }
 
 export default Gallery;

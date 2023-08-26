@@ -31,8 +31,8 @@ class Address {
   @Column()
   complement: string;
 
-  @UpdateDateColumn({ type: "date" })
-  updatedAt: string;
+  // @UpdateDateColumn({ type: "date", nullable: false })
+  // updatedAt: string;
 
   @ManyToOne(() => User)
   user: User;

@@ -9,6 +9,7 @@ const retrieveUserService = async (userId: string): Promise<TUserResponse> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
   const user: User | null = await userRepository.findOne({
+    relations: { address: true },
     where: {
       id: userId,
     },

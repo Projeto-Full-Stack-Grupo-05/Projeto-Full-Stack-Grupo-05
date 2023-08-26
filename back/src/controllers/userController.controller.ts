@@ -40,6 +40,17 @@ export const retrieveUsersController = async (
   return res.json(user);
 };
 
+// export const updateUserController = async (
+//   req: Request,
+//   res: Response
+// ): Promise<Response> => {
+//   const userData: TUserUpdateRequest = req.body;
+//   const userId: string = req.params.id;
+
+//   const newUserData: TUserResponse = await updateUsersService(userData, userId);
+//   return res.json(newUserData);
+// };
+
 export const updateUserController = async (
   req: Request,
   res: Response

@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import Sale from "../../entities/sales.entity";
-import { TSale, TSalesResponse } from "../../interfaces/sales.interface";
+import { TSale } from "../../interfaces/sales.interface";
 import { salesSchemaResponse } from "../../schemas/salesSchema.schema";
 
 interface PaginationMetadata {
@@ -27,10 +27,13 @@ const readSalesService = async (
   const skip = (page - 1) * pageSize;
   const take = pageSize;
 
-  const [sales, total] = await saleRepository.findAndCount({
-    skip,
-    take,
-  });
+  const [sales, total] = await saleRepository
+    .createQueryBuilder("sale")
+    .leftJoinAndSelect("sale.user", "user")
+    .leftJoinAndSelect("sale.gallery", "gallery")
+    .skip(skip)
+    .take(take)
+    .getManyAndCount();
 
   const totalPages = Math.ceil(total / pageSize);
 

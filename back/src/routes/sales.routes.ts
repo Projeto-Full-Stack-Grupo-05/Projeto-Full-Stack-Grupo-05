@@ -25,12 +25,7 @@ salesRoutes.post(
   createSalesController
 );
 
-salesRoutes.post(
-  "",
-  ensureBodyValidMiddleware(salesSchemaRequest),
-  ensureAlreadyExistsSalesMiddleware,
-  createSalesController
-);
+
 
 salesRoutes.get("/:id", ensureIdMiddleware, retrieveSaleController);
 

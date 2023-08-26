@@ -9,6 +9,7 @@ import {
   DeleteDateColumn,
   OneToOne,
   JoinColumn,
+  ManyToOne,
 } from "typeorm";
 import { getRounds, hashSync } from "bcryptjs";
 import Sale from "./sales.entity";
@@ -58,10 +59,13 @@ class User {
   deletedAt: string;
 
   @OneToMany(() => Sale, (sale) => sale.seller)
-  sales: Sale[];
+  sale: Sale[];
 
   @OneToOne(() => Sale, (sale) => sale.buyer)
   buyer: Sale;
+
+  @OneToMany(() => Sale, (sales) => sales.user)
+  sales: Sale[];
 
   @OneToOne(() => Address)
   @JoinColumn()

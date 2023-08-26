@@ -16,10 +16,9 @@ const createSalesService = async (
   const salesRepository: Repository<Sale> = AppDataSource.getRepository(Sale);
   const galleryRepository: Repository<Gallery> = AppDataSource.getRepository(Gallery)
 
-  // const gallery = data.gallery
-  // const newGallery: Gallery[] = galleryRepository.create([gallery]) 
-  // console.log(newGallery)
-  // await galleryRepository.save(newGallery)
+  const gallery = data.gallery
+  const newGallery: Gallery[] = galleryRepository.create([gallery]) 
+  await galleryRepository.save(newGallery)
 
   const newSale = salesRepository.create(data);
 
