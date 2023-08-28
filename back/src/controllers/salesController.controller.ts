@@ -1,14 +1,20 @@
 import { Request, Response } from "express";
-import { TSale, TSalesRequestUpdate } from "../interfaces/sales.interface";
-import { createSalesService } from "../services/sales/createSalesService.service";
+import {
+  TSale,
+  TSaleResponse,
+  TSalesRequestUpdate,
+  TSalesResponse,
+} from "../interfaces/sales.interface";
 import deleteSaleService from "../services/sales/deleteSaleService.service";
 import readSalesService from "../services/sales/readSalesService.service";
 import retrieveSaleService from "../services/sales/retrieveSaleService.service";
 import updateSaleService from "../services/sales/updateSaleService.service";
+import createSalesService from "../services/sales/createSalesService.service";
 
 export const createSalesController = async (req: Request, res: Response) => {
+  const userId = req.body.user_id;
 
-  const newSale = await createSalesService(req.body);
+  const newSale = await createSalesService(req.body, userId);
 
   return res.status(201).json(newSale);
 };
@@ -35,9 +41,7 @@ export const updateSaleController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-
   const saleData: TSalesRequestUpdate = req.body;
-
   const saleId: string = req.params.id;
 
   const newSaleData: TSale = await updateSaleService(saleData, saleId);

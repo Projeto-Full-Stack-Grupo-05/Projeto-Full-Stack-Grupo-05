@@ -15,9 +15,8 @@ const addressSchemaRequest = z.object({
 });
 
 const addressSchema = addressSchemaRequest.extend({
-    id: z.string(),
-    updatedAt: z.string(),
-})
+  id: z.string(),
+});
 
 const userSchemaRequest = z.object({
   name: z.string(),
@@ -41,21 +40,23 @@ const userSchema = userSchemaRequest.extend({
     city: true,
     street: true,
     number: true,
-    complement:true,
-    updatedAt:true
-  })
+    complement: true,
+  }),
 });
 
 const userSchemaLoginToken = userSchema.omit({
   password: true,
-  address: true
-})
+  address: true,
+});
 
 const userSchemaResponse = userSchema.omit({
   password: true,
+}).extend({
+  address: addressSchema,
 });
 
-const listUserSchema = userSchemaResponse.array();
+
+const listUserSchema = z.array(userSchemaResponse);
 
 const userSchemaUpdateRequest = userSchema.partial().omit({
   id: true,
@@ -67,5 +68,5 @@ export {
   userSchemaResponse,
   userSchemaUpdateRequest,
   listUserSchema,
-  userSchemaLoginToken
+  userSchemaLoginToken,
 };

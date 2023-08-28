@@ -7,7 +7,6 @@ import {
   userSchemaLoginToken,
   userSchemaRequest,
   userSchemaResponse,
-  userSchemaUpdateRequest,
 } from "../schemas/userSchema.schema";
 
 type TUserRequest = z.infer<typeof userSchemaRequest>;

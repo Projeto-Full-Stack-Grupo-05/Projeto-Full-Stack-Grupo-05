@@ -5,9 +5,11 @@ import {
   CreateDateColumn,
   ManyToOne,
   OneToOne,
+  JoinColumn,
+  OneToMany,
 } from "typeorm";
 import User from "./user.entity";
-import Car from "./car.entity";
+import Gallery from "./gallery.entity";
 
 export enum SaleStatus {
   Active = "active",
@@ -61,8 +63,13 @@ class Sale {
   @ManyToOne(() => User)
   seller: User;
 
-  @ManyToOne(() => Car)
-  car: Car;
+  @ManyToOne(() => User)
+  @JoinColumn({ name: "user_id" })
+  user: User;
+
+  @OneToMany(() => Gallery, (gallery) => gallery.sale)
+  @JoinColumn({ name: "gallery_id" })
+  gallery: Gallery[];
 }
 
 export default Sale;

@@ -10,8 +10,7 @@ const ensureOwnerUserMiddleware = async (
   const userId = req.params.id;
 
   if (id !== userId) {
-    console.log(id);
-    console.log(userId);
+
     throw new AppError("Insufficient permission", 403);
   }
 

@@ -1,9 +1,18 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import Sale from "../../entities/sales.entity";
-import { TSale, TSalesRequestUpdate } from "../../interfaces/sales.interface";
-import { salesSchema } from "../../schemas/salesSchema.schema";
+import {
+  TSale,
+  TSaleResponse,
+  TSalesRequestUpdate,
+  TSalesResponse,
+} from "../../interfaces/sales.interface";
+import {
+  salesSchema,
+  salesSchemaResponse,
+} from "../../schemas/salesSchema.schema";
 import { AppError } from "../../error";
+import Gallery from "../../entities/gallery.entity";
 
 const updateSaleService = async (
   saleData: TSalesRequestUpdate,
@@ -11,18 +20,23 @@ const updateSaleService = async (
 ): Promise<TSale> => {
   const saleRepository: Repository<Sale> = AppDataSource.getRepository(Sale);
 
-  const existingSale: Sale | null = await saleRepository.findOneBy({ id: saleId});
+  const sale: Sale | undefined | null = await saleRepository
+    .createQueryBuilder("sale")
+    .leftJoinAndSelect("sale.gallery", "gallery")
+    .where("sale.id = :saleId", { saleId })
+    .getOne();
 
-  if (!existingSale) {
-    throw new AppError("Sale not found");
+  if (!sale) {
+    throw new Error("Sale not found");
   }
 
-  Object.assign(existingSale, saleData);
+  const validSale = sale ?? undefined;
+  const updatedSaleData: TSalesRequestUpdate = { ...validSale, ...saleData };
+  Object.assign(validSale, updatedSaleData);
 
-  const updatedSale: Sale = await saleRepository.save(existingSale);
+  await saleRepository.save(validSale);
 
-  const returnSale: TSale = salesSchema.parse(updatedSale);
-
+  const returnSale: TSale = salesSchema.parse(validSale);
   return returnSale;
 };
 

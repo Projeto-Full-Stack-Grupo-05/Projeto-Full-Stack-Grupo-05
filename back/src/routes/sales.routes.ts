@@ -21,16 +21,11 @@ const salesRoutes = Router();
 salesRoutes.post(
   "",
   ensureBodyValidMiddleware(salesSchemaRequest),
-  ensureAlreadyExistsSalesMiddleware,
+  // ensureAlreadyExistsSalesMiddleware,
   createSalesController
 );
 
-salesRoutes.post(
-  "",
-  ensureBodyValidMiddleware(salesSchemaRequest),
-  ensureAlreadyExistsSalesMiddleware,
-  createSalesController
-);
+
 
 salesRoutes.get("/:id", ensureIdMiddleware, retrieveSaleController);
 

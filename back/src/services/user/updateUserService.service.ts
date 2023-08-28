@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
-
 import User from "../../entities/user.entity";
+import Address from "../../entities/address.entity";
 import { AppDataSource } from "../../data-source";
 import {
   TUserResponse,
@@ -13,18 +13,35 @@ const updateUsersService = async (
   userId: string
 ): Promise<TUserResponse> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
+  const addressRepository: Repository<Address> =
+    AppDataSource.getRepository(Address);
 
-  const oldUserData: User | null = await userRepository.findOneBy({
-    id: userId,
-  });
+  const user: User | undefined | null = await userRepository
+    .createQueryBuilder("user")
+    .leftJoinAndSelect("user.address", "address")
+    .where("user.id = :userId", { userId })
+    .getOne();
 
-  const newUserData: User = userRepository.create({
-    ...oldUserData,
-    ...userData,
-  });
-  await userRepository.save(newUserData);
+  if (!user) {
+    throw new Error("User not found");
+  }
 
-  const returnUser: TUserResponse = userSchemaResponse.parse(newUserData);
+  const validUser = user ?? undefined;
+
+  if (userData.address) {
+    if (validUser.address) {
+      Object.assign(validUser.address, userData.address);
+    } else {
+      const newAddress = addressRepository.create(userData.address);
+      validUser.address = newAddress;
+    }
+  }
+
+  Object.assign(validUser, userData);
+
+  await userRepository.save(validUser);
+
+  const returnUser: TUserResponse = userSchemaResponse.parse(validUser);
 
   return returnUser;
 };

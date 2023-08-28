@@ -1,8 +1,10 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import Sale from "../../entities/sales.entity";
-import { TSale, TSalesResponse } from "../../interfaces/sales.interface";
+import { TSale } from "../../interfaces/sales.interface";
 import { salesSchemaResponse } from "../../schemas/salesSchema.schema";
+import { TUserResponse } from "../../interfaces/user.interface";
+import User from "../../entities/user.entity";
 
 interface PaginationMetadata {
   page: number;
@@ -23,16 +25,31 @@ const readSalesService = async (
   pageSize: number = 10
 ): Promise<PaginatedSalesResponse> => {
   const saleRepository: Repository<Sale> = AppDataSource.getRepository(Sale);
+  const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
   const skip = (page - 1) * pageSize;
   const take = pageSize;
 
-  const [sales, total] = await saleRepository.findAndCount({
-    skip,
-    take,
-  });
+  const [sales, total] = await saleRepository
+    .createQueryBuilder("sale")
+    .leftJoinAndSelect("sale.user", "user")
+    .leftJoinAndSelect("sale.gallery", "gallery")
+    .skip(skip)
+    .take(take)
+    .getManyAndCount();
 
   const totalPages = Math.ceil(total / pageSize);
+
+  const paginatedSales: TSale[] = sales.map((sale) => {
+    const userWithoutPassword = {
+      ...sale.user,
+      password: undefined,
+    };
+    return {
+      ...sale,
+      user: userWithoutPassword,
+    };
+  });
 
   const pagination: PaginationMetadata = {
     page,
@@ -44,7 +61,7 @@ const readSalesService = async (
   };
 
   const returnSale: PaginatedSalesResponse = {
-    data: salesSchemaResponse.parse(sales),
+    data: paginatedSales,
     pagination,
   };
 

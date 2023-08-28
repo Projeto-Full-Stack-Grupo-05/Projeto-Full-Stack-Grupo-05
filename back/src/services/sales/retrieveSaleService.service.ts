@@ -8,8 +8,11 @@ import { salesSchema } from "../../schemas/salesSchema.schema";
 const retrieveSaleService = async (saleId: string): Promise<TSale> => {
   const saleRepository: Repository<Sale> = AppDataSource.getRepository(Sale);
 
-  const requiredSale: Sale | null = await saleRepository.findOneBy({
-    id: saleId,
+  const requiredSale: Sale | null = await saleRepository.findOne({
+    relations: { gallery: true },
+    where: {
+      id: saleId,
+    },
   });
 
   if (!requiredSale) {

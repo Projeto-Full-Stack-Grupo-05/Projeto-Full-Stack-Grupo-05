@@ -1,33 +1,49 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
-import Sale from "../../entities/sales.entity";
+import Sale, { SaleStatus } from "../../entities/sales.entity";
 import { AppError } from "../../error";
-import {
-  TSaleResponse,
-  TSalesRequest,
-  TSalesResponse,
-} from "../../interfaces/sales.interface";
+import { TSaleResponse, TSalesRequest } from "../../interfaces/sales.interface";
 import { salesSchema } from "../../schemas/salesSchema.schema";
 import Gallery from "../../entities/gallery.entity";
+import User from "../../entities/user.entity";
 
 const createSalesService = async (
-  data: TSalesRequest
+  data: TSalesRequest,
+  userId: string
 ): Promise<TSaleResponse> => {
   const salesRepository: Repository<Sale> = AppDataSource.getRepository(Sale);
-  const galleryRepository: Repository<Gallery> = AppDataSource.getRepository(Gallery)
+  const galleryRepository: Repository<Gallery> =
+    AppDataSource.getRepository(Gallery);
+  const userRepository = AppDataSource.getRepository(User);
 
-  // const gallery = data.gallery
-  // const newGallery: Gallery[] = galleryRepository.create([gallery]) 
-  // console.log(newGallery)
-  // await galleryRepository.save(newGallery)
+  const user = await userRepository.findOne({
+    where: {
+      id: userId,
+    },
+  });
 
-  const newSale = salesRepository.create(data);
+  if (!user) {
+    throw new AppError("user not found", 404);
+  }
 
-  const createdSale = await salesRepository.save(newSale);
+  const newSale = salesRepository.create({
+    user: user,
+    car_id: data.car_id,
+    title: data.title,
+    img_url: data.img_url,
+    color: data.color,
+    price: data.price,
+    fuel: data.fuel,
+    year: data.year,
+    description: data.description,
+    kilometers: data.kilometers,
+    user_id: userId,
+    gallery: data.gallery,
+  });
 
-  const response: TSaleResponse = salesSchema.parse(createdSale);
+  await salesRepository.save(newSale);
 
-  return response;
+  return salesSchema.parse(newSale);
 };
 
-export { createSalesService };
+export default createSalesService;

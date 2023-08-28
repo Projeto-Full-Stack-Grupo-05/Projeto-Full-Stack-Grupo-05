@@ -1,14 +1,10 @@
 import { z } from "zod";
 import { SaleStatus } from "../entities/sales.entity";
+import { userSchema } from "./userSchema.schema";
 
-// const gallerySchemaRequest= z.object({
-//   img_url: z.string(),
-// })
-
-// const gallerySchema = gallerySchemaRequest.extend({
-//   id: z.string(),
-//   createdAt: z.string(),
-// })
+const gallerySchemaRequest = z.object({
+  img_url: z.string(),
+});
 
 const salesSchemaRequest = z.object({
   user_id: z.string().max(45),
@@ -21,21 +17,16 @@ const salesSchemaRequest = z.object({
   year: z.number().int(),
   fuel: z.string(),
   kilometers: z.number().int(),
-  // gallery: gallerySchemaRequest,
+  gallery: z.array(gallerySchemaRequest),
   status: z
     .enum([SaleStatus.Active, SaleStatus.Sold])
     .default(SaleStatus.Active),
-  //   buyer_id: z.string().max(45).optional(),
 });
 
 const salesSchema = salesSchemaRequest.extend({
   id: z.string(),
   createdAt: z.string(),
-  // gallery: gallerySchema.pick({
-  //   id: true,
-  //   createdAt: true,
-  //   img_url: true
-  // })
+  
 });
 
 const salesSchemaResponse = z.array(salesSchema);
