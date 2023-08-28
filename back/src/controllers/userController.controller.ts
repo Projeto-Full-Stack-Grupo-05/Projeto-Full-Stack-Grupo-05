@@ -81,5 +81,5 @@ export const recoverEmailPasswordController = async (
 
   await resetPassword(password, token);
 
-  return res.json({ message: "password change with sucess" });
+  return res.json({ message: "Password changed successfully" });
 };

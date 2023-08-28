@@ -9,7 +9,6 @@ import {
   DeleteDateColumn,
   OneToOne,
   JoinColumn,
-  ManyToOne,
 } from "typeorm";
 import { getRounds, hashSync } from "bcryptjs";
 import Sale from "./sales.entity";

@@ -1,10 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  UpdateDateColumn,
-} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 
 import User from "./user.entity";
 
@@ -30,9 +24,6 @@ class Address {
 
   @Column()
   complement: string;
-
-  // @UpdateDateColumn({ type: "date", nullable: false })
-  // updatedAt: string;
 
   @ManyToOne(() => User)
   user: User;
