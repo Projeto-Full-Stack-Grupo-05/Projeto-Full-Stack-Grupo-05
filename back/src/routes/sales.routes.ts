@@ -15,17 +15,17 @@ import {
   salesSchemaRequest,
   salesSchemaUpdateRequest,
 } from "../schemas/salesSchema.schema";
+import { listAllCommentsBySalesController } from "../controllers/commentsController.controller";
 
 const salesRoutes = Router();
 
 salesRoutes.post(
   "",
   ensureBodyValidMiddleware(salesSchemaRequest),
-  // ensureAlreadyExistsSalesMiddleware,
   createSalesController
 );
 
-
+salesRoutes.get("/:id/comments", listAllCommentsBySalesController);
 
 salesRoutes.get("/:id", ensureIdMiddleware, retrieveSaleController);
 
