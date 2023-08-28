@@ -25,6 +25,7 @@ export const StyledFixedHeader = styled.div`
       width: 30px;
       height: 30px;
       background-color: black;
+      cursor: pointer;
     }
   }
 `;
@@ -90,6 +91,7 @@ export const StyledHeaderLoggedIn = styled.header`
         width: 30px;
         height: 30px;
         background-color: black;
+        cursor: pointer;
       }
 
       h3 {
