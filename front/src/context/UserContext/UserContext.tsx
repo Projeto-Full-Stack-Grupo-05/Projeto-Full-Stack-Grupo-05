@@ -18,6 +18,9 @@ export const UserContext = createContext({} as IUserContext);
 export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<IUser | null>(null);
+  const [userMenuIsOpen, setUserMenuIsOpen] = useState(false)
+  const [editProfileIsOpen, setEditProfileisOpen] = useState(false)
+  const [editAddressIsOpen, setEditAddressIsOpen] = useState(false)
 
   const navigate = useNavigate();
 
@@ -126,6 +129,12 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         sendEmail,
         resetPassword,
         userLogOut,
+        userMenuIsOpen,
+        setUserMenuIsOpen,
+        editProfileIsOpen,
+        setEditProfileisOpen,
+        editAddressIsOpen,
+        setEditAddressIsOpen
       }}
     >
       {children}

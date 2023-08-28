@@ -47,4 +47,10 @@ export interface IUserContext {
   sendEmail: (sendEmailResetPasswordData: SendEmailResetPasswordData) => void;
   resetPassword: (resetPasswordData: ResetPasswordData, token: string) => void;
   userLogOut: () => void;
+  userMenuIsOpen: boolean;
+  setUserMenuIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  editProfileIsOpen: boolean;
+  setEditProfileisOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  editAddressIsOpen: boolean;
+  setEditAddressIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
