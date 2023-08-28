@@ -1,15 +1,16 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
-  ManyToOne,
-  OneToOne,
+  Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
 } from "typeorm";
-import User from "./user.entity";
+import Comment from "./comments.entity";
 import Gallery from "./gallery.entity";
+import User from "./user.entity";
 
 export enum SaleStatus {
   Active = "active",
@@ -61,15 +62,16 @@ class Sale {
   buyer: User;
 
   @ManyToOne(() => User)
-  seller: User;
-
-  @ManyToOne(() => User)
   @JoinColumn({ name: "user_id" })
   user: User;
 
   @OneToMany(() => Gallery, (gallery) => gallery.sale)
   @JoinColumn({ name: "gallery_id" })
   gallery: Gallery[];
+
+  @OneToMany(() => Comment, (comment) => comment.sale)
+  @JoinColumn({ name: "comments" })
+  comment: Comment[];
 }
 
 export default Sale;

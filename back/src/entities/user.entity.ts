@@ -1,18 +1,19 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  BeforeInsert,
-  OneToMany,
-  BeforeUpdate,
-  DeleteDateColumn,
-  OneToOne,
-  JoinColumn,
-} from "typeorm";
 import { getRounds, hashSync } from "bcryptjs";
-import Sale from "./sales.entity";
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import Address from "./address.entity";
+import Comment from "./comments.entity";
+import Sale from "./sales.entity";
 
 export enum Profile {
   Buyer = "buyer",
@@ -57,9 +58,6 @@ class User {
   @DeleteDateColumn({ type: "date", nullable: true })
   deletedAt: string;
 
-  @OneToMany(() => Sale, (sale) => sale.seller)
-  sale: Sale[];
-
   @OneToOne(() => Sale, (sale) => sale.buyer)
   buyer: Sale;
 
@@ -69,6 +67,10 @@ class User {
   @OneToOne(() => Address)
   @JoinColumn()
   address: Address;
+
+  @OneToMany(() => Comment, (comments) => comments.user)
+  @JoinColumn()
+  comments: Comment[];
 
   @BeforeInsert()
   @BeforeUpdate()
