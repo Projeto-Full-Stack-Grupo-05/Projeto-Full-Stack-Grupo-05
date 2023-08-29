@@ -12,7 +12,7 @@ const listCommentBySaleService = async (
   const comments: Comment[] = await commentRepository
     .createQueryBuilder("comments")
     .innerJoinAndSelect("comments.sale", "sale")
-    .innerJoinAndSelect("comments.user", "user") // Adicionando o relacionamento com usuário
+    .innerJoinAndSelect("comments.user", "user")
     .where("sale.id = :saleId", { saleId })
     .getMany();
 

@@ -16,6 +16,7 @@ import {
   salesSchemaUpdateRequest,
 } from "../schemas/salesSchema.schema";
 import { listAllCommentsBySalesController } from "../controllers/commentsController.controller";
+import ensureAuthMiddleware from "../middleware/ensureAuthMiddleware";
 
 const salesRoutes = Router();
 
@@ -25,7 +26,7 @@ salesRoutes.post(
   createSalesController
 );
 
-salesRoutes.get("/:id/comments", listAllCommentsBySalesController);
+salesRoutes.get("/:id/comments",ensureAuthMiddleware, listAllCommentsBySalesController);
 
 salesRoutes.get("/:id", ensureIdMiddleware, retrieveSaleController);
 
