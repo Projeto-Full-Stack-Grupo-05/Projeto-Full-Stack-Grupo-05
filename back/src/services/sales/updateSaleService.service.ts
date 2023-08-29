@@ -1,18 +1,14 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import Sale from "../../entities/sales.entity";
+import { AppError } from "../../error";
 import {
   TSale,
-  TSaleResponse,
-  TSalesRequestUpdate,
-  TSalesResponse,
+  TSalesRequestUpdate
 } from "../../interfaces/sales.interface";
 import {
-  salesSchema,
-  salesSchemaResponse,
+  salesSchema
 } from "../../schemas/salesSchema.schema";
-import { AppError } from "../../error";
-import Gallery from "../../entities/gallery.entity";
 
 const updateSaleService = async (
   saleData: TSalesRequestUpdate,
@@ -27,7 +23,7 @@ const updateSaleService = async (
     .getOne();
 
   if (!sale) {
-    throw new Error("Sale not found");
+    throw new AppError("Sale not found");
   }
 
   const validSale = sale ?? undefined;

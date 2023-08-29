@@ -1,7 +1,8 @@
 import { Repository } from "typeorm";
-import User from "../../entities/user.entity";
-import Address from "../../entities/address.entity";
 import { AppDataSource } from "../../data-source";
+import Address from "../../entities/address.entity";
+import User from "../../entities/user.entity";
+import { AppError } from "../../error";
 import {
   TUserResponse,
   TUserUpdateRequest,
@@ -23,7 +24,7 @@ const updateUsersService = async (
     .getOne();
 
   if (!user) {
-    throw new Error("User not found");
+    throw new AppError("User not found");
   }
 
   const validUser = user ?? undefined;
