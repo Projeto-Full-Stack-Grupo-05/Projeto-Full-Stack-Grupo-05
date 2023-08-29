@@ -1,24 +1,17 @@
 import { Router } from "express";
-import { createCommentsController } from "../controllers/commentsController.controller";
-
-
+import {
+  deleteCommentController,
+  listCommentsController,
+  createCommentsController,
+  listAllCommentsBySalesController,
+} from "../controllers/commentsController.controller";
 
 const commentsRoutes = Router();
+commentsRoutes.post("", createCommentsController);
+commentsRoutes.get("", listCommentsController);
 
-commentsRoutes.post(
-  "", createCommentsController
-);
+commentsRoutes.patch("/:id");
 
-
-
-commentsRoutes.get("/:id", );
-
-commentsRoutes.get("", );
-
-commentsRoutes.patch(
-  "/:id",
-);
-
-commentsRoutes.delete("/:id", );
+commentsRoutes.delete("/:id", deleteCommentController);
 
 export default commentsRoutes;
