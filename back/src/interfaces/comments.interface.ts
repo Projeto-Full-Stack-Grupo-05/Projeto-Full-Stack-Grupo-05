@@ -1,5 +1,11 @@
 import { z } from "zod";
-import { commentsSchema, commentsSchemaRequest } from "../schemas/commentsSchema.schema";
+import {
+  commentsSchema,
+  commentsSchemaRequest,
+  commentsSchemaUpdateRequest,
+} from "../schemas/commentsSchema.schema";
 
-export type TCommentRequest = z.infer<typeof commentsSchemaRequest>
-export type TCommentResponse = z.infer<typeof commentsSchema>
+export type TComment = z.infer<typeof commentsSchema>;
+export type TCommentRequest = z.infer<typeof commentsSchemaRequest>;
+export type TCommentResponse = z.infer<typeof commentsSchema>;
+export type TCommentUpdateRequest = z.infer<typeof commentsSchemaUpdateRequest>;
