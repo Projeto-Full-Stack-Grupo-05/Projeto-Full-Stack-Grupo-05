@@ -70,8 +70,8 @@ class Sale {
   gallery: Gallery[];
 
   @OneToMany(() => Comment, (comment) => comment.sale)
-  @JoinColumn({ name: "comments" })
-  comment: Comment[];
+  // @JoinColumn({ name: "comment_id" })
+  comments: Comment[];
 }
 
 export default Sale;
