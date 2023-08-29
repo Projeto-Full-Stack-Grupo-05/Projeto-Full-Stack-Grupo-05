@@ -1,11 +1,12 @@
 import { Router } from "express";
+import { createCommentsController } from "../controllers/commentsController.controller";
 
 
 
 const commentsRoutes = Router();
 
 commentsRoutes.post(
-  "",
+  "", createCommentsController
 );
 
 
