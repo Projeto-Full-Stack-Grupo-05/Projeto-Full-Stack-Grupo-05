@@ -1,14 +1,13 @@
 import { Router } from "express";
-import ensureIdMiddleware from "../middleware/ensureIdMiddleware";
 import {
   deleteCommentController,
   listCommentsController,
+  createCommentsController,
+  listAllCommentsBySalesController,
 } from "../controllers/commentsController.controller";
 
 const commentsRoutes = Router();
-
-commentsRoutes.post("");
-
+commentsRoutes.post("", createCommentsController);
 commentsRoutes.get("", listCommentsController);
 
 commentsRoutes.patch("/:id");
