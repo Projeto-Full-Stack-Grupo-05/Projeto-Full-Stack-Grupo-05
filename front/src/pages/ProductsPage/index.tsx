@@ -6,18 +6,19 @@ import miniCar from "../../assets/miniCar.svg";
 import { Link } from "react-router-dom";
 
 export const ProductsPage = () => {
-  const whatsappButton = document.getElementById("whatsapp-button");
+const whatsappButton = document.getElementById("whatsapp-button");
 
-  if (whatsappButton) {
+if (whatsappButton) {
     whatsappButton.addEventListener("click", () => {
         const phoneNumber = "11963726508";
         const message = "Olá! Me interessei pelo carro do anúncio e gostaria de negociar. Podemos conversar mais sobre isso?";
 
-      
+
         const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl);
     });
 }
+
 
   return (
     <>
