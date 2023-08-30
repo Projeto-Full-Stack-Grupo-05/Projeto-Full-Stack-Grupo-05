@@ -10,6 +10,7 @@ export const ProductsPage = () => {
     <>
       <HeaderLoggedIn />
       <StyledMain>
+        <div className="blue"></div>
         <div className="MainSection">
           <div className="divOne">
             <div className="imgDiv">
@@ -79,8 +80,8 @@ export const ProductsPage = () => {
             </div>
           </div>
         </div>
-        <div className="secondSection">
-          <div className="divTwo">
+        <div className="MainSection">
+          <div className="divOne">
             <div className="commentsContainerDiv">
               <h1>Comentários</h1>
               <div className="commentsDiv">
@@ -136,7 +137,17 @@ export const ProductsPage = () => {
                 <div className="ball"></div>
                 <h5>Samuel leão</h5>
               </div>
-              <input type="text" />
+              <form>
+                <textarea
+                  name=""
+                  id=""
+                  placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
+                ></textarea>
+                <button type="button" className="commentButton">
+                  comentar
+                </button>
+              </form>
+
               <div className="optionsDiv">
                 <div className="cards">Gostei muito!</div>
                 <div className="cards">Incrível</div>
@@ -144,8 +155,31 @@ export const ProductsPage = () => {
               </div>
             </div>
           </div>
-          <div className="asidePositionDiv">
-            <div className="positionDiv"></div>
+          <div className="displayNone">
+            <div className="asideSection">
+              <div className="firstDivNone">
+                <h4>Fotos</h4>
+                <div className="imagesDivNone">
+                  <div className="imageDivNone"></div>
+                  <div className="imageDivNone"></div>
+                  <div className="imageDivNone"></div>
+                  <div className="imageDivNone"></div>
+                  <div className="imageDivNone"></div>
+                  <div className="imageDivNone"></div>
+                </div>
+              </div>
+              <div className="profileDivNone">
+                <div className="ball"></div>
+                <h4>Samuel leão</h4>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                </p>
+                <Link to="/dashboard" className="ads">
+                  Ver todos anuncios
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </StyledMain>
