@@ -6,6 +6,22 @@ import miniCar from "../../assets/miniCar.svg";
 import { Link } from "react-router-dom";
 
 export const ProductsPage = () => {
+  const whatsappButton = document.getElementById("whatsapp-button");
+
+  if (whatsappButton) {
+    whatsappButton.addEventListener("click", () => {
+        const phoneNumber = "11963726508";
+        const message = "Olá! Me interessei pelo carro do anúncio e gostaria de negociar. Podemos conversar mais sobre isso?";
+
+        // Montar a URL do link do WhatsApp
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
+        // Abrir a URL no WhatsApp
+        window.open(whatsappUrl);
+    });
+}
+
+
   return (
     <>
       <HeaderLoggedIn />
@@ -30,7 +46,7 @@ export const ProductsPage = () => {
                 </div>
                 <h5>R$ 00.000,00</h5>
               </div>
-              <button>Comprar</button>
+              <button id="whatsapp-button">Comprar</button>
             </div>
             <div className="desDiv">
               <h1>Descrição</h1>
