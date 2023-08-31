@@ -11,15 +11,18 @@ import { useForm } from "react-hook-form";
 import { CommentSchema } from "../../schema/CommentSchema";
 
 export const ProductsPage = () => {
+
   const { commentRegister } = useContext(CommentContext);
 
   const whatsappButton = document.getElementById("whatsapp-button");
 
-  if (whatsappButton) {
+
+if (whatsappButton) {
     whatsappButton.addEventListener("click", () => {
       const phoneNumber = "11963726508";
       const message =
         "Olá! Me interessei pelo carro do anúncio e gostaria de negociar. Podemos conversar mais sobre isso?";
+
 
       // Montar a URL do link do WhatsApp
       const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
@@ -28,6 +31,7 @@ export const ProductsPage = () => {
 
       // Abrir a URL no WhatsApp
       window.open(whatsappUrl);
+
     });
   }
 
