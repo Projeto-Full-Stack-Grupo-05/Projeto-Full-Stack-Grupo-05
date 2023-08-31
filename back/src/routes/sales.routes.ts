@@ -17,11 +17,13 @@ import {
 } from "../schemas/salesSchema.schema";
 import { listAllCommentsBySalesController } from "../controllers/commentsController.controller";
 import ensureAuthMiddleware from "../middleware/ensureAuthMiddleware";
+import ensureBuyerIdMiddleware from "../middleware/ensureBuyerIdMiddleware.middleware";
 
 const salesRoutes = Router();
 
 salesRoutes.post(
   "",
+  ensureBuyerIdMiddleware,
   ensureBodyValidMiddleware(salesSchemaRequest),
   createSalesController
 );
