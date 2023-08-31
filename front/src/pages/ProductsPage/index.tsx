@@ -4,23 +4,42 @@ import { StyledMain } from "./style";
 import car from "../../assets/car.svg";
 import miniCar from "../../assets/miniCar.svg";
 import { Link } from "react-router-dom";
+import { CommentContext } from "../../context/CommentContext/CommentsContext";
+import { useContext } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { CommentSchema } from "../../schema/CommentSchema";
 
 export const ProductsPage = () => {
+  const { commentRegister } = useContext(CommentContext);
+
   const whatsappButton = document.getElementById("whatsapp-button");
 
   if (whatsappButton) {
     whatsappButton.addEventListener("click", () => {
-        const phoneNumber = "11963726508";
-        const message = "Olá! Me interessei pelo carro do anúncio e gostaria de negociar. Podemos conversar mais sobre isso?";
+      const phoneNumber = "11963726508";
+      const message =
+        "Olá! Me interessei pelo carro do anúncio e gostaria de negociar. Podemos conversar mais sobre isso?";
 
-        // Montar a URL do link do WhatsApp
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+      // Montar a URL do link do WhatsApp
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+        message
+      )}`;
 
-        // Abrir a URL no WhatsApp
-        window.open(whatsappUrl);
+      // Abrir a URL no WhatsApp
+      window.open(whatsappUrl);
     });
-}
+  }
 
+  const { handleSubmit, register } = useForm<{ text: string }>({
+    resolver: zodResolver(CommentSchema),
+  });
+
+  const onSubmit = (data: { text: string }) => {
+    const userId = localStorage.getItem("@USERID");
+    const commentData = { text: data.text, user_id: userId!, sale_id: "3" };
+    commentRegister(commentData);
+  };
 
   return (
     <>
@@ -90,7 +109,7 @@ export const ProductsPage = () => {
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's
               </p>
-              <Link to="/dashboard" className="ads">
+              <Link to="/" className="ads">
                 Ver todos anuncios
               </Link>
             </div>
@@ -153,13 +172,13 @@ export const ProductsPage = () => {
                 <div className="ball"></div>
                 <h5>Samuel leão</h5>
               </div>
-              <form>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <textarea
-                  name=""
-                  id=""
+                  id="comment"
+                  {...register("text")}
                   placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
                 ></textarea>
-                <button type="button" className="commentButton">
+                <button type="submit" className="commentButton">
                   comentar
                 </button>
               </form>
@@ -191,7 +210,7 @@ export const ProductsPage = () => {
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
                 </p>
-                <Link to="/dashboard" className="ads">
+                <Link to="/" className="ads">
                   Ver todos anuncios
                 </Link>
               </div>
