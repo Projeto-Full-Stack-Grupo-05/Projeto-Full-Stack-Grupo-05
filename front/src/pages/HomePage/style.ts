@@ -14,8 +14,8 @@ export const StyledContainer = styled.div`
     align-items: center;
     padding: 0 20px;
 
-    background-image: url("src/assets/car banner.svg"),
-      linear-gradient(#a2a2a2, black);
+    background-image: url("src/assets/car banner.svg");
+
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
