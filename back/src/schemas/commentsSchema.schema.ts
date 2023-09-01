@@ -13,6 +13,20 @@ const commentsSchema = commentsSchemaRequest.extend({
   updatedAt: z.string(),
 });
 
+const userCommentSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+});
+
+const commentSchema = z.object({
+  id: z.string(),
+  sale_id: z.string().max(45),
+  user: userCommentSchema,
+  text: z.string().max(280),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+});
+
 const commentsSchemaResponse = z.array(commentsSchema);
 
 const commentsSchemaUpdateRequest = commentsSchema.partial().omit({
@@ -46,6 +60,7 @@ export {
   commentsSchemaRequest,
   commentsSchemaResponse,
   commentsSchemaUpdateRequest,
+  commentSchema,
   returnCreateCommentResponseSchema
-};
 
+};
