@@ -46,8 +46,22 @@ const readSalesService = async (
       password: undefined,
     };
     return {
-      ...sale,
-      user: userWithoutPassword,
+      user_id: sale.user.id,
+      buyer_id: sale.buyer ? sale.buyer.id : "",
+      title: sale.title,
+      img_url: sale.img_url,
+      color: sale.color,
+      price: sale.price,
+      description: sale.description,
+      year: sale.year,
+      fuel: sale.fuel,
+      kilometers: sale.kilometers,
+      gallery: sale.gallery.map((galleryItem) => ({
+        img_url: galleryItem.img_url,
+      })),
+      status: sale.status,
+      id: sale.id,
+      createdAt: sale.createdAt,
     };
   });
 

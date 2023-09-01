@@ -1,24 +1,59 @@
 import { Footer } from "../../components/Footer";
 import { HeaderLoggedIn } from "../../components/HeaderLoggedIn";
 import { StyledMain } from "./style";
-import car from "../../assets/car.svg";
-import miniCar from "../../assets/miniCar.svg";
 import { Link } from "react-router-dom";
+import { CommentContext } from "../../context/CommentContext/CommentsContext";
+import { useContext, useEffect, useState } from "react";
+import { CarContext } from "../../context/CarContext/carContext";
 
 export const ProductsPage = () => {
-const whatsappButton = document.getElementById("whatsapp-button");
+  const { commentRegister, getAllComments, comments } =
+    useContext(CommentContext);
 
-if (whatsappButton) {
+  const { getCar, saleCar } = useContext(CarContext);
+
+  const [currentComment, setCurrentComment] = useState<string>("");
+
+  const text = ["Gostei muito!", "Incrível!", "Recomendarei para meus amigos!"];
+
+  useEffect(() => {
+    const carId = localStorage.getItem("@CarID");
+    (async () => {
+      await getCar(carId!);
+      await getAllComments(carId!);
+      console.log(comments);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const whatsappButton = document.getElementById("whatsapp-button");
+
+  if (whatsappButton) {
     whatsappButton.addEventListener("click", () => {
-        const phoneNumber = "11963726508";
-        const message = "Olá! Me interessei pelo carro do anúncio e gostaria de negociar. Podemos conversar mais sobre isso?";
+      const phoneNumber = "11963726508";
+      const message =
+        "Olá! Me interessei pelo carro do anúncio e gostaria de negociar. Podemos conversar mais sobre isso?";
 
+      // Montar a URL do link do WhatsApp
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+        message
+      )}`;
 
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl);
+      // Abrir a URL no WhatsApp
+      window.open(whatsappUrl);
     });
-}
+  }
 
+  const onSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    const userId = localStorage.getItem("@USERID");
+    const commentData = {
+      text: currentComment,
+      user_id: userId!,
+      sale_id: "3",
+    };
+    commentRegister(commentData);
+  };
 
   return (
     <>
@@ -28,57 +63,37 @@ if (whatsappButton) {
         <div className="MainSection">
           <div className="divOne">
             <div className="imgDiv">
-              <img src={car} alt="Car" />
+              <img src={saleCar?.img_url} alt={saleCar?.title} />
             </div>
             <div className="detailsDiv">
-              <h1>
-                Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200{" "}
-              </h1>
+              <h1>{saleCar?.title}</h1>
               <div className="priceDiv">
                 <div className="yearDiv">
                   <div className="cardDiv">
-                    <h6>2013</h6>
+                    <h6>{saleCar?.year}</h6>
                   </div>
                   <div className="cardDiv">
-                    <h6>0 KM</h6>
+                    <h6>{saleCar?.kilometers}KM</h6>
                   </div>
                 </div>
-                <h5>R$ 00.000,00</h5>
+                <h5>R$ {saleCar?.price}</h5>
               </div>
               <button id="whatsapp-button">Comprar</button>
             </div>
             <div className="desDiv">
               <h1>Descrição</h1>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
-              </p>
+              <p>{saleCar?.description}</p>
             </div>
           </div>
           <div className="asideSection">
             <div className="firstDiv">
               <h4>Fotos</h4>
               <div className="imagesDiv">
-                <div className="imageDiv">
-                  <img src={miniCar} alt="Mini car" />
-                </div>
-                <div className="imageDiv">
-                  <img src={miniCar} alt="Mini car" />
-                </div>
-                <div className="imageDiv">
-                  <img src={miniCar} alt="Mini car" />
-                </div>
-                <div className="imageDiv">
-                  <img src={miniCar} alt="Mini car" />
-                </div>
-                <div className="imageDiv">
-                  <img src={miniCar} alt="Mini car" />
-                </div>
-                <div className="imageDiv">
-                  <img src={miniCar} alt="Mini car" />
-                </div>
+                {saleCar?.gallery.map((img) => (
+                  <div className="imageDiv" key={saleCar.id}>
+                    <img src={img} alt="Mini car" />
+                  </div>
+                ))}
               </div>
             </div>
             <div className="profileDiv">
@@ -88,62 +103,28 @@ if (whatsappButton) {
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's
               </p>
-              <Link to="/dashboard" className="ads">
+              <Link to="/profile" className="ads">
                 Ver todos anuncios
               </Link>
             </div>
           </div>
         </div>
-        <div className="MainSection">
+        <div className="MainSectionTwo">
           <div className="divOne">
             <div className="commentsContainerDiv">
               <h1>Comentários</h1>
               <div className="commentsDiv">
-                <div className="commentDiv">
-                  <div className="profileDiv">
-                    <div className="ball"></div>
-                    <h5>Júlia lima</h5>
-                    <div className="miniBall"></div>
-                    <h6>Há 6 dias</h6>
+                {comments.map((comment) => (
+                  <div className="commentDiv">
+                    <div className="profileDiv">
+                      <div className="ball"></div>
+                      <h5>{comment.user.name}</h5>
+                      <div className="miniBall"></div>
+                      <h6>{comment.createdAt}</h6>
+                    </div>
+                    <p>{comment.text}</p>
                   </div>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </p>
-                </div>
-                <div className="commentDiv">
-                  <div className="profileDiv">
-                    <div className="ball"></div>
-                    <h5>Júlia lima</h5>
-                    <div className="miniBall"></div>
-                    <h6>Há 6 dias</h6>
-                  </div>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </p>
-                </div>
-                <div className="commentDiv">
-                  <div className="profileDiv">
-                    <div className="ball"></div>
-                    <h5>Júlia lima</h5>
-                    <div className="miniBall"></div>
-                    <h6>Há 6 dias</h6>
-                  </div>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
             <div className="postDiv">
@@ -153,48 +134,34 @@ if (whatsappButton) {
               </div>
               <form>
                 <textarea
-                  name=""
-                  id=""
+                  id="comment"
                   placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
+                  value={currentComment}
+                  onChange={(e) => setCurrentComment(e.target.value)}
                 ></textarea>
-                <button type="button" className="commentButton">
+                <button
+                  type="button"
+                  className="commentButton"
+                  onClick={(e) => onSubmit(e)}
+                >
                   comentar
                 </button>
               </form>
-
               <div className="optionsDiv">
-                <div className="cards">Gostei muito!</div>
-                <div className="cards">Incrível</div>
-                <div className="cards">Recomendarei para meus amigos!</div>
+                {text.map((msg) => (
+                  <div
+                    className="cards"
+                    onClick={() =>
+                      setCurrentComment(`${currentComment} ${msg}`)
+                    }
+                  >
+                    {msg}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-          <div className="displayNone">
-            <div className="asideSection">
-              <div className="firstDivNone">
-                <h4>Fotos</h4>
-                <div className="imagesDivNone">
-                  <div className="imageDivNone"></div>
-                  <div className="imageDivNone"></div>
-                  <div className="imageDivNone"></div>
-                  <div className="imageDivNone"></div>
-                  <div className="imageDivNone"></div>
-                  <div className="imageDivNone"></div>
-                </div>
-              </div>
-              <div className="profileDivNone">
-                <div className="ball"></div>
-                <h4>Samuel leão</h4>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                </p>
-                <Link to="/dashboard" className="ads">
-                  Ver todos anuncios
-                </Link>
-              </div>
-            </div>
-          </div>
+          <div className="displayNone"></div>
         </div>
       </StyledMain>
       <Footer />

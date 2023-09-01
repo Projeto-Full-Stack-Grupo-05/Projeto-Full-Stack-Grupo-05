@@ -25,8 +25,8 @@ class Sale {
   @Column()
   user_id: string;
 
-  @Column()
-  car_id: string;
+  // @Column()
+  // car_id: string;
 
   @Column()
   title: string;
@@ -58,8 +58,9 @@ class Sale {
   @CreateDateColumn({ type: "date" })
   createdAt: string;
 
-  @OneToOne(() => User)
-  buyer: User;
+  @OneToOne(() => User, { nullable: true })
+  @JoinColumn({ name: "buyer_id" })
+  buyer: User | null;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: "user_id" })
@@ -70,7 +71,6 @@ class Sale {
   gallery: Gallery[];
 
   @OneToMany(() => Comment, (comment) => comment.sale)
-  // @JoinColumn({ name: "comment_id" })
   comments: Comment[];
 }
 

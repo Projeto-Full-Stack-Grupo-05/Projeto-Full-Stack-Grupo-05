@@ -36,7 +36,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
             },
           });
           setUser(response.data);
-          navigate("/admin");
+          navigate("/");
         } catch (error) {
           console.log(error);
         } finally {

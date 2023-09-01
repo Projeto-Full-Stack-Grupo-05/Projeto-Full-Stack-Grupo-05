@@ -4,6 +4,7 @@ import {
   listCommentsController,
   createCommentsController,
   updateCommentsController,
+  retrieveCommentController,
 } from "../controllers/commentsController.controller";
 import ensureBodyValidMiddleware from "../middleware/ensureBodyValidMiddleware";
 import {
@@ -19,6 +20,8 @@ commentsRoutes.post(
   createCommentsController
 );
 commentsRoutes.get("", ensureAuthMiddleware, listCommentsController);
+
+commentsRoutes.get("/:id", retrieveCommentController);
 
 commentsRoutes.patch(
   "/:id",
