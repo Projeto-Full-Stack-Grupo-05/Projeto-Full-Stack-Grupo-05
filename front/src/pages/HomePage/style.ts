@@ -27,6 +27,10 @@ export const StyledContainer = styled.div`
       color: var(--color-grey-10);
       gap: 20px;
       padding-bottom: 40px;
+      justify-content: center;
+
+      height: 100%;
+      width: 100%;
 
       h1 {
         font-weight: 600;

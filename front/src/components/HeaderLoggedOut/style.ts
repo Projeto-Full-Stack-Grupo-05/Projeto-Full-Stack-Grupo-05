@@ -5,6 +5,7 @@ export const StyledFixedHeader = styled.div`
   top: 0;
   width: 100%;
   background-color: var(--color-white-fixed);
+  z-index: 99;
 
   menu {
     display: ${(props) => (props.theme.active ? "flex" : "none")};
