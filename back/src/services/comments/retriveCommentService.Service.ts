@@ -1,20 +1,17 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
-import { AppError } from "../../error";
 import Comment from "../../entities/comments.entity";
+import { AppError } from "../../error";
 
 const retrieveCommentService = async (
-  saleId: string
+  commentId: string
 ): Promise<Comment | null> => {
   const commentRepository: Repository<Comment> =
     AppDataSource.getRepository(Comment);
 
-  const comment: Comment | null = await commentRepository
-    .createQueryBuilder("comments")
-    .innerJoin("comments.sale", "sales")
-    .innerJoin("comments.user", "user")
-    .where("sales.id = :saleId", { saleId })
-    .getOne();
+  const comment: Comment | null = await commentRepository.findOne({
+    where: { id: commentId },
+  });
 
   if (!comment) {
     throw new AppError("Comment not found");
