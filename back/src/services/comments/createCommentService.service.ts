@@ -4,10 +4,10 @@ import { AppDataSource } from "../../data-source"
 import User from "../../entities/user.entity"
 import Sale from "../../entities/sales.entity"
 import { AppError } from "../../error"
-import { commentsSchema } from "../../schemas/commentsSchema.schema"
-import { TCommentRequest, TCommentResponse } from "../../interfaces/comments.interface"
+import { returnCreateCommentResponseSchema } from "../../schemas/commentsSchema.schema"
+import { TCommentRequest, TCreateCommentResponse } from "../../interfaces/comments.interface"
 
-export const createCommentService = async (data: TCommentRequest): Promise<any> => {
+export const createCommentService = async (data: TCommentRequest): Promise<TCreateCommentResponse> => {
 
     const saleId = data.sale_id
     const userId = data.user_id
@@ -15,7 +15,7 @@ export const createCommentService = async (data: TCommentRequest): Promise<any> 
     const commentRepository: Repository<Comment> = AppDataSource.getRepository(Comment)
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
     const salesRepository: Repository<Sale> = AppDataSource.getRepository(Sale)
-
+    
     const user = await userRepository.findOne({
         where: {
             id: userId
@@ -44,6 +44,8 @@ export const createCommentService = async (data: TCommentRequest): Promise<any> 
 
     const newCommentWithRelations = await commentRepository.save(newComment)
 
-    return newCommentWithRelations
+    const resp = returnCreateCommentResponseSchema.parse(newCommentWithRelations)
+
+    return resp
 
 }
