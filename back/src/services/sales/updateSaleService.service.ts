@@ -5,13 +5,14 @@ import { AppError } from "../../error";
 import { TSale, TSalesRequestUpdate } from "../../interfaces/sales.interface";
 import { salesSchema } from "../../schemas/salesSchema.schema";
 import User from "../../entities/user.entity";
+import { validate as uuidValidate } from "uuid";
 
 const updateSaleService = async (
   saleData: TSalesRequestUpdate,
   saleId: string
 ): Promise<TSale> => {
   const saleRepository: Repository<Sale> = AppDataSource.getRepository(Sale);
-  const userRepository = AppDataSource.getRepository(User);
+  const userRepository: Repository<User> = AppDataSource.getRepository(User); // Add UserRepository
 
   const sale: Sale | undefined | null = await saleRepository
     .createQueryBuilder("sale")
@@ -24,16 +25,27 @@ const updateSaleService = async (
   }
 
   if (saleData.buyer_id) {
-    saleData.status = SaleStatus.Sold;
-  } else if (saleData.buyer_id === "") {
-    saleData.status = SaleStatus.Active;
+    const buyerUser = await userRepository.findOne({
+      where: { id: saleData.buyer_id },
+    });
+
+    if (!buyerUser || !uuidValidate(saleData.buyer_id)) {
+      throw new AppError("Invalid buyer_id format or user not found");
+    }
+
+    sale.status = SaleStatus.Sold;
+    await saleRepository.save(sale);
+  } else {
+    sale.status = SaleStatus.Active;
   }
 
-  Object.assign(sale, saleData);
+  const validSale = sale ?? undefined;
+  const updatedSaleData: TSalesRequestUpdate = { ...validSale, ...saleData };
+  Object.assign(validSale, updatedSaleData);
 
-  await saleRepository.save(sale);
+  await saleRepository.save(validSale);
 
-  const returnSale: TSale = salesSchema.parse(sale);
+  const returnSale: TSale = salesSchema.parse(validSale);
   return returnSale;
 };
 

@@ -36,6 +36,7 @@ salesRoutes.get("", readSalesController);
 
 salesRoutes.patch(
   "/:id",
+  ensureBuyerIdMiddleware,
   ensureBodyValidMiddleware(salesSchemaUpdateRequest),
   ensureIdMiddleware,
   updateSaleController
