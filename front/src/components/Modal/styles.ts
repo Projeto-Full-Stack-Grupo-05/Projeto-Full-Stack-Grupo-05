@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -10,6 +10,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10000;
 `;
 
 export const ModalContent = styled.div`
@@ -20,5 +21,3 @@ export const ModalContent = styled.div`
   max-width: 520px;
   width: 100%;
 `;
-
-

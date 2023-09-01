@@ -17,96 +17,93 @@ export const Header = styled.div`
     cursor: pointer;
   }
 `;
-
 export const FormModal = styled.form`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  padding-right: 20px;
   max-height: 90vh;
+  gap: 15px;
 
   h3 {
     font-size: 14px;
-    margin-bottom: 10px;
   }
   label {
     font-size: 14px;
-    margin-bottom: 5px;
   }
   select {
     color: var(--color-grey-3);
     border-color: var(--color-grey-3);
     border-radius: 4px;
     min-height: 48px;
-    margin-bottom: 5px;
+
     padding-left: 5px;
   }
   div {
+    width: 100%;
     display: flex;
-    flex-direction: row-reverse;
+    gap: 10px;
     div {
       display: flex;
       flex-direction: column;
       input {
-        margin-right: 10px;
-        width: 95%;
+        width: 100%;
         color: var(--color-grey-3);
         border: 1px solid;
         border-color: var(--color-grey-3);
         border-radius: 4px;
         min-height: 48px;
-        margin-bottom: 5px;
         padding-left: 5px;
       }
     }
   }
   input {
-    margin-right: 10px;
-    width: 95%;
+    width: 100%;
     color: var(--color-grey-3);
     border: 1px solid;
     border-color: var(--color-grey-3);
     border-radius: 4px;
     min-height: 48px;
-    margin-bottom: 5px;
     padding-left: 5px;
   }
 `;
-export const DivButtons = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 10px;
-`;
+
 export const ButtonAddImg = styled.button`
-  width: 80%;
+  width: 70%;
   margin-top: 15px;
-  background-color: var(--color-brand-4);
+  background-color: var(--color-brand-4) !important;
+  padding: 10px 20px !important;
   min-height: 38px;
   color: var(--color-brand-1);
-  font-weight: bold;
-  font-size: 12px;
-  border: none;
-  border-radius: 4px;
+  font-weight: bold !important;
+  font-size: 1.4rem !important;
+  border: none !important;
+  border-radius: 4px !important;
 `;
 
-export const ButtonSubmit = styled.button`
+export const DivButtons = styled.div`
+  display: flex;
+  gap: 10px;
+  width: 100% !important;
+`;
+
+export const ButtonSave = styled.button`
   margin-top: 20px;
-  background-color: var(--color-brand-3);
+  background-color: var(--color-brand-3) !important;
   color: var(--color-grey-10);
   min-height: 48px;
-  width: 40%;
-  border: none;
-  font-size: 16px;
-  font-weight: bold;
+  width: 45%;
+  border: none !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
 `;
 
-export const ButtonCancel = styled.button`
+export const ButtonExcluir = styled.button`
   margin-top: 20px;
-  background-color: var(--color-grey-4);
+  background-color: var(--color-grey-5) !important;
   color: var(--color-grey-2);
   min-height: 48px;
-  width: 30%;
-  border: none;
-  font-size: 16px;
-  font-weight: bold;
+  width: 55%;
+  border: none !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
 `;

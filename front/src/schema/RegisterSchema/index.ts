@@ -5,6 +5,15 @@ export enum Profile {
   Advertiser = "advertiser",
 }
 
+const addressSchemaRequest = z.object({
+  zip_code: z.string(),
+  state: z.string(),
+  city: z.string(),
+  street: z.string(),
+  number: z.string().max(6),
+  complement: z.string(),
+});
+
 export const registerSchema = z
   .object({
     name: z.string(),
@@ -12,6 +21,7 @@ export const registerSchema = z
     password: z.string(),
     confirmPassword: z.string(),
     cellphone: z.string(),
+    address: addressSchemaRequest,
     birthdate: z.string(),
     description: z.string(),
     cpf: z.string(),

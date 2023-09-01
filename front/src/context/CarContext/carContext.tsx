@@ -2,9 +2,14 @@ import { createContext, useState, useEffect } from "react";
 import { AdsCar, Car, CarContextType, CarProviderProps } from "./@types";
 import { api } from "../../services/api";
 
+
 export const CarContext = createContext({} as CarContextType);
 
 export const CarProvider = ({ children }: CarProviderProps) => {
+  const [loading, setLoading] = useState(true);
+  const [card, setCard] = useState(true);
+  const [, setDataUpdated] = useState(false);
+
   const [filteredCars, setFilteredCars] = useState<Car[]>([]);
   const [filters, setFilters] = useState({
     brand: "",
@@ -89,36 +94,50 @@ export const CarProvider = ({ children }: CarProviderProps) => {
     setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
   };
 
-  const getCars = async () => {
+  const carDelete = async (carId: number) => {
     try {
-      const res = await api.get("/sales");
-      setSalesCar(res.data.data);
+      const token = localStorage.getItem("@TOKEN");
+      await api.delete(`/sales/${carId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     } catch (error) {
       console.log(error);
     }
-  };
 
-  const getCar = async (id: string) => {
-    try {
-      const res = await api.get(`/sales/${id}`);
-      setSaleCar(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const getCars = async () => {
+      try {
+        const res = await api.get("/sales");
+        setSalesCar(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  return (
-    <CarContext.Provider
-      value={{
-        filteredCars,
-        handleFilterChange,
-        salesCar,
-        getCars,
-        getCar,
-        saleCar,
-      }}
-    >
-      {children}
-    </CarContext.Provider>
-  );
+    const getCar = async (id: string) => {
+      try {
+        const res = await api.get(`/sales/${id}`);
+        setSaleCar(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    return (
+      <CarContext.Provider
+        value={{
+          filteredCars,
+          handleFilterChange,
+          carDelete,
+          salesCar,
+          getCars,
+          getCar,
+          saleCar,
+        }}
+      >
+        {children}
+      </CarContext.Provider>
+    );
+  };
 };

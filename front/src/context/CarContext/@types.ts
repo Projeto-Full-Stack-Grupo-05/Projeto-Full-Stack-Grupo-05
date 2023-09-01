@@ -15,6 +15,7 @@ export interface Car {
 export interface CarContextType {
   filteredCars: Car[];
   handleFilterChange: (filterName: string, value: string | number) => void;
+  carDelete: (id: number) => void;
   salesCar: AdsCar[];
   getCars: () => Promise<void>;
   getCar: (id: string) => Promise<void>;

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { HeaderLoggedOut } from "../../components/HeaderLoggedOut";
 import { Footer } from "../../components/Footer";
-import { StyledLRegisterPage, StyledRegisterForm } from "./style";
+import { StyledDivOne, StyledLRegisterPage, StyledRegisterForm } from "./style";
 import { Input } from "../../components/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { registerSchema, Profile } from "../../schema/RegisterSchema";
@@ -86,52 +86,52 @@ export const RegisterPage = () => {
             error={errors.description}
           />
 
-          {/* <h5>Infomações de endereço</h5>
+          <h5>Infomações de endereço</h5>
           <Input
             label="CEP"
             type="text"
-            register={register("email")}
+            register={register("address.zip_code")}
             placeholder="00000.000"
-            error={errors.email}
+            error={errors.address?.zip_code}
           />
           <StyledDivOne>
             <Input
               label="Estado"
               type="text"
-              register={register("email")}
+              register={register("address.state")}
               placeholder="Digitar Estado"
-              error={errors.email}
+              error={errors.address?.state}
             />
             <Input
               label="Cidade"
               type="text"
-              register={register("email")}
+              register={register("address.city")}
               placeholder="Digitar cidade"
-              error={errors.email}
+              error={errors.address?.city}
             />
           </StyledDivOne>
           <Input
             label="Rua"
             type="text"
-            register={register("email")}
+            register={register("address.street")}
             placeholder="Digitar rua"
-            error={errors.email}
+            error={errors.address?.street}
           />
-       
-            <Input
-              label="Número"
-              type="text"
-              register={register("email")}
-              placeholder="Digitar número"
-              error={errors.email}
-            />
-            <Input
-              label="Complemento"
-              type="text"
-              register={register("email")}
-              placeholder="Ex: apart 307"
-              error={errors.email}
-            /> */}
+
+          <Input
+            label="Número"
+            type="text"
+            register={register("address.number")}
+            placeholder="Digitar número"
+            error={errors.address?.number}
+          />
+          <Input
+            label="Complemento"
+            type="text"
+            register={register("address.complement")}
+            placeholder="Ex: apart 307"
+            error={errors.address?.complement}
+          />
 
           <h5>Tipo de conta</h5>
           <div className="Type">

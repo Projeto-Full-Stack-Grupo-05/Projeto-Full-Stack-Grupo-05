@@ -36,7 +36,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
             },
           });
           setUser(response.data);
-          // navigate("/");
+          navigate("/");
         } catch (error) {
           console.log(error);
         } finally {
@@ -73,7 +73,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       localStorage.setItem("@USERANUNCIANTE", response.data.user.profile);
 
       setUser(response.data.user);
-      navigate("/");
+      navigate("/admin");
     } catch (error) {
       console.log(error);
     } finally {
