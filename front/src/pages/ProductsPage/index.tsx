@@ -23,6 +23,7 @@ export const ProductsPage = () => {
       await getAllComments(carId!);
       console.log(comments);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const whatsappButton = document.getElementById("whatsapp-button");
@@ -89,7 +90,7 @@ export const ProductsPage = () => {
               <h4>Fotos</h4>
               <div className="imagesDiv">
                 {saleCar?.gallery.map((img) => (
-                  <div className="imageDiv">
+                  <div className="imageDiv" key={saleCar.id}>
                     <img src={img} alt="Mini car" />
                   </div>
                 ))}
@@ -108,7 +109,7 @@ export const ProductsPage = () => {
             </div>
           </div>
         </div>
-        <div className="MainSection">
+        <div className="MainSectionTwo">
           <div className="divOne">
             <div className="commentsContainerDiv">
               <h1>Comentários</h1>
@@ -160,32 +161,7 @@ export const ProductsPage = () => {
               </div>
             </div>
           </div>
-          <div className="displayNone">
-            <div className="asideSection">
-              <div className="firstDivNone">
-                <h4>Fotos</h4>
-                <div className="imagesDivNone">
-                  <div className="imageDivNone"></div>
-                  <div className="imageDivNone"></div>
-                  <div className="imageDivNone"></div>
-                  <div className="imageDivNone"></div>
-                  <div className="imageDivNone"></div>
-                  <div className="imageDivNone"></div>
-                </div>
-              </div>
-              <div className="profileDivNone">
-                <div className="ball"></div>
-                <h4>Samuel leão</h4>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                </p>
-                <Link to="/" className="ads">
-                  Ver todos anuncios
-                </Link>
-              </div>
-            </div>
-          </div>
+          <div className="displayNone"></div>
         </div>
       </StyledMain>
       <Footer />
