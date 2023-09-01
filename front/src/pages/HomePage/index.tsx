@@ -2,16 +2,17 @@ import { HeaderLoggedOut } from "../../components/HeaderLoggedOut";
 import { Footer } from "../../components/Footer";
 import { StyledContainer } from "./style";
 import { AsideHome } from "../../components/Aside";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import { kenzieApi } from "../../services/kenzie-car";
 import { IKenzieCar } from "../../services/kenzie-car/interfaces";
 import { isAxiosError } from "axios";
-import { useContext } from "react";
-import { CarContext } from "../../context/CarContext/carContext";
+import { useContext, useEffect } from "react";
+
 import { CarCard } from "../../components/carCard";
+import { CarContext } from "../../context/CarContext/carContext";
 
 export const Homepage = () => {
-  const { filteredCars } = useContext(CarContext);
+  const { filteredCars, salesCar, getCars } = useContext(CarContext);
 
   const getKenzieCars = async () => {
     try {
@@ -27,10 +28,16 @@ export const Homepage = () => {
     }
   };
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: "cars",
-    queryFn: getKenzieCars,
-  });
+  useEffect(() => {
+    (async () => {
+      await getCars();
+    })();
+  }, []);
+
+  // const { data, isLoading, error } = useQuery({
+  //   queryKey: "cars",
+  //   queryFn: getKenzieCars,
+  // });
 
   return (
     <>
@@ -49,9 +56,12 @@ export const Homepage = () => {
           <AsideHome />
           <div>
             <div>
-              {filteredCars.map((car: number) => {
+              {/* {filteredCars.map((car) => {
                 return <CarCard car={car} key={car.id} />;
-              })}
+              })} */}
+              {salesCar?.map((car) => (
+                <CarCard car={car} key={car.id} />
+              ))}
             </div>
           </div>
         </div>
