@@ -576,6 +576,8 @@ export const StyledMain = styled.main`
             font-weight: 500;
             font-size: 12px;
             line-height: 24px;
+
+            cursor: pointer;
           }
         }
 

@@ -64,6 +64,7 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         outline:0;
         box-sizing: border-box;
+        text-decoration: none;
     }
 
     h1 {
@@ -101,4 +102,4 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
 
-`
+`;
