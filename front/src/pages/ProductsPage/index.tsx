@@ -90,7 +90,7 @@ export const ProductsPage = () => {
               <h4>Fotos</h4>
               <div className="imagesDiv">
                 {saleCar?.gallery.map((img) => (
-                  <div className="imageDiv">
+                  <div className="imageDiv" key={saleCar.id}>
                     <img src={img} alt="Mini car" />
                   </div>
                 ))}

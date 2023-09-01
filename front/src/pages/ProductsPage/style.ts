@@ -50,6 +50,12 @@ export const StyledMain = styled.main`
         @media (max-width: 1163px) {
           width: 100%;
         }
+
+        @media (max-width: 570px) {
+          img {
+            width: 100%;
+          }
+        }
       }
     }
 
