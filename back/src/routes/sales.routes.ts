@@ -26,7 +26,7 @@ salesRoutes.post(
   createSalesController
 );
 
-salesRoutes.get("/:id/comments",ensureAuthMiddleware, listAllCommentsBySalesController);
+salesRoutes.get("/:id/comments", listAllCommentsBySalesController);
 
 salesRoutes.get("/:id", ensureIdMiddleware, retrieveSaleController);
 

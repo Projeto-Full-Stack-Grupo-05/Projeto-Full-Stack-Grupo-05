@@ -21,14 +21,14 @@ commentsRoutes.post(
 );
 commentsRoutes.get("", ensureAuthMiddleware, listCommentsController);
 
+commentsRoutes.get("/:id", retrieveCommentController);
+
 commentsRoutes.patch(
   "/:id",
   ensureAuthMiddleware,
   ensureBodyValidMiddleware(commentsSchemaUpdateRequest),
   updateCommentsController
 );
-
-commentsRoutes.get("/:id", ensureAuthMiddleware, retrieveCommentController);
 
 commentsRoutes.delete("/:id", ensureAuthMiddleware, deleteCommentController);
 

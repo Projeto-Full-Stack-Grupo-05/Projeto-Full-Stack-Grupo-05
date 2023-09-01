@@ -1,5 +1,10 @@
 import { z } from "zod";
-import { salesSchema, salesSchemaRequest,  salesSchemaResponse, salesSchemaUpdateRequest } from "../schemas/salesSchema.schema";
+import {
+  salesSchema,
+  salesSchemaRequest,
+  salesSchemaResponse,
+  salesSchemaUpdateRequest,
+} from "../schemas/salesSchema.schema";
 import { DeepPartial } from "typeorm";
 
 type TSalesRequest = z.infer<typeof salesSchemaRequest>;
@@ -10,11 +15,10 @@ type TSalesCreateResponse = z.infer<typeof salesSchemaRequest>;
 type TSalesRequestUpdate = DeepPartial<TSalesRequest>;
 
 export {
-    TSale,
-    TSaleResponse,
-    TSalesRequest,
-    TSalesResponse,
-    TSalesRequestUpdate,
-    TSalesCreateResponse
+  TSale,
+  TSaleResponse,
+  TSalesRequest,
+  TSalesResponse,
+  TSalesRequestUpdate,
+  TSalesCreateResponse,
 };
-

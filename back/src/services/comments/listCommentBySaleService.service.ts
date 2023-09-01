@@ -1,11 +1,14 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import Comment from "../../entities/comments.entity";
-import { TCommentsResponse } from "../../interfaces/comments.interface";
+import {
+  TCommentRes,
+  TCommentsResponse,
+} from "../../interfaces/comments.interface";
 
 const listCommentBySaleService = async (
   saleId: string
-): Promise<TCommentsResponse> => {
+): Promise<TCommentRes[]> => {
   const commentRepository: Repository<Comment> =
     AppDataSource.getRepository(Comment);
 
@@ -16,9 +19,12 @@ const listCommentBySaleService = async (
     .where("sale.id = :saleId", { saleId })
     .getMany();
 
-  const commentsResponse: TCommentsResponse = comments.map((comment) => ({
+  const commentsResponse: TCommentRes[] = comments.map((comment) => ({
     id: comment.id,
-    user_id: comment.user.id,
+    user: {
+      id: comment.user.id,
+      name: comment.user.name,
+    },
     sale_id: comment.sale.id,
     text: comment.text,
     createdAt: comment.createdAt,

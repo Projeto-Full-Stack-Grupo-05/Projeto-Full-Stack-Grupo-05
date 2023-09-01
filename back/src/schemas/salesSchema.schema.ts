@@ -26,7 +26,6 @@ const salesSchemaRequest = z.object({
 const salesSchema = salesSchemaRequest.extend({
   id: z.string(),
   createdAt: z.string(),
-  
 });
 
 const salesSchemaResponse = z.array(salesSchema);
