@@ -24,7 +24,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+ useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
     const id = localStorage.getItem("@USERID");
     if (token) {

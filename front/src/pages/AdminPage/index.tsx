@@ -6,8 +6,11 @@ import { useQuery } from "react-query";
 import ErrorPage from "../ErrorPage";
 import CarCardAdmin from "../../components/carCard/admin";
 import CardUserResume from "../../components/UserResume";
+import { useContext } from "react";
+import { CarContext } from "../../context/CarContext/carContext";
 
 export const AdminPage = () => {
+  const { contacts, setContacts } = useContext(CarContext);
   const getKenzieCars = async () => {
     try {
       // const cars = await api.get<IMotorsSales[]>("/sales");

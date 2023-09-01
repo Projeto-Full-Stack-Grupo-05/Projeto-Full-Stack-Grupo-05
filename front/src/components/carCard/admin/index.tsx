@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ModalEditAnnounce } from "../../ModalEditAnnounce";
 import { Card } from "./style";
 
@@ -40,7 +41,9 @@ export default function CarCardAdmin({ car }: { car: ICarMock }) {
 
       <div>
         <ModalEditAnnounce />
-        <button>Ver detalhes</button>
+        <Link to="/products">
+          <button>Ver detalhes</button>
+        </Link>
       </div>
     </Card>
   );

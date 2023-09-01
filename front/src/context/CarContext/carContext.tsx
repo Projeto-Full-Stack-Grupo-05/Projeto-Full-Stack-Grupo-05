@@ -1,16 +1,15 @@
 import { createContext, useState, useEffect } from "react";
-import { AdsCar, Car, CarContextType, CarProviderProps } from "./@types";
+import { AdsCar, CarContextType, CarProviderProps, ICar } from "./@types";
 import { api } from "../../services/api";
-
 
 export const CarContext = createContext({} as CarContextType);
 
 export const CarProvider = ({ children }: CarProviderProps) => {
   const [loading, setLoading] = useState(true);
-  const [card, setCard] = useState(true);
   const [, setDataUpdated] = useState(false);
+  const [card, setCard] = useState<ICar[]>([]);
 
-  const [filteredCars, setFilteredCars] = useState<Car[]>([]);
+  const [filteredCars, setFilteredCars] = useState<ICar[]>([]);
   const [filters, setFilters] = useState({
     brand: "",
     model: "",
@@ -94,6 +93,25 @@ export const CarProvider = ({ children }: CarProviderProps) => {
     setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
   };
 
+  useEffect(() => {
+    //const token = localStorage.getItem("@TOKEN");
+    //if (token) {
+      const profileForm = async () => {
+        try {
+          const response = await api.get("/sales", {
+            /*headers: {
+              Authorization: `Bearer ${token}`,
+            },*/
+          });
+          setCard(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      profileForm();
+   // }
+  }, []);
+
   const carDelete = async (carId: number) => {
     try {
       const token = localStorage.getItem("@TOKEN");
@@ -105,39 +123,39 @@ export const CarProvider = ({ children }: CarProviderProps) => {
     } catch (error) {
       console.log(error);
     }
-
-    const getCars = async () => {
-      try {
-        const res = await api.get("/sales");
-        setSalesCar(res.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const getCar = async (id: string) => {
-      try {
-        const res = await api.get(`/sales/${id}`);
-        setSaleCar(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    return (
-      <CarContext.Provider
-        value={{
-          filteredCars,
-          handleFilterChange,
-          carDelete,
-          salesCar,
-          getCars,
-          getCar,
-          saleCar,
-        }}
-      >
-        {children}
-      </CarContext.Provider>
-    );
   };
+
+  const getCars = async () => {
+    try {
+      const res = await api.get("/sales");
+      setSalesCar(res.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCar = async (id: string) => {
+    try {
+      const res = await api.get(`/sales/${id}`);
+      setSaleCar(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <CarContext.Provider
+      value={{
+        filteredCars,
+        handleFilterChange,
+        carDelete,
+        salesCar,
+        getCars,
+        getCar,
+        saleCar,
+      }}
+    >
+      {children}
+    </CarContext.Provider>
+  );
 };

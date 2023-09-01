@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export interface Car {
+export interface ICar {
   id: number;
   brand: string;
   model: string;
@@ -13,7 +13,7 @@ export interface Car {
 }
 
 export interface CarContextType {
-  filteredCars: Car[];
+  filteredCars: ICar[];
   handleFilterChange: (filterName: string, value: string | number) => void;
   carDelete: (id: number) => void;
   salesCar: AdsCar[];
