@@ -1,5 +1,4 @@
 import { z } from "zod";
-import Sale from "../entities/sales.entity";
 
 const commentsSchemaRequest = z.object({
   user_id: z.string().max(45),

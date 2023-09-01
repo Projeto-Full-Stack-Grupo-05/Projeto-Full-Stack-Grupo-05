@@ -21,9 +21,16 @@ export const CommentProvider = ({ children }: CommentProviderProps) => {
     }
   };
 
-  const commentRegister = (formData: ICommentFormValues) => {
-    console.log(formData);
+  const commentRegister = async (commentData: ICommentFormValues) => {
+    try {
+      const res = await api.post(`/comments`, commentData);
+
+      setComments((prevComments) => [...prevComments, res.data]);
+    } catch (error) {
+      console.log(error);
+    }
   };
+  
 
   return (
     <CommentContext.Provider

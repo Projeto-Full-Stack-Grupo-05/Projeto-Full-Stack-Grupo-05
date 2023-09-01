@@ -72,6 +72,7 @@ class Sale {
 
   @OneToMany(() => Comment, (comment) => comment.sale)
   comments: Comment[];
+  SaleStatus: string;
 }
 
 export default Sale;
