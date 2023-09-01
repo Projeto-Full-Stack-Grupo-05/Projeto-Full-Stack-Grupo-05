@@ -1,3 +1,4 @@
+import { ModalEditAnnounce } from "../../ModalEditAnnounce";
 import { Card } from "./style";
 
 interface ICarMock {
@@ -38,7 +39,7 @@ export default function CarCardAdmin({ car }: { car: ICarMock }) {
       </div>
 
       <div>
-        <button>Editar</button>
+        <ModalEditAnnounce />
         <button>Ver detalhes</button>
       </div>
     </Card>

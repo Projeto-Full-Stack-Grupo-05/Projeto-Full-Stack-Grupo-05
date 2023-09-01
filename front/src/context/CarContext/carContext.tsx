@@ -1,9 +1,14 @@
 import { createContext, useState, useEffect } from "react";
 import { Car, CarContextType, CarProviderProps } from "./@types";
+import { api } from "../../services/api";
 
 export const CarContext = createContext<CarContextType | undefined>(undefined);
 
 export const CarProvider = ({ children }: CarProviderProps) => {
+  const [loading, setLoading] = useState(true);
+  const [card, setCard] = useState(true);
+  const [, setDataUpdated] = useState(false);
+
   const [filteredCars, setFilteredCars] = useState<Car[]>([]);
   const [filters, setFilters] = useState({
     brand: "",
@@ -85,8 +90,23 @@ export const CarProvider = ({ children }: CarProviderProps) => {
     setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
   };
 
+  const carDelete = async (carId: number) => {
+    try {
+      const token = localStorage.getItem("@TOKEN");
+      await api.delete(`/sales/${carId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <CarContext.Provider value={{ filteredCars, handleFilterChange }}>
+    <CarContext.Provider
+      value={{ filteredCars, handleFilterChange, carDelete }}
+    >
       {children}
     </CarContext.Provider>
   );

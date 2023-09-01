@@ -1,7 +1,5 @@
 import { HeaderLoggedIn } from "../../components/HeaderLoggedIn";
 import { Footer } from "../../components/Footer";
-import { useContext } from "react";
-import { UserContext } from "../../context/UserContext/UserContext";
 import { Main } from "./style";
 import { isAxiosError } from "axios";
 import { useQuery } from "react-query";
@@ -10,7 +8,6 @@ import CarCardAdmin from "../../components/carCard/admin";
 import CardUserResume from "../../components/UserResume";
 
 export const AdminPage = () => {
-  const { user } = useContext(UserContext);
   const getKenzieCars = async () => {
     try {
       // const cars = await api.get<IMotorsSales[]>("/sales");

@@ -10,8 +10,7 @@ import { ResetPassword } from "../pages/resetPassword/[token]";
 import { AdminPage } from "../pages/AdminPage";
 
 export default function AppRouter() {
-  const isAtthenticated = true;
-
+  const isAtthenticated = false;
   return (
     <Routes>
       <Route
