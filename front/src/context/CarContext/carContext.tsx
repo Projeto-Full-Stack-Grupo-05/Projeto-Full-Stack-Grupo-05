@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from "react";
 import { AdsCar, Car, CarContextType, CarProviderProps } from "./@types";
 import { api } from "../../services/api";
 
-
 export const CarContext = createContext({} as CarContextType);
 
 export const CarProvider = ({ children }: CarProviderProps) => {
@@ -105,39 +104,39 @@ export const CarProvider = ({ children }: CarProviderProps) => {
     } catch (error) {
       console.log(error);
     }
-
-    const getCars = async () => {
-      try {
-        const res = await api.get("/sales");
-        setSalesCar(res.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const getCar = async (id: string) => {
-      try {
-        const res = await api.get(`/sales/${id}`);
-        setSaleCar(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    return (
-      <CarContext.Provider
-        value={{
-          filteredCars,
-          handleFilterChange,
-          carDelete,
-          salesCar,
-          getCars,
-          getCar,
-          saleCar,
-        }}
-      >
-        {children}
-      </CarContext.Provider>
-    );
   };
+
+  const getCars = async () => {
+    try {
+      const res = await api.get("/sales");
+      setSalesCar(res.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCar = async (id: string) => {
+    try {
+      const res = await api.get(`/sales/${id}`);
+      setSaleCar(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <CarContext.Provider
+      value={{
+        filteredCars,
+        handleFilterChange,
+        carDelete,
+        salesCar,
+        getCars,
+        getCar,
+        saleCar,
+      }}
+    >
+      {children}
+    </CarContext.Provider>
+  );
 };
