@@ -34,17 +34,14 @@ export const ProductsPage = () => {
       const message =
         "Olá! Me interessei pelo carro do anúncio e gostaria de negociar. Podemos conversar mais sobre isso?";
 
-      // Montar a URL do link do WhatsApp
       const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
         message
       )}`;
-
-      // Abrir a URL no WhatsApp
       window.open(whatsappUrl);
     });
   }
 
-  const onSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const userId = localStorage.getItem("@USERID");
     const commentData = {
@@ -52,9 +49,16 @@ export const ProductsPage = () => {
       user_id: userId!,
       sale_id: "3",
     };
-    commentRegister(commentData);
+    
+    try {
+      await commentRegister(commentData);
+      const carId = localStorage.getItem("@CarID");
+      await getAllComments(carId!); 
+      setCurrentComment("");
+    } catch (error) {
+      console.log(error)
+    }
   };
-
   return (
     <>
       <HeaderLoggedIn />
