@@ -49,12 +49,13 @@ const userSchemaLoginToken = userSchema.omit({
   address: true,
 });
 
-const userSchemaResponse = userSchema.omit({
-  password: true,
-}).extend({
-  address: addressSchema,
-});
-
+const userSchemaResponse = userSchema
+  .omit({
+    password: true,
+  })
+  .extend({
+    address: addressSchema,
+  });
 
 const listUserSchema = z.array(userSchemaResponse);
 
@@ -69,4 +70,6 @@ export {
   userSchemaUpdateRequest,
   listUserSchema,
   userSchemaLoginToken,
+  addressSchema,
+  addressSchemaRequest,
 };

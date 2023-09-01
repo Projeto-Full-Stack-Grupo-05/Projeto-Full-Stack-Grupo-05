@@ -9,11 +9,11 @@ const ensureAlreadyExistsSalesMiddleware = async (
 ): Promise<Response | void> => {
   const validateSales = req.body;
   req.body = validateSales;
-  const { car_id } = req.body;
-  if (car_id) {
+  const { id } = req.body;
+  if (id) {
     const contactRepository = AppDataSource.getRepository(Sale);
     const existingSales = await contactRepository.findOne({
-      where: { car_id },
+      where: { id },
     });
     if (existingSales) {
       return res.status(409).json({ message: "Sales already exists" });

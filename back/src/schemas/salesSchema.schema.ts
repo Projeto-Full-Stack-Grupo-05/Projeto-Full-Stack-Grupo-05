@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { SaleStatus } from "../entities/sales.entity";
-import { userSchema } from "./userSchema.schema";
 
 const gallerySchemaRequest = z.object({
   img_url: z.string(),
@@ -8,7 +7,6 @@ const gallerySchemaRequest = z.object({
 
 const salesSchemaRequest = z.object({
   user_id: z.string().max(45),
-  car_id: z.string().max(45),
   title: z.string().max(70),
   img_url: z.string().max(250),
   color: z.string().max(20),
@@ -18,6 +16,7 @@ const salesSchemaRequest = z.object({
   fuel: z.string(),
   kilometers: z.number().int(),
   gallery: z.array(gallerySchemaRequest),
+  buyer_id: z.string().max(45).optional(),
   status: z
     .enum([SaleStatus.Active, SaleStatus.Sold])
     .default(SaleStatus.Active),
