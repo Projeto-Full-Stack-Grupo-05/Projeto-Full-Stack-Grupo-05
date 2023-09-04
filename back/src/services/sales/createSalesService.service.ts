@@ -43,7 +43,10 @@ const createSalesService = async (
       : data.fuel === 3
       ? "Elétrico"
       : (() => {
-          throw new AppError("Tipo de combustível inválido", 400);
+          throw new AppError(
+            "Tipo de combustível inválido, escolha entre as opções: 1 - Flex, 2 - Híbrido, 3 - Elétrico",
+            400
+          );
         })();
 
   data.fuel = fuelAdj;
