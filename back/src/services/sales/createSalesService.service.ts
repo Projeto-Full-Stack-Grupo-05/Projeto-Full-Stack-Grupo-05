@@ -58,6 +58,7 @@ const createSalesService = async (
     year: data.year,
     description: data.description,
     kilometers: data.kilometers,
+    model: data.model,
     gallery: data.gallery,
   });
 

@@ -3,7 +3,6 @@ import {
   salesSchema,
   salesSchemaRequest,
   salesSchemaResponse,
-  salesSchemaUpdateRequest,
 } from "../schemas/salesSchema.schema";
 import { DeepPartial } from "typeorm";
 

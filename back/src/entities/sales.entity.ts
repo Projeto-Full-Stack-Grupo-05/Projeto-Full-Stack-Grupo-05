@@ -25,8 +25,8 @@ class Sale {
   @Column()
   user_id: string;
 
-  // @Column()
-  // car_id: string;
+  @Column()
+  model: string
 
   @Column()
   title: string;

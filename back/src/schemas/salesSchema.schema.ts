@@ -15,6 +15,7 @@ const salesSchemaRequest = z.object({
   year: z.number().int(),
   fuel: z.string(),
   kilometers: z.number().int(),
+  model: z.string(),
   gallery: z.array(gallerySchemaRequest),
   buyer_id: z.string().max(45).optional(),
   status: z

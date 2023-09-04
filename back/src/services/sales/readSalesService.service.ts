@@ -2,7 +2,6 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import Sale from "../../entities/sales.entity";
 import { TSale } from "../../interfaces/sales.interface";
-import { salesSchemaResponse } from "../../schemas/salesSchema.schema";
 import { TUserResponse } from "../../interfaces/user.interface";
 import User from "../../entities/user.entity";
 
@@ -16,7 +15,10 @@ interface PaginationMetadata {
 }
 
 interface PaginatedSalesResponse {
-  data: TSale[];
+  data: {
+    sale: TSale;
+    user: TUserResponse;
+  }[];
   pagination: PaginationMetadata;
 }
 
@@ -40,12 +42,24 @@ const readSalesService = async (
 
   const totalPages = Math.ceil(total / pageSize);
 
-  const paginatedSales: TSale[] = sales.map((sale) => {
-    const userWithoutPassword = {
-      ...sale.user,
-      password: undefined,
+  const paginatedSales: {
+    sale: TSale;
+    user: TUserResponse;
+  }[] = sales.map((sale) => {
+    const userWithoutPassword: TUserResponse = {
+      id: sale.user.id,
+      name: sale.user.name,
+      email: sale.user.email,
+      address: sale.user.address,
+      birthdate: sale.user.birthdate,
+      cellphone: sale.user.cellphone,
+      cpf: sale.user.cpf,
+      description: sale.user.description,
+      createdAt: sale.user.createdAt,
+      profile: sale.user.profile,
     };
-    return {
+
+    const saleData: TSale = {
       user_id: sale.user.id,
       buyer_id: sale.buyer ? sale.buyer.id : "",
       title: sale.title,
@@ -56,12 +70,18 @@ const readSalesService = async (
       year: sale.year,
       fuel: sale.fuel,
       kilometers: sale.kilometers,
+      model: sale.model,
       gallery: sale.gallery.map((galleryItem) => ({
         img_url: galleryItem.img_url,
       })),
       status: sale.status,
       id: sale.id,
       createdAt: sale.createdAt,
+    };
+
+    return {
+      sale: saleData,
+      user: userWithoutPassword,
     };
   });
 
