@@ -1,15 +1,16 @@
 import { createContext, useState, useEffect } from "react";
-import { AdsCar, CarContextType, CarProviderProps, ICar } from "./@types";
+import { AdsCar, CarContextType, CarProviderProps, iCarsToRender } from "./@types";
 import { api } from "../../services/api";
 
 export const CarContext = createContext({} as CarContextType);
 
 export const CarProvider = ({ children }: CarProviderProps) => {
-  const [loading, setLoading] = useState(true);
-  const [, setDataUpdated] = useState(false);
-  const [card, setCard] = useState<ICar[]>([]);
+  // const [loading, setLoading] = useState(true);
+  // const [, setDataUpdated] = useState(false);
+  // const [card, setCard] = useState<ICar[]>([]);
 
-  const [filteredCars, setFilteredCars] = useState<ICar[]>([]);
+  const [carsToRender, setCarsToRender] = useState<iCarsToRender[]>([]);
+  const [filteredCars, setFilteredCars] = useState<iCarsToRender[]>([]);
   const [filters, setFilters] = useState({
     brand: "",
     model: "",
@@ -24,93 +25,58 @@ export const CarProvider = ({ children }: CarProviderProps) => {
   const [saleCar, setSaleCar] = useState<AdsCar>();
 
   useEffect(() => {
-    const cars = [
-      {
-        id: 1,
-        brand: "Porsche",
-        model: "Porsche 718",
-        color: "Azul",
-        year: 2021,
-        fuel: 1,
-        km: 0,
-        price: 30000,
-        owner: "Teste dois",
-      },
-      {
-        id: 2,
-        brand: "Ford",
-        model: "Ka",
-        color: "Azul",
-        year: 2021,
-        fuel: 1,
-        km: 0,
-        price: 30000,
-        owner: "Oi Tres",
-      },
-      {
-        id: 3,
-        brand: "Fiat",
-        model: "Mobi",
-        color: "Azul",
-        year: 2021,
-        fuel: 1,
-        km: 0,
-        price: 30000,
-        owner: "Teste",
-      },
-      {
-        id: 4,
-        brand: "Fiat",
-        model: "Fit",
-        color: "Azul",
-        year: 2021,
-        fuel: 1,
-        km: 0,
-        price: 30000,
-        owner: "Testezão",
-      },
-    ];
-
-    const filtered = cars.filter((car) => {
-      return (
-        (filters.brand === "" ||
-          car.brand.toLowerCase().includes(filters.brand.toLowerCase())) &&
-        (filters.model === "" ||
-          car.model.toLowerCase().includes(filters.model.toLowerCase())) &&
-        (filters.color === "" ||
-          car.color.toLowerCase().includes(filters.color.toLowerCase())) &&
-        (filters.year === 0 || car.year === +filters.year) &&
-        (filters.fuel === 0 || car.fuel === +filters.fuel) &&
-        (filters.km === 0 || car.km >= +filters.km) &&
-        (filters.price === 0 || car.price >= +filters.price)
-      );
-    });
-
-    setFilteredCars(filtered);
+    const fetchData = async () => {
+      try {
+        const cars = await api.get('/sales')
+        setCarsToRender(cars.data.data)
+  
+        const filtered = cars.data.data.filter((car: { sale: { brand: string; title: string; color: string; year: number; fuel: number; kilometers: number; price: number; }; }) => {
+          return (
+            (filters.brand === "" ||
+              car.sale.brand.toLowerCase().includes(filters.brand.toLowerCase())) &&
+            (filters.model === "" ||
+              car.sale.title.toLowerCase().includes(filters.model.toLowerCase())) &&
+            (filters.color === "" ||
+              car.sale.color.toLowerCase().includes(filters.color.toLowerCase())) &&
+            (filters.year === 0 || car.sale.year === +filters.year) &&
+            (filters.fuel === 0 || car.sale.fuel === +filters.fuel) &&
+            (filters.km === 0 || car.sale.kilometers >= +filters.km) &&
+            (filters.price === 0 || car.sale.price >= +filters.price)
+          );
+        });
+  
+        setFilteredCars(filtered)
+      } catch (error) {
+        console.log(error)
+      }
+    };
+  
+    fetchData()
   }, [filters]);
+  
 
   const handleFilterChange = (filterName: string, value: string | number) => {
     setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
   };
 
-  useEffect(() => {
-    //const token = localStorage.getItem("@TOKEN");
-    //if (token) {
-      const profileForm = async () => {
-        try {
-          const response = await api.get("/sales", {
-            /*headers: {
-              Authorization: `Bearer ${token}`,
-            },*/
-          });
-          setCard(response.data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      profileForm();
-   // }
-  }, []);
+  // useEffect(() => {
+  //   //const token = localStorage.getItem("@TOKEN");
+  //   //if (token) {
+  //     const profileForm = async () => {
+  //       try {
+  //         const response = await api.get("/sales", {
+  //           /*headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },*/
+  //         });
+  //         setCard(response.data);
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     };
+  //     profileForm();
+  //  // }
+  // }, []);
 
   const carDelete = async (carId: number) => {
     try {
@@ -153,6 +119,7 @@ export const CarProvider = ({ children }: CarProviderProps) => {
         getCars,
         getCar,
         saleCar,
+        carsToRender
       }}
     >
       {children}

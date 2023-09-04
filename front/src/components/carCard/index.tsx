@@ -1,26 +1,13 @@
-import { colors } from "@mui/material";
-import { AdsCar } from "../../context/CarContext/@types";
+import { iCarsToRender } from "../../context/CarContext/@types";
 import { CardStyled, DetailsBox, InfoStyled, NameBoxStyled } from "./style";
 import { Link } from "react-router-dom";
 
-// interface ICarMock {
-//   id: string;
-//   img: string;
-//   model: string;
-//   brand: string;
-//   description: string;
-//   owner: string;
-//   km: number;
-//   year: number;
-//   price: number;
-// }
-
-export const CarCard = ({ car }: { car: AdsCar }) => {
-  // const getInitials = (name: string) => {
-  //   const words = name.split(" ");
-  //   const initials = words.map((word) => word.charAt(0).toUpperCase());
-  //   return initials.join("");
-  // };
+export const CarCard = ({ car }: { car: iCarsToRender }) => {
+  const getInitials = (name: string) => {
+    const words = name.split(" ");
+    const initials = words.map((word) => word.charAt(0).toUpperCase());
+    return initials.join("");
+  };
 
   const colors = [
     "var(--color-random-1)",
@@ -41,30 +28,30 @@ export const CarCard = ({ car }: { car: AdsCar }) => {
     <Link
       to={"/products"}
       onClick={() => {
-        localStorage.setItem("@CarID", car.id);
+        localStorage.setItem("@CarID", car.sale.id);
       }}
     >
       <CardStyled>
         <figure>
-          <img src={car.img_url} alt={car.car_id} />
+          <img src={car.sale.img_url} alt={car.sale.title} />
         </figure>
         <InfoStyled>
           <h6>
-            {car.title} - {car.car_id}
+            {car.sale.brand} - {car.sale.title}
           </h6>
-          <p>{car.description}</p>
+          <p>{car.sale.description}</p>
         </InfoStyled>
         <NameBoxStyled $colors={colors}>
-          <div>PE</div>
-          <p>{car.user_id}</p>
+          <div>{getInitials(car.user.name)}</div>
+          <p>{car.user.name}</p>
         </NameBoxStyled>
         <DetailsBox>
           <div>
-            <p>{car.kilometers} KM</p>
-            <p>{car.year}</p>
+            <p>{car.sale.kilometers} KM</p>
+            <p>{car.sale.year}</p>
           </div>
           <span>
-            {car.price.toLocaleString("pt-br", {
+            {car.sale.price.toLocaleString("pt-br", {
               style: "currency",
               currency: "BRL",
             })}

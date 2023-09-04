@@ -79,3 +79,12 @@ export const StyledContainer = styled.div`
     }
   }
 `;
+
+export const StyledSalesBox = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 48px;
+  margin: 0 auto;
+  width: 100%;
+`
