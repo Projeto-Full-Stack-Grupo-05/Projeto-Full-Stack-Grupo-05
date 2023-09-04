@@ -26,7 +26,7 @@ class Sale {
   user_id: string;
 
   @Column()
-  model: string
+  brand: string
 
   @Column()
   title: string;

@@ -70,7 +70,7 @@ const readSalesService = async (
       year: sale.year,
       fuel: sale.fuel,
       kilometers: sale.kilometers,
-      model: sale.model,
+      brand: sale.brand,
       gallery: sale.gallery.map((galleryItem) => ({
         img_url: galleryItem.img_url,
       })),
