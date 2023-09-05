@@ -20,8 +20,11 @@ routes: Contém as rotas da API que definem os endpoints e as ações correspond
 server.js: O arquivo principal que inicia o servidor e configura as dependências necessárias para o funcionamento da aplicação.
 Frontend
 frontend: Este diretório contém todos os arquivos relacionados à interface do usuário e à lógica do frontend.
-Tecnologias Utilizadas
-As principais tecnologias usadas no projeto incluem:
+
+
+## Tecnologias Utilizadas
+
+ As principais tecnologias usadas no projeto incluem:
 
 ## Backend:
 
