@@ -13,7 +13,7 @@ import {
 import { CarContext } from "../../context/CarContext/carContext";
 
 export const AsideHome = () => {
-  const { handleFilterChange } = useContext(CarContext);
+  const { handleFilterChange, clearFilters } = useContext(CarContext);
 
   const [dialogOpen, setDialogOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -24,10 +24,16 @@ export const AsideHome = () => {
     }
   `;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleKmChange = (_startValue: number, _endValue: number) => {};
+  const handleKmChange = (startValue: number, endValue: number) => {
+    handleFilterChange("kmStart", startValue);
+    handleFilterChange("kmEnd", endValue);
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleValueChange = (_startValue: number, _endValue: number) => {};
+  const handleValueChange = (startValue: number, endValue: number) => {
+    handleFilterChange("priceStart", startValue*1000);
+    handleFilterChange("priceEnd", endValue*1000);
+  };
 
   const handleDialogToggle = () => {
     setDialogOpen(!dialogOpen);
@@ -71,60 +77,61 @@ export const AsideHome = () => {
               <AsideContainer className="asideMobile">
                 <h4>Marca</h4>
                 <DivFiltro>
-                  <button onClick={() => console.log("clickou")}>
+                  <button onClick={() => handleFilterChange("brand", "General Motors")}>
                     General Motors
                   </button>
-                  <button onClick={() => console.log("clickou")}>Fiat</button>
-                  <button onClick={() => console.log("clickou")}>Ford</button>
-                  <button onClick={() => console.log("clickou")}>Honda</button>
-                  <button onClick={() => console.log("clickou")}>
+                  <button onClick={() => handleFilterChange("brand", "Fiat")}>Fiat</button>
+                  <button onClick={() => handleFilterChange("brand", "Ford")}>Ford</button>
+                  <button onClick={() => handleFilterChange("brand", "Honda")}>Honda</button>
+                  <button onClick={() => handleFilterChange("brand", "Porsche")}>
                     Porsche
                   </button>
-                  <button onClick={() => console.log("clickou")}>
+                  <button onClick={() => handleFilterChange("brand", "Volswagen")}>
                     Volswagen
                   </button>
                 </DivFiltro>
                 <h4>Modelo</h4>
                 <DivFiltro>
-                  <button onClick={() => console.log("clickou")}>Civic</button>
-                  <button onClick={() => console.log("clickou")}>
+                  <button onClick={() => handleFilterChange("model", "Civic")}>Civic</button>
+                  <button onClick={() => handleFilterChange("model", "Corolla")}>
                     Corolla
                   </button>
-                  <button onClick={() => console.log("clickou")}>Cruze</button>
-                  <button onClick={() => console.log("clickou")}>Fit</button>
-                  <button onClick={() => console.log("clickou")}>Gol</button>
-                  <button onClick={() => console.log("clickou")}>Ka</button>
-                  <button onClick={() => console.log("clickou")}>Onix</button>
-                  <button onClick={() => console.log("clickou")}>
+                  <button onClick={() => handleFilterChange("model", "Cruze")}>Cruze</button>
+                  <button onClick={() => handleFilterChange("model", "Fit")}>Fit</button>
+                  <button onClick={() => handleFilterChange("model", "Gol")}>Gol</button>
+                  <button onClick={() => handleFilterChange("model", "Ka")}>Ka</button>
+                  <button onClick={() => handleFilterChange("model", "Onix")}>Onix</button>
+                  <button onClick={() => handleFilterChange("model", "Porsche 718")}>
                     Porsche 718
                   </button>
                 </DivFiltro>
                 <h4>Cor</h4>
                 <DivFiltro>
-                  <button onClick={() => console.log("clickou")}>Azul</button>
-                  <button onClick={() => console.log("clickou")}>Branca</button>
-                  <button onClick={() => console.log("clickou")}>Cinza</button>
-                  <button onClick={() => console.log("clickou")}>Prata</button>
-                  <button onClick={() => console.log("clickou")}>Preta</button>
-                  <button onClick={() => console.log("clickou")}>Verde</button>
+                  <button onClick={() => handleFilterChange("color", "Azul")}>Azul</button>
+                  <button onClick={() => handleFilterChange("color", "Branca")}>Branca</button>
+                  <button onClick={() => handleFilterChange("color", "Cinza")}>Cinza</button>
+                  <button onClick={() => handleFilterChange("color", "Prata")}>Prata</button>
+                  <button onClick={() => handleFilterChange("color", "Preta")}>Preta</button>
+                  <button onClick={() => handleFilterChange("color", "Verde")}>Verde</button>
                 </DivFiltro>
                 <h4>Ano</h4>
                 <DivFiltro>
-                  <button onClick={() => console.log("clickou")}>2022</button>
-                  <button onClick={() => console.log("clickou")}>2021</button>
-                  <button onClick={() => console.log("clickou")}>2018</button>
-                  <button onClick={() => console.log("clickou")}>2015</button>
-                  <button onClick={() => console.log("clickou")}>2013</button>
-                  <button onClick={() => console.log("clickou")}>2012</button>
-                  <button onClick={() => console.log("clickou")}>2010</button>
+                  <button onClick={() => handleFilterChange("year", 2022)}>2022</button>
+                  <button onClick={() => handleFilterChange("year", 2021)}>2021</button>
+                  <button onClick={() => handleFilterChange("year", 2018)}>2018</button>
+                  <button onClick={() => handleFilterChange("year", 2015)}>2015</button>
+                  <button onClick={() => handleFilterChange("year", 2013)}>2013</button>
+                  <button onClick={() => handleFilterChange("year", 2012)}>2012</button>
+                  <button onClick={() => handleFilterChange("year", 2010)}>2010</button>
                 </DivFiltro>
                 <h4>Combustível</h4>
                 <DivFiltro>
-                  <button onClick={() => console.log("clickou")}>
+                  <button onClick={() => handleFilterChange("fuel", 3)}>
                     Elétrico
                   </button>
-                  <button onClick={() => console.log("clickou")}>Flex</button>
-                  <button onClick={() => console.log("clickou")}>
+                  <button onClick={() => handleFilterChange("fuel", 1)}>
+                    Flex</button>
+                  <button onClick={() => handleFilterChange("fuel", 2)}>
                     Híbrido
                   </button>
                 </DivFiltro>
@@ -159,9 +166,7 @@ export const AsideHome = () => {
         <AsideContainer>
           <h4>Marca</h4>
           <DivFiltro>
-            <button
-              onClick={() => handleFilterChange("brand", "General Motors")}
-            >
+            <button onClick={() => handleFilterChange("brand", "General Motors")}>
               General Motors
             </button>
             <button onClick={() => handleFilterChange("brand", "Fiat")}>
@@ -286,7 +291,8 @@ export const AsideHome = () => {
             />
           </AsideDivKm>
 
-          <button className="buttonDesktop">Limpar filtros</button>
+          <button className="buttonDesktop"
+                  onClick={() => clearFilters()}>Limpar filtros</button>
         </AsideContainer>
       )}
     </>
