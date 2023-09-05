@@ -60,13 +60,13 @@ const createSalesService = async (
     color: data.color,
     price: data.price,
     fuel: data.fuel,
-    model: data.model,
     year: data.year,
     description: data.description,
     kilometers: data.kilometers,
+    brand: data.brand,
     gallery: data.gallery,
   });
-  // console.log(newSale);
+ 
 
   await salesRepository.save(newSale);
 
