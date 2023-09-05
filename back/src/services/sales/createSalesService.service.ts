@@ -20,32 +20,37 @@ const createSalesService = async (
   });
 
   if (!user) {
-    throw new AppError("user not found", 404);
+    throw new AppError("Usuário não encontrado", 404);
   }
 
   let buyerUser: User | null = null;
 
   if (data.buyer_id) {
-    const buyer = await userRepository.findOne({ where: { id: data.buyer_id } });
+    const buyer = await userRepository.findOne({
+      where: { id: data.buyer_id },
+    });
     if (!buyer) {
-      throw new AppError("Buyer user not found", 404);
+      throw new AppError("Usuário comprador não encontrado", 404);
     }
     buyerUser = buyer;
-    
   }
-  
 
+  const fuelAdj =
+    data.fuel === 1
+      ? "Flex"
+      : data.fuel === 2
+      ? "Híbrido"
+      : data.fuel === 3
+      ? "Elétrico"
+      : (() => {
+          throw new AppError(
+            "Tipo de combustível inválido, escolha entre as opções: 1 - Flex, 2 - Híbrido, 3 - Elétrico",
+            400
+          );
+        })();
 
-  const existingSale = await salesRepository.findOne({
-    where: {
-      title: data.title,
-      status: SaleStatus.Sold,
-    },
-  });
-
-  if (existingSale) {
-    throw new AppError("This car has already been sold", 400);
-  }
+  data.fuel = fuelAdj;
+  console.log(fuelAdj);
 
   const newSale = salesRepository.create({
     user: user,
@@ -61,6 +66,7 @@ const createSalesService = async (
     brand: data.brand,
     gallery: data.gallery,
   });
+ 
 
   await salesRepository.save(newSale);
 

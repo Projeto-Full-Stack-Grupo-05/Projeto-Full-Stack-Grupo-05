@@ -12,7 +12,7 @@ import addressRoutes from "./routes/address.routes";
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "http://127.0.0.1:5173" }));
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use("/user", userRoutes);
 app.use("/login", loginRoutes);
 app.use("/sales", salesRoutes);

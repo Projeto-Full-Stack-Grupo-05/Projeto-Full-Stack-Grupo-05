@@ -52,7 +52,7 @@ class Sale {
   @Column()
   kilometers: number;
 
-  @Column({ enum: SaleStatus, default: SaleStatus.Active })
+  @Column({ type: "enum", enum: SaleStatus, default: SaleStatus.Active })
   status: SaleStatus;
 
   @CreateDateColumn({ type: "date" })
@@ -72,7 +72,6 @@ class Sale {
 
   @OneToMany(() => Comment, (comment) => comment.sale)
   comments: Comment[];
-  SaleStatus: string;
 }
 
 export default Sale;
