@@ -17,9 +17,27 @@ export const CarProvider = ({ children }: CarProviderProps) => {
     color: "",
     year: 0,
     fuel: 0,
-    km: 0,
-    price: 0,
+    kmStart: 0,
+    kmEnd: 0,
+    priceStart: 0,
+    priceEnd: 0
   });
+
+  const initialFilters = {
+    brand: "",
+    model: "",
+    color: "",
+    year: 0,
+    fuel: 0,
+    kmStart: 0,
+    kmEnd: 0,
+    priceStart: 0,
+    priceEnd: 0
+  };
+
+  const clearFilters = () => {
+    setFilters(initialFilters)
+  }
 
   const [salesCar, setSalesCar] = useState<AdsCar[]>([]);
   const [saleCar, setSaleCar] = useState<AdsCar>();
@@ -31,17 +49,34 @@ export const CarProvider = ({ children }: CarProviderProps) => {
         setCarsToRender(cars.data.data)
   
         const filtered = cars.data.data.filter((car: { sale: { brand: string; title: string; color: string; year: number; fuel: number; kilometers: number; price: number; }; }) => {
+          const {
+            brand,
+            title,
+            color,
+            year,
+            fuel,
+            kilometers,
+            price,
+          } = car.sale;
+        
+          const kmStart = filters.kmStart || 0;
+          const kmEnd = filters.kmEnd || 0;
+          const priceStart = filters.priceStart || 0;
+          const priceEnd = filters.priceEnd || 0;
+        
           return (
             (filters.brand === "" ||
-              car.sale.brand.toLowerCase().includes(filters.brand.toLowerCase())) &&
+              brand.toLowerCase().includes(filters.brand.toLowerCase())) &&
             (filters.model === "" ||
-              car.sale.title.toLowerCase().includes(filters.model.toLowerCase())) &&
+              title.toLowerCase().includes(filters.model.toLowerCase())) &&
             (filters.color === "" ||
-              car.sale.color.toLowerCase().includes(filters.color.toLowerCase())) &&
-            (filters.year === 0 || car.sale.year === +filters.year) &&
-            (filters.fuel === 0 || car.sale.fuel === +filters.fuel) &&
-            (filters.km === 0 || car.sale.kilometers >= +filters.km) &&
-            (filters.price === 0 || car.sale.price >= +filters.price)
+              color.toLowerCase().includes(filters.color.toLowerCase())) &&
+            (filters.year === 0 || year === +filters.year) &&
+            (filters.fuel === 0 || fuel === +filters.fuel) &&
+            ((kmStart === 0 && kmEnd === 0) ||
+              (kilometers >= kmStart && kilometers <= kmEnd)) &&
+            ((priceStart === 0 && priceEnd === 0) ||
+              (price >= priceStart && price <= priceEnd))
           );
         });
   
@@ -55,9 +90,11 @@ export const CarProvider = ({ children }: CarProviderProps) => {
   }, [filters]);
   
 
-  const handleFilterChange = (filterName: string, value: string | number) => {
+  const handleFilterChange = (filterName: string, value: string | number | object) => {
     setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
   };
+
+  
 
   // useEffect(() => {
   //   //const token = localStorage.getItem("@TOKEN");
@@ -119,7 +156,8 @@ export const CarProvider = ({ children }: CarProviderProps) => {
         getCars,
         getCar,
         saleCar,
-        carsToRender
+        carsToRender,
+        clearFilters,
       }}
     >
       {children}

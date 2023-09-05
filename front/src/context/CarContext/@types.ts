@@ -21,6 +21,7 @@ export interface CarContextType {
   getCar: (id: string) => Promise<void>;
   saleCar: AdsCar | undefined;
   carsToRender: iCarsToRender[];
+  clearFilters: () => void;
 }
 
 export interface CarProviderProps {
