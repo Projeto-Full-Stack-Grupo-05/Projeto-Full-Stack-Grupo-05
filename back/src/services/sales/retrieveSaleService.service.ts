@@ -9,7 +9,7 @@ const retrieveSaleService = async (saleId: string): Promise<TSale> => {
   const saleRepository: Repository<Sale> = AppDataSource.getRepository(Sale);
 
   const requiredSale: Sale | null = await saleRepository.findOne({
-    relations: { gallery: true },
+    relations: { gallery: true, user: true },
     where: {
       id: saleId,
     },
@@ -19,9 +19,17 @@ const retrieveSaleService = async (saleId: string): Promise<TSale> => {
     throw new AppError("Sale not found", 404);
   }
 
-  const returnSale: TSale = salesSchema.parse(requiredSale);
+  const saleWithUser = {
+    ...salesSchema.parse(requiredSale),
+    user: {
+      ...requiredSale.user,
+      password: undefined,
+      id:undefined,
+      
+    },
+  };
 
-  return returnSale;
+  return saleWithUser;
 };
 
 export default retrieveSaleService;

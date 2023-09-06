@@ -14,8 +14,8 @@ export const StyledContainer = styled.div`
     align-items: center;
     padding: 0 20px;
 
-    background-image: url("src/assets/car banner.svg"),
-      linear-gradient(#a2a2a2, black);
+    background-image: url("src/assets/car banner.svg");
+
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -27,6 +27,10 @@ export const StyledContainer = styled.div`
       color: var(--color-grey-10);
       gap: 20px;
       padding-bottom: 40px;
+      justify-content: center;
+
+      height: 100%;
+      width: 100%;
 
       h1 {
         font-weight: 600;
@@ -75,3 +79,12 @@ export const StyledContainer = styled.div`
     }
   }
 `;
+
+export const StyledSalesBox = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 48px;
+  margin: 0 auto;
+  width: 100%;
+`

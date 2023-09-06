@@ -26,7 +26,7 @@ class Sale {
   user_id: string;
 
   @Column()
-  car_id: string;
+  brand: string
 
   @Column()
   title: string;
@@ -52,14 +52,15 @@ class Sale {
   @Column()
   kilometers: number;
 
-  @Column({ enum: SaleStatus, default: SaleStatus.Active })
+  @Column({ type: "enum", enum: SaleStatus, default: SaleStatus.Active })
   status: SaleStatus;
 
   @CreateDateColumn({ type: "date" })
   createdAt: string;
 
-  @OneToOne(() => User)
-  buyer: User;
+  @OneToOne(() => User, { nullable: true })
+  @JoinColumn({ name: "buyer_id" })
+  buyer: User | null;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: "user_id" })
@@ -70,8 +71,7 @@ class Sale {
   gallery: Gallery[];
 
   @OneToMany(() => Comment, (comment) => comment.sale)
-  @JoinColumn({ name: "comments" })
-  comment: Comment[];
+  comments: Comment[];
 }
 
 export default Sale;

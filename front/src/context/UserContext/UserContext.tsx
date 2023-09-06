@@ -18,13 +18,13 @@ export const UserContext = createContext({} as IUserContext);
 export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<IUser | null>(null);
-  const [userMenuIsOpen, setUserMenuIsOpen] = useState(false)
-  const [editProfileIsOpen, setEditProfileisOpen] = useState(false)
-  const [editAddressIsOpen, setEditAddressIsOpen] = useState(false)
+  const [userMenuIsOpen, setUserMenuIsOpen] = useState(false);
+  const [editProfileIsOpen, setEditProfileisOpen] = useState(false);
+  const [editAddressIsOpen, setEditAddressIsOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+ useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
     const id = localStorage.getItem("@USERID");
     if (token) {
@@ -73,7 +73,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       localStorage.setItem("@USERANUNCIANTE", response.data.user.profile);
 
       setUser(response.data.user);
-      navigate("/");
+      navigate("/admin");
     } catch (error) {
       console.log(error);
     } finally {
@@ -134,7 +134,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         editProfileIsOpen,
         setEditProfileisOpen,
         editAddressIsOpen,
-        setEditAddressIsOpen
+        setEditAddressIsOpen,
       }}
     >
       {children}

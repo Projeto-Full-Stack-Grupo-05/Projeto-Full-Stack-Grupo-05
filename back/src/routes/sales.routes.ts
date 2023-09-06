@@ -15,17 +15,19 @@ import {
   salesSchemaRequest,
   salesSchemaUpdateRequest,
 } from "../schemas/salesSchema.schema";
+import { listAllCommentsBySalesController } from "../controllers/commentsController.controller";
+import ensureBuyerIdMiddleware from "../middleware/ensureBuyerIdMiddleware.middleware";
 
 const salesRoutes = Router();
 
 salesRoutes.post(
   "",
+  ensureBuyerIdMiddleware,
   ensureBodyValidMiddleware(salesSchemaRequest),
-  // ensureAlreadyExistsSalesMiddleware,
   createSalesController
 );
 
-
+salesRoutes.get("/:id/comments", listAllCommentsBySalesController);
 
 salesRoutes.get("/:id", ensureIdMiddleware, retrieveSaleController);
 
@@ -33,6 +35,7 @@ salesRoutes.get("", readSalesController);
 
 salesRoutes.patch(
   "/:id",
+  ensureBuyerIdMiddleware,
   ensureBodyValidMiddleware(salesSchemaUpdateRequest),
   ensureIdMiddleware,
   updateSaleController

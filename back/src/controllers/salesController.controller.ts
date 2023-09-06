@@ -10,6 +10,7 @@ import readSalesService from "../services/sales/readSalesService.service";
 import retrieveSaleService from "../services/sales/retrieveSaleService.service";
 import updateSaleService from "../services/sales/updateSaleService.service";
 import createSalesService from "../services/sales/createSalesService.service";
+import listSalesByUserService from "../services/sales/listSalesByUserService.service";
 
 export const createSalesController = async (req: Request, res: Response) => {
   const userId = req.body.user_id;
@@ -57,4 +58,17 @@ export const deleteSaleController = async (
   await deleteSaleService(saleId);
 
   return res.status(204).send();
+};
+
+
+
+export const listAllSalesByUserController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const userId: string = req.params.id;
+
+  const userSale = await listSalesByUserService(userId);
+
+  return res.json(userSale);
 };

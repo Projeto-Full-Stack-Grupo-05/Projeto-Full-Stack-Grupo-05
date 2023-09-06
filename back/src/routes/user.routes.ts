@@ -14,6 +14,7 @@ import ensureBodyValidMiddleware from "../middleware/ensureBodyValidMiddleware";
 import ensureAuthMiddleware from "../middleware/ensureAuthMiddleware";
 import ensureUserIdExistsMiddleware from "../middleware/ensureUserIdExistsMiddleware.middleware";
 import ensureOwnerUserMiddleware from "../middleware/ensureOwnerUserMiddleware.middleware";
+import { listAllSalesByUserController } from "../controllers/salesController.controller";
 
 const userRoutes = Router();
 userRoutes.post(
@@ -46,5 +47,7 @@ userRoutes.delete(
   ensureOwnerUserMiddleware,
   deleteUsersController
 );
+
+userRoutes.get("/:id/sales", listAllSalesByUserController)
 
 export default userRoutes;

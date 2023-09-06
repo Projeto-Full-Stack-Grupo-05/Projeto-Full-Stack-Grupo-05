@@ -1,7 +1,12 @@
-import { Request, Response } from "express";
 import { TComment } from "../interfaces/comments.interface";
+import { Response, Request } from "express";
+import listCommentsService from "../services/comments/listComentsSalesService.service";
+import listCommentBySaleService from "../services/comments/listCommentBySaleService.service";
+import Comment from "../entities/comments.entity";
+import deleteCommentService from "../services/comments/deleteCommentService.service";
 import { createCommentService } from "../services/comments/createCommentService.service";
 import updateCommentService from "../services/comments/updateCommentService.service";
+import retrieveCommentService from "../services/comments/retriveCommentService.Service";
 
 export const createCommentsController = async (
   req: Request,
@@ -14,6 +19,35 @@ export const createCommentsController = async (
   return res.status(201).json(newComment);
 };
 
+export const listCommentsController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const comments = await listCommentsService();
+  return res.json(comments);
+};
+
+export const retrieveCommentController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const saleId: string = req.params.id
+  const comment: Comment | null = await retrieveCommentService(saleId);
+
+  return res.json(comment);
+};
+
+export const listAllCommentsBySalesController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const saleId: string = req.params.id;
+
+  const commentSale = await listCommentBySaleService(saleId);
+
+  return res.json(commentSale);
+};
+
 export const updateCommentsController = async (
   req: Request,
   res: Response
@@ -23,4 +57,10 @@ export const updateCommentsController = async (
 
   const updateComment: TComment = await updateCommentService(text, commentId);
   return res.status(200).json(updateComment);
+};
+
+export const deleteCommentController = async (req: Request, res: Response) => {
+  const commentId = req.params.id;
+  await deleteCommentService(commentId);
+  res.status(204).send();
 };

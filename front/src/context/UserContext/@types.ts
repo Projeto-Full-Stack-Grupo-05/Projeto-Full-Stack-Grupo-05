@@ -15,6 +15,14 @@ export interface IUser {
   description: string;
   profile: string;
   cellphone: string;
+  address: {
+    zip_code: string;
+    state: string;
+    city: string;
+    street: string;
+    number: string;
+    complement: string;
+  };
   birthdate: string;
   userImg: string;
   cpf: string;
@@ -27,6 +35,14 @@ export interface IRegisterFormValues {
   description: string;
   profile: string;
   cellphone: string;
+  address: {
+    zip_code: string;
+    state: string;
+    city: string;
+    street: string;
+    number: string;
+    complement: string;
+  };
   birthdate: string;
   userImg: string;
   cpf: string;
