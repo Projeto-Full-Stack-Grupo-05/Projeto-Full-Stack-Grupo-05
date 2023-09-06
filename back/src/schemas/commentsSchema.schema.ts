@@ -28,12 +28,8 @@ const commentSchema = z.object({
 
 const commentsSchemaResponse = z.array(commentsSchema);
 
-const commentsSchemaUpdateRequest = commentsSchema.partial().omit({
-  id: true,
-  sale_id: true,
-  updatedAt: true,
-  user_id: true,
-  createdAt: true,
+const commentsSchemaUpdateRequest = z.object({
+  text: z.string().nonempty(),
 });
 
 const saleSchema = z.object({

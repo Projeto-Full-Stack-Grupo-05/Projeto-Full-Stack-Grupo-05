@@ -1,3 +1,4 @@
+import { TComment } from "../interfaces/comments.interface";
 import { Response, Request } from "express";
 import listCommentsService from "../services/comments/listComentsSalesService.service";
 import listCommentBySaleService from "../services/comments/listCommentBySaleService.service";
@@ -26,6 +27,16 @@ export const listCommentsController = async (
   return res.json(comments);
 };
 
+export const retrieveCommentController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const saleId: string = req.params.id
+  const comment: Comment | null = await retrieveCommentService(saleId);
+
+  return res.json(comment);
+};
+
 export const listAllCommentsBySalesController = async (
   req: Request,
   res: Response
@@ -44,7 +55,7 @@ export const updateCommentsController = async (
   const { text } = req.body;
   const commentId: string = req.params.id;
 
-  const updateComment = await updateCommentService(text, commentId);
+  const updateComment: TComment = await updateCommentService(text, commentId);
   return res.status(200).json(updateComment);
 };
 
@@ -52,15 +63,4 @@ export const deleteCommentController = async (req: Request, res: Response) => {
   const commentId = req.params.id;
   await deleteCommentService(commentId);
   res.status(204).send();
-};
-
-
-export const retrieveCommentController = async (
-  req: Request,
-  res: Response
-): Promise<Response> => {
-  const saleId: string = req.params.id
-  const comment: Comment | null = await retrieveCommentService(saleId);
-
-  return res.json(comment);
 };
