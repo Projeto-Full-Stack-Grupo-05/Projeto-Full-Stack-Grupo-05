@@ -1,15 +1,29 @@
 import { ReactNode } from "react";
 
 export interface ICar {
-  id: number;
+  id: string;
   brand: string;
+  title: string;
   model: string;
   color: string;
   year: number;
   fuel: number;
-  km: number;
+  kilometers: number;
   price: number;
   owner?: string;
+  description: string;
+  img: string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    birthdate: string;
+    cellphone: string;
+    cpf: string;
+    description: string;
+    createdAt: string;
+    profile: string;
+  };
 }
 
 export interface CarContextType {
@@ -22,6 +36,7 @@ export interface CarContextType {
   saleCar: AdsCar | undefined;
   carsToRender: iCarsToRender[];
   clearFilters: () => void;
+  card: ICar[];
 }
 
 export interface CarProviderProps {
@@ -46,6 +61,7 @@ export interface AdsCar {
 }
 
 export interface iCarsToRender {
+  id: string;
   sale: {
     user_id: string;
     buyer_id: string;
@@ -62,7 +78,7 @@ export interface iCarsToRender {
     status: string;
     id: string;
     createdAt: string;
-  },
+  };
   user: {
     id: string;
     name: string;

@@ -24,7 +24,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
 
   const navigate = useNavigate();
 
- useEffect(() => {
+  /* useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
     const id = localStorage.getItem("@USERID");
     if (token) {
@@ -45,7 +45,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       };
       userAutoLogin();
     }
-  }, [navigate]);
+  }, [navigate]);*/
 
   const userRegister = async (formData: IRegisterFormValues) => {
     try {

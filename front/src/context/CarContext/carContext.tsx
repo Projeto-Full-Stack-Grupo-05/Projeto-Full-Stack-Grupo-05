@@ -1,13 +1,19 @@
 import { createContext, useState, useEffect } from "react";
-import { AdsCar, CarContextType, CarProviderProps, iCarsToRender } from "./@types";
+import {
+  AdsCar,
+  CarContextType,
+  CarProviderProps,
+  ICar,
+  iCarsToRender,
+} from "./@types";
 import { api } from "../../services/api";
 
 export const CarContext = createContext({} as CarContextType);
 
 export const CarProvider = ({ children }: CarProviderProps) => {
-  // const [loading, setLoading] = useState(true);
-  // const [, setDataUpdated] = useState(false);
-  // const [card, setCard] = useState<ICar[]>([]);
+  /*const [loading, setLoading] = useState(true);
+  const [, setDataUpdated] = useState(false);*/
+  const [card, setCard] = useState<ICar[]>([]);
 
   const [carsToRender, setCarsToRender] = useState<iCarsToRender[]>([]);
   const [filteredCars, setFilteredCars] = useState<iCarsToRender[]>([]);
@@ -20,7 +26,7 @@ export const CarProvider = ({ children }: CarProviderProps) => {
     kmStart: 0,
     kmEnd: 0,
     priceStart: 0,
-    priceEnd: 0
+    priceEnd: 0,
   });
 
   const initialFilters = {
@@ -32,12 +38,12 @@ export const CarProvider = ({ children }: CarProviderProps) => {
     kmStart: 0,
     kmEnd: 0,
     priceStart: 0,
-    priceEnd: 0
+    priceEnd: 0,
   };
 
   const clearFilters = () => {
-    setFilters(initialFilters)
-  }
+    setFilters(initialFilters);
+  };
 
   const [salesCar, setSalesCar] = useState<AdsCar[]>([]);
   const [saleCar, setSaleCar] = useState<AdsCar>();
@@ -45,75 +51,74 @@ export const CarProvider = ({ children }: CarProviderProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const cars = await api.get('/sales')
-        setCarsToRender(cars.data.data)
-  
-        const filtered = cars.data.data.filter((car: { sale: { brand: string; title: string; color: string; year: number; fuel: number; kilometers: number; price: number; }; }) => {
-          const {
-            brand,
-            title,
-            color,
-            year,
-            fuel,
-            kilometers,
-            price,
-          } = car.sale;
-        
-          const kmStart = filters.kmStart || 0;
-          const kmEnd = filters.kmEnd || 0;
-          const priceStart = filters.priceStart || 0;
-          const priceEnd = filters.priceEnd || 0;
-        
-          return (
-            (filters.brand === "" ||
-              brand.toLowerCase().includes(filters.brand.toLowerCase())) &&
-            (filters.model === "" ||
-              title.toLowerCase().includes(filters.model.toLowerCase())) &&
-            (filters.color === "" ||
-              color.toLowerCase().includes(filters.color.toLowerCase())) &&
-            (filters.year === 0 || year === +filters.year) &&
-            (filters.fuel === 0 || fuel === +filters.fuel) &&
-            ((kmStart === 0 && kmEnd === 0) ||
-              (kilometers >= kmStart && kilometers <= kmEnd)) &&
-            ((priceStart === 0 && priceEnd === 0) ||
-              (price >= priceStart && price <= priceEnd))
-          );
-        });
-  
-        setFilteredCars(filtered)
+        const cars = await api.get("/sales");
+        setCarsToRender(cars.data.data);
+
+        const filtered = cars.data.data.filter(
+          (car: {
+            sale: {
+              brand: string;
+              title: string;
+              color: string;
+              year: number;
+              fuel: number;
+              kilometers: number;
+              price: number;
+            };
+          }) => {
+            const { brand, title, color, year, fuel, kilometers, price } =
+              car.sale;
+
+            const kmStart = filters.kmStart || 0;
+            const kmEnd = filters.kmEnd || 0;
+            const priceStart = filters.priceStart || 0;
+            const priceEnd = filters.priceEnd || 0;
+
+            return (
+              (filters.brand === "" ||
+                brand.toLowerCase().includes(filters.brand.toLowerCase())) &&
+              (filters.model === "" ||
+                title.toLowerCase().includes(filters.model.toLowerCase())) &&
+              (filters.color === "" ||
+                color.toLowerCase().includes(filters.color.toLowerCase())) &&
+              (filters.year === 0 || year === +filters.year) &&
+              (filters.fuel === 0 || fuel === +filters.fuel) &&
+              ((kmStart === 0 && kmEnd === 0) ||
+                (kilometers >= kmStart && kilometers <= kmEnd)) &&
+              ((priceStart === 0 && priceEnd === 0) ||
+                (price >= priceStart && price <= priceEnd))
+            );
+          }
+        );
+
+        setFilteredCars(filtered);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
-  
-    fetchData()
-  }, [filters]);
-  
 
-  const handleFilterChange = (filterName: string, value: string | number | object) => {
+    fetchData();
+  }, [filters]);
+
+  const handleFilterChange = (
+    filterName: string,
+    value: string | number | object
+  ) => {
     setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
   };
 
-  
-
-  // useEffect(() => {
-  //   //const token = localStorage.getItem("@TOKEN");
-  //   //if (token) {
-  //     const profileForm = async () => {
-  //       try {
-  //         const response = await api.get("/sales", {
-  //           /*headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },*/
-  //         });
-  //         setCard(response.data);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
-  //     profileForm();
-  //  // }
-  // }, []);
+  useEffect(() => {
+    const fetchCard = async () => {
+      try {
+        const id = localStorage.getItem("@USERID") || "";
+        const response = await api.get(`/user/${id}/sales`);
+        setCard(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCard();
+  }, []);
 
   const carDelete = async (carId: number) => {
     try {
@@ -158,6 +163,7 @@ export const CarProvider = ({ children }: CarProviderProps) => {
         saleCar,
         carsToRender,
         clearFilters,
+        card,
       }}
     >
       {children}

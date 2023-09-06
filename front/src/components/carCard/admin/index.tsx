@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { ModalEditAnnounce } from "../../ModalEditAnnounce";
 import { Card } from "./style";
+import { ICar } from "../../../context/CarContext/@types";
 
-interface ICarMock {
+/*interface ICarMock {
   id: number;
   img: string;
   model: string;
@@ -12,23 +13,23 @@ interface ICarMock {
   km: number;
   year: number;
   price: number;
-}
+}*/
 
-export default function CarCardAdmin({ car }: { car: ICarMock }) {
+export default function CarCardAdmin({ car }: { car: ICar }) {
   return (
     <Card>
       <figure>
-        <img src={car.img} alt={car.model} />
+        <img src={car.img} alt={car.brand} />
         <span>Ativo</span>
       </figure>
 
       <h6>
-        {car.brand} - {car.model}
+        {car.brand} - {car.title}
       </h6>
       <p>{car.description}</p>
 
       <div>
-        <span>{car.km} km</span>
+        <span>{car.kilometers} km</span>
         <span>{car.year}</span>
 
         <span>

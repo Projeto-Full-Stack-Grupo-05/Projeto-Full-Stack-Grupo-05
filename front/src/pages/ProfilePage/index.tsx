@@ -1,16 +1,33 @@
-import { useQuery } from "react-query";
+/*import { useQuery } from "react-query";*/
 import { Footer } from "../../components/Footer";
 import { HeaderLoggedIn } from "../../components/HeaderLoggedIn";
 import { Container, Main } from "./style";
-import { isAxiosError } from "axios";
+/*import { isAxiosError } from "axios";*/
 import { CarCard } from "../../components/carCard";
-import ErrorPage from "../ErrorPage";
+/*import ErrorPage from "../ErrorPage";
 import { api } from "../../services/api";
-import { IMotorsSales } from "../../services/api/interfaces";
+import { IMotorsSales } from "../../services/api/interfaces";*/
 import CardUserResume from "../../components/UserResume";
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
+import { iCarsToRender } from "../../context/CarContext/@types";
 
 export default function ProfilePage() {
-  const getKenzieCars = async () => {
+  const [card, setCard] = useState<iCarsToRender[]>([]);
+
+  useEffect(() => {
+    const fetchCard = async () => {
+      try {
+        const id = localStorage.getItem("@USERID") || "";
+        const response = await api.get(`/user/${id}/sales`);
+        setCard(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCard();
+  }, []);
+  /* const getKenzieCars = async () => {
     try {
       // const cars = await api.get<IMotorsSales[]>("/sales");
 
@@ -88,7 +105,7 @@ export default function ProfilePage() {
   if (error) {
     return <ErrorPage />;
   }
-
+*/
   return (
     <>
       <HeaderLoggedIn />
@@ -101,8 +118,8 @@ export default function ProfilePage() {
             <h5>Anúncios</h5>
 
             <ul>
-              {data?.map((car) => (
-                <CarCard car={car} key={car.id} />
+              {card?.map((car) => (
+                <CarCard car={car} key={car?.sale?.id || car.id} />
               ))}
             </ul>
 

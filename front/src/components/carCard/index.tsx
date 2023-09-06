@@ -33,7 +33,10 @@ export const CarCard = ({ car }: { car: iCarsToRender }) => {
     >
       <CardStyled>
         <figure>
-          <img src={car.sale.img_url} alt={car.sale.title} />
+          <img
+            src={car?.sale.img_url || "URL_PADRÃO"}
+            alt={car?.sale.title || "Título não disponível"}
+          />
         </figure>
         <InfoStyled>
           <h6>
@@ -42,8 +45,14 @@ export const CarCard = ({ car }: { car: iCarsToRender }) => {
           <p>{car.sale.description}</p>
         </InfoStyled>
         <NameBoxStyled $colors={colors}>
-          <div>{getInitials(car.user.name)}</div>
-          <p>{car.user.name}</p>
+          <div>
+            {car.user && car.user.name
+              ? getInitials(car.user.name)
+              : "Nome não disponível"}
+          </div>
+          <p>
+            {car.user && car.user.name ? car.user.name : "Nome não disponível"}
+          </p>
         </NameBoxStyled>
         <DetailsBox>
           <div>

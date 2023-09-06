@@ -1,17 +1,17 @@
 import { HeaderLoggedIn } from "../../components/HeaderLoggedIn";
 import { Footer } from "../../components/Footer";
 import { Main } from "./style";
-import { isAxiosError } from "axios";
+/*import { isAxiosError } from "axios";
 import { useQuery } from "react-query";
-import ErrorPage from "../ErrorPage";
+import ErrorPage from "../ErrorPage";*/
 import CarCardAdmin from "../../components/carCard/admin";
 import CardUserResume from "../../components/UserResume";
-import { useContext } from "react";
 import { CarContext } from "../../context/CarContext/carContext";
+import { useContext } from "react";
 
 export const AdminPage = () => {
-  const { contacts, setContacts } = useContext(CarContext);
-  const getKenzieCars = async () => {
+  const { card } = useContext(CarContext);
+  /* const getKenzieCars = async () => {
     try {
       // const cars = await api.get<IMotorsSales[]>("/sales");
 
@@ -90,7 +90,7 @@ export const AdminPage = () => {
   if (error) {
     return <ErrorPage />;
   }
-
+*/
   return (
     <>
       <HeaderLoggedIn />
@@ -99,7 +99,7 @@ export const AdminPage = () => {
 
         <section>
           <ul>
-            {data?.map((car) => (
+            {card?.map((car) => (
               <CarCardAdmin car={car} key={car.id} />
             ))}
           </ul>
