@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { TComment } from "../interfaces/comments.interface";
 import { createCommentService } from "../services/comments/createCommentService.service";
 import updateCommentService from "../services/comments/updateCommentService.service";
 
@@ -13,22 +14,6 @@ export const createCommentsController = async (
   return res.status(201).json(newComment);
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const updateCommentsController = async (
   req: Request,
   res: Response
@@ -36,6 +21,6 @@ export const updateCommentsController = async (
   const { text } = req.body;
   const commentId: string = req.params.id;
 
-  const updateComment = await updateCommentService(text, commentId);
+  const updateComment: TComment = await updateCommentService(text, commentId);
   return res.status(200).json(updateComment);
 };
